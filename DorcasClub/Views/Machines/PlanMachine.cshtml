@@ -1,0 +1,381 @@
+﻿@model DorcasClub.Machine
+@{
+    ViewBag.Title = "PlanMachine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count1 = 0; int count2 = 0; int count3 = 0; int count4 = 0; int count5 = 0; int count6 = 0; int count7 = 0;
+    List<Session> ListSessions1 = ViewData["ListSeances1"] as List<Session>;
+    List<Session> ListSessions2 = ViewData["ListSeances2"] as List<Session>;
+    List<Session> ListSessions3 = ViewData["ListSeances3"] as List<Session>;
+    List<Session> ListSessions4 = ViewData["ListSeances4"] as List<Session>;
+    List<Session> ListSessions5 = ViewData["ListSeances5"] as List<Session>;
+    List<Session> ListSessions6 = ViewData["ListSeances6"] as List<Session>;
+    List<Session> ListSessions7 = ViewData["ListSeances7"] as List<Session>;
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3"><span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block"> Planification Machine</span></div>
+                <div class="col-md-4" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Séances</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="">Planification Machine</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Plans
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="card">
+        <div class="card-content">
+            <div class="card-header">
+                <form action="/Machines/PlanMachineChercher" method="post">
+                    <div class="row">
+                        <div class="col-md-3 row">
+                            <label class="text-bold-700 col-md-3">DU</label><br />
+                            <input type="date" class="form-control col-md-9" id="Datedebut" name="Datedebut" value="@ViewData["d1"]" onchange="LicenceToOccupy()" />
+
+                        </div>
+                        <div class="col-md-3 row">
+                            <label class="text-bold-700 col-md-3">AU</label><br />
+                            <input type="date" class="form-control col-md-9" id="DateFin" name="DateFin" value="@ViewData["d2"]" onchange="LicenceToOccupy()" />
+
+                        </div>
+
+                        <div class="col-md-3 row">
+                            <label class="text-bold-700 col-md-5">Machine</label><br />
+                            <select name="CodeMachine" id="CodeMachine" class="selectpicker form-control col-md-7" data-live-search="true">
+                                <option value="@ViewData["IdMachine"]">@ViewData["Machine"]</option>
+
+                                @foreach (var item in ViewData["ListMachine"] as List<Machine>)
+                                {
+
+                                    <option value="@item.IdMachine">@item.Designation</option>
+                                }
+
+                            </select>
+
+
+                        </div>
+                        <div class="col-md-3">
+                            <input type="button" value="Imprimer" class="btn btn-success pull-right" onclick="imprimer()" />
+                            <button type="submit" class="btn btn-info pull-right mr-1">Chercher</button>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div id="SelectorToPrint" name="SelectorToPrint" class="table-responsive">
+                <link href="~/Content/css/bootstrap-extended.min.css" rel="stylesheet">
+                <style type="text/css" media="print">
+                    .page {
+                        -webkit-transform: rotate(-90deg);
+                        -moz-transform: rotate(-90deg);
+                        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+                    }
+                </style>
+                <div class="card">
+                    <div class="bg-white">
+                        <div class="card-header text-center" style="text-align: center">
+                            <h1>Plan de la Semaine pour Machine :<b>@ViewData["Machine"]</b> </h1>
+                            <p>
+                                DU: @ViewData["d1"] | Au : @ViewData["d2"]
+                            </p>
+                        </div>
+                        <table style="width: 100%;" border="1" id="my-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="date" name="Day1" id="Day1" class="label bg-gradient-y2-info border-0" value="@ViewData["Day"]" />
+                                    </th>
+
+                                    <th>
+                                        <input type="date" name="Day2" id="Day2" class="label bg-gradient-y2-info border-0" value="@ViewData["Day1"]" />
+                                    </th>
+
+                                    <th>
+                                        <input type="date" name="Day3" id="Day3" class="label bg-gradient-y2-info border-0 " value="@ViewData["Day2"]" />
+                                    </th>
+                                    <th>
+                                        <input type="date" name="Day4" id="Day4" class="label bg-gradient-y2-info border-0" value="@ViewData["Day3"]" />
+                                    </th>
+                                    <th>
+                                        <input type="date" name="Day5" id="Day5" class="label bg-gradient-y2-info border-0" value="@ViewData["Day4"]" />
+                                    </th>
+                                    <th>
+                                        <input type="date" name="Day6" id="Day6" class="label bg-gradient-y2-info border-0" value="@ViewData["Day5"]" />
+                                    </th>
+                                    <th>
+                                        <input type="date" name="Day7" id="Day7" class="label bg-gradient-y2-info border-0" value="@ViewData["Day6"]" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="col1">
+                                        <div class="list-group" id="listDay1">
+                                            @foreach (var item in ListSessions1)
+                                            {
+                                                if (count1 == 0)
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-warning"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-info"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+
+                                                }
+                                                count1++;
+                                            }
+                                        </div>
+
+                                    </td>
+                                    <td id="col2">
+                                        <div class="list-group" id="listDay2">
+                                            @foreach (var item in ListSessions2)
+                                            {
+                                                if (count2 == 0)
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-danger"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-info"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+
+                                                }
+                                                count2++;
+                                            }
+                                        </div>
+
+                                    </td>
+                                    <td id="col3">
+                                        <div class="list-group" id="listDay3">
+                                            @foreach (var item in ListSessions3)
+                                            {
+                                                if (count3 == 0)
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-warning"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-info"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+
+                                                }
+                                                count3++;
+                                            }
+                                        </div>
+
+                                    </td>
+                                    <td id="col4">
+                                        <div class="list-group" id="listDay4">
+                                            @foreach (var item in ListSessions4)
+                                            {
+                                                if (count4 == 0)
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-danger"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-info"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+
+                                                }
+                                                count4++;
+                                            }
+                                        </div>
+
+                                    </td>
+                                    <td id="col5">
+                                        <div class="list-group" id="listDay5">
+                                            @foreach (var item in ListSessions5)
+                                            {
+                                                if (count5 == 0)
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-warning"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-info"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+
+                                                }
+                                                count5++;
+                                            }
+                                        </div>
+
+                                    </td>
+                                    <td id="col6">
+                                        <div class="list-group" id="listDay6">
+                                            @foreach (var item in ListSessions6)
+                                            {
+                                                if (count6 == 0)
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-danger"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-info"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+
+                                                }
+                                                count6++;
+                                            }
+                                        </div>
+
+                                    </td>
+                                    <td id="col7">
+                                        <div class="list-group" id="listDay7">
+                                            @foreach (var item in ListSessions7)
+                                            {
+                                                if (count7 == 0)
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-warning"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="list-group-item list-group-item-action list-group-item-info"><strong> @item.HeureDebut -- @item.HeureFin<i class="la la-clock-o"></i></strong></p>
+
+                                                }
+                                                count7++;
+                                            }
+                                        </div>
+
+                                    </td>
+
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+</div>
+</div>
+<script>
+function addRows(){
+    $('.selectpicker').selectpicker('refresh')
+	var table = document.getElementById('my-table');
+	var rowCount = table.rows.length;
+	var cellCount = table.rows[0].cells.length;
+	var row = table.insertRow(rowCount);
+	for(var i =0; i <= cellCount; i++){
+		var cell = 'cell'+i;
+     	cell = row.insertCell(i);
+		var copycel = document.getElementById('col'+i).innerHTML;
+		cell.innerHTML=copycel;
+	}
+
+
+}
+
+
+
+
+    function deleteRows(){
+	var table = document.getElementById('my-table');
+	var rowCount = table.rows.length;
+	if(rowCount > '2'){
+		var row = table.deleteRow(rowCount-1);
+		rowCount--;
+	}
+	else{
+		  Swal.fire({
+  position: 'top-center',
+  background:'#c62828',
+  color:'#FFFFFF',
+  showConfirmButton: false,
+  title: 'Il doit y avoir au moins une ligne',
+  timer: 3000
+})
+
+	}
+}
+
+function LicenceToOccupy()
+{
+var date = new Date(Date.parse($('#Datedebut').val())); // Parse date
+date.setDate(date.getDate() + 6); // Add 7 days
+$('#DateFin').val(date.toISOString().split('T')[0]);
+    //ADD Day
+var date1 = new Date(Date.parse($('#Datedebut').val())); // Parse date
+date1.setDate(date1.getDate()); // Add 1 days
+$('#Day1').val(date1.toISOString().split('T')[0]);
+ var date2 = new Date(Date.parse($('#Datedebut').val())); // Parse date
+date2.setDate(date2.getDate() + 1); // Add 1 days
+$('#Day2').val(date2.toISOString().split('T')[0]);
+        var date3 = new Date(Date.parse($('#Datedebut').val())); // Parse date
+date3.setDate(date3.getDate() + 2); // Add 1 days
+$('#Day3').val(date3.toISOString().split('T')[0]);
+        var date4 = new Date(Date.parse($('#Datedebut').val())); // Parse date
+date4.setDate(date4.getDate() + 3); // Add 1 days
+$('#Day4').val(date4.toISOString().split('T')[0]);
+var date5 = new Date(Date.parse($('#Datedebut').val())); // Parse date
+date5.setDate(date5.getDate() + 4); // Add 1 days
+$('#Day5').val(date5.toISOString().split('T')[0]);
+
+var date6 = new Date(Date.parse($('#Datedebut').val())); // Parse date
+date6.setDate(date6.getDate() + 5); // Add 1 days
+$('#Day6').val(date6.toISOString().split('T')[0]);
+
+var date7 = new Date(Date.parse($('#Datedebut').val())); // Parse date
+date7.setDate(date7.getDate() + 6); // Add 1 days
+$('#Day7').val(date7.toISOString().split('T')[0]);
+
+}
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    function imprimer()
+    {
+
+    var divElementContents = document.getElementById("SelectorToPrint").innerHTML;
+
+ 	var windows = window.open();
+ 	windows.document.write(divElementContents);
+
+
+ 	windows.document.close();
+ 	windows.print();
+
+    }
+
+$(function() {
+    $("a#print").click(imprimer);
+});
+    </script>
+
+    @if (TempData["Alert"].ToString() == "Selectionner une machine!")
+    {
+    <script>
+
+           Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '@TempData["Alert"]',
+           })
+    </script>
+    }
+
+}
+

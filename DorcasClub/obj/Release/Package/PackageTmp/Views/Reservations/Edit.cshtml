@@ -1,0 +1,248 @@
+﻿@model DorcasClub.Reservation
+
+@{
+    ViewBag.Title = "Modifier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Modification Réservation @Model.IdReservation</span>
+                </div>
+                <div class="col-md-6" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Reservations">Réservation</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Modification
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Information Genérale</h4>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success pull-right" style=" margin-top: -12px;"><i class="la la-save"></i> Enregistrer</button>
+
+                        </div>
+
+                        <hr />
+                    </div>
+                    <div class="card-body row pt-0">
+                        <div class="col-md-4">
+                            <div class="form-group row no-gutters">
+                                <label for="IdAdherent" class="col-sm-4 col-form-label"> Adhérant </label>
+                                <div class="col-sm-8">
+
+                                    @Html.DropDownListFor(model => model.IdAdherent, (IEnumerable
+                                      <SelectListItem>)ViewData["ListMembers"], new { @class = "selectize-control input-selectize multi", @id = "IdAdherent" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row no-gutters">
+                                <label for="IdMachine" class="col-sm-4 col-form-label"> Machine </label>
+                                <div class="col-sm-8">
+                                    @*@Html.DropDownListFor(model => model.Session_Materials_idMaterials, (IEnumerable
+                                        <SelectListItem>)ViewData["ListMaterials"], "Sélectionner une machine", new { @class = "selectize-control input-selectize multi", @id = "Session_idSession" })*@
+
+                                    @*<select name="@Html.NameFor(model => model.IdMachine)" id="@Html.IdFor(model => model.IdMachine)" class="selectpicker form-control" data-live-search="true">
+                                        <option value="@Model.IdMachine">Machine N°: @Model.IdMachine @ViewData["namamachine"]</option>
+
+                                        @foreach (var item in ViewData["ListMaterials"] as List<Machine>)
+                                        {
+
+                                            <option value="@item.IdMachine">Machine N°: @item.IdMachine @item.Designation</option>
+                                        }
+
+                                    </select>*@
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row no-gutters">
+                                <label for="Description" class="col-sm-12 pt-0  col-form-label"> Description </label>
+                                <div class="col-sm-12">
+                                    @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row no-gutters">
+                                <label for="DateDu" class="col-sm-4 col-form-label"> Date Début </label>
+                                <div class="col-sm-8">
+                                    <input type="datetime-local" name="DateDu" id="DateDu" class="form-control" value="@ViewData["d1"]" />
+                                    @*@Html.ValidationMessageFor(model => model.DateDu, "", new { @class = "text-danger" })*@
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row no-gutters">
+                                <label for="IdSession" class="col-sm-4 col-form-label"> Séance </label>
+                                <div class="col-sm-8">
+
+                                    @*@Html.DropDownListFor(model => model.Session_idSession, (IEnumerable
+                                        <SelectListItem>)ViewData["ListSession"], "Sélectionner une séance", new { @class = "selectize-control input-selectize multi", @id = "Session_idSession" })*@
+
+                                    <select name="@Html.NameFor(model => model.IdSession)" id="@Html.IdFor(model => model.IdSession)" class="selectpicker form-control" data-live-search="true">
+                                        <option value="@Model.IdSession">Du: | @ViewData["Du"] | Au: @ViewData["Au"] | Prix: | @ViewData["Prix"]</option>
+
+                                        @foreach (var item in ViewData["ListSession"] as List<Session>)
+                                        {
+                                            <option value="@item.IdSession">Du: | @item.HeureDebut | Au: @item.HeureFin | Prix: | @item.Prix | (@item.IdMaChine)</option>
+                                        }
+
+                                    </select>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row no-gutters">
+                                <label for="DateAu" class="col-sm-4 col-form-label"> Date Fin </label>
+                                <div class="col-sm-8">
+                                    <input type="datetime-local" name="DateAu" id="DateAu" class="form-control" value="@ViewData["d2"]" />
+                                   @* @Html.ValidationMessageFor(model => model.DateAu, "", new { @class = "text-danger" })*@
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row no-gutters">
+                                <label for="IdMenu" class="col-sm-4 col-form-label"> Menu </label>
+                                <div class="col-sm-6">
+
+                                    <select name=@Html.NameFor(model => model.IdMenu) id=@Html.IdFor(model => model.IdMenu) class="selectize-control input-selectize multi">
+                                        <option value="@Model.IdMenu">@ViewData["Libelle"] | Prix | @ViewData["Prix"]</option>
+                                        @foreach (var item in ViewData["ListMeals"] as List<Menu>)
+                                        {
+                                            <option value="@item.IdMenu">@item.Nom | Prix | @item.Prix</option>
+                                        }
+                                    </select>
+
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <a class="btn btn-warning ml-1" name="Consulter" id="Consulter" onclick="openmenu();" style="width:40px;height:35px">
+                                        <i class="white la la-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group row no-gutters mt-5">
+                                <label for="idElement" class="col-sm-4 col-form-label"> Prix Total  </label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-primary bg-warning border-warning bg-darken-2" type="button"><i class="la la-cc-mastercard"></i></button>
+                                        </div>
+                                        <input type="text" class="form-control bg-warning border-warning white" value="@Model.PrixTotal" id="Price" name="Price">
+
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary bg-warning border-warning bg-darken-2" type="button">TND</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.IdReservation)
+        @Html.HiddenFor(model => model.DateCreation)
+    }
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    function openmenu() {
+    $("#myModal").modal('show');
+    $("#supprimer").click(function () {
+    window.location.href = "/Reservations/DeleteConfirmed?id=" + ID
+    });
+    }
+    </script>
+
+
+    <script>
+            $(function () {
+                $('#IdSession').selectpicker({
+                    dropdownAutoWidth: false,
+                });
+                $('#IdMachine').change(function () {
+                    var IdMaterials = $(this).val();
+                    if (IdMaterials != "Sélectionner une machine") {
+                        $('#IdSession').find('option:contains("")').show();
+                        $('#IdSession').find('option:not(:contains("' + IdMaterials + '"))').hide();
+                        $('#IdSession').selectpicker('refresh');
+
+                    }
+               else
+               {
+                        $('#IdSession').find('option').show();
+                        $('#IdSession').selectpicker('refresh');
+
+                    }
+                });
+
+            });
+
+    </script>
+
+    <script>
+let sum = parseFloat(0);
+$("#IdSession, #idMenu").on("change", function(){
+  sum = 0;
+    var select = document.getElementById("IdSession");
+        select.options[select.selectedIndex].text;
+    var select1 = document.getElementById("idMenu");
+        select1.options[select1.selectedIndex].text;
+
+        if(select1.options[select1.selectedIndex].text != '' )
+        {
+        sum = parseFloat((select.options[select.selectedIndex].text).split("|")[4])
+            + parseFloat((select1.options[select1.selectedIndex].text).split("|")[2]);
+        }
+        else
+        {
+         sum = parseFloat((select.options[select.selectedIndex].text).split("|")[4])
+            + 0;
+        }
+  $("#Price").val(sum);
+})
+    </script>
+}

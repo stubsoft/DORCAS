@@ -1,0 +1,43 @@
+﻿@model DorcasClub.Ordonnance
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ordonnance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NbCalorie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NbCalorie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomMedecin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomMedecin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOrdonnance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOrdonnance)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idOrdonnace }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

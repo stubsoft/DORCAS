@@ -1,0 +1,194 @@
+﻿@model DorcasClub.Session
+
+@{
+    ViewBag.Title = "Ajouter nouvelle séance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3 content-header-title mb-0">
+                 Créer une nouvelle Séance
+                </div>
+                <div class="col-md-8">
+                    <div class="breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Session">Session</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Création
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Parametrage Session</h4>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success pull-right" style=" margin-top: -12px;"><i class="la la-save"></i> Enregistrer</button>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="card-body row pt-0">
+                        <div class="col-md-4">
+                            <div class="form-group row no-gutters">
+                                <label for="insertion_date" class="col-sm-4 col-form-label"> Jours de séance</label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.DateSESSION, new { htmlAttributes = new { @class = "form-control", @type = "Date", @required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.DateSESSION, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group  row no-gutters">
+                                <label for="Etat" class="col-sm-4 col-form-label"> Etat </label>
+                                <div class="col-sm-8">
+                                    <select name=@Html.NameFor(model => model.etat) id=@Html.IdFor(model => model.etat) class="selectize-control input-selectize multi" required="required">
+                                        <option value="">Sélectionner une état</option>
+                                        <option value="Publiée">Publiée</option>
+                                        <option value="Non Publiée">Non Publiée</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.etat, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-right"><button type="button" class="btn btn-dark roundedBtn" onclick="Add()"><i class="delete la la-plus" id="Add" name="Add"></i></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="" id="body">
+                    <div class="card mt-1 mb-1 p-0" id="HeuresSeance">
+                        <div class="card-body row">
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="Machine" class="col-sm-4 col-form-label"> Machine </label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownListFor(model => model.Materials_idMaterials, (IEnumerable
+                                          <SelectListItem>)ViewData["ListMaterials"], "Sélectionner Machine", new { @class = "form-control", @id = "Materials_idMaterials", @required = "required" })
+                                        @Html.ValidationMessageFor(model => model.Materials_idMaterials, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="Machine" class="col-sm-4 col-form-label"> Coach </label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownListFor(model => model.Coach_idCoach, (IEnumerable
+                                          <SelectListItem>)ViewData["ListCoach"], "Sélectionner Coach", new { @class = "form-control", @id = "Coach_idCoach", @required = "required" })
+                                        @Html.ValidationMessageFor(model => model.Coach_idCoach, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="insertion_date" class="col-sm-6 col-form-label"> Heure Début </label>
+                                    <div class="col-sm-6">
+                                        @Html.EditorFor(model => model.startHeure, new { htmlAttributes = new { @class = "form-control", @type = "time", @required = "required" }, @Value = "00:00" })
+                                        @Html.ValidationMessageFor(model => model.startHeure, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.startHeure, new { htmlAttributes = new { @class = "form-control", @type = "time" }, @Value = "00:00" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="insertion_date" class="col-sm-6 col-form-label"> Durée (min)</label>
+                                    <div class="col-sm-6">
+                                        @Html.EditorFor(model => model.Dure, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "30", @max = "90", @required = "required" }, @Value = "30" })
+                                        @Html.ValidationMessageFor(model => model.Dure, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="price" class="col-sm-4 col-form-label"> Prix </label>
+                                    <div class="col-sm-8">
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @type = "number", @required = "required" }, @Value = "" })
+                                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1 text-right">
+                                <button type="button" class="btn btn-danger roundedBtn" onclick="Remove()">
+                                    <i class="la la-minus"></i>
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+             </div>
+        </div>
+                    }
+                </div>
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+<script>
+                    $("form").submit(function(e) {
+
+if ($("#etat").val() == "") {
+        e.preventDefault();
+        swal({
+            title: "Veuillez Sélectionner un etat ",
+            button: "Fermer",
+            icon: "error",
+        });
+    }
+
+
+    $("#Materials_idMaterials").each(function() {
+        if ($(this).val() == "") {
+            e.preventDefault();
+            swal({
+                title: "Veuillez Sélectionner une machine ",
+                button: "Fermer",
+                icon: "error",
+            });
+        }
+
+    });
+
+
+});
+</script>
+                    <script>
+                    var now = new Date();
+                    now.setDate(now.getDate());
+                    $('#DateSESSION').val(now.toISOString().split('T')[0]);
+                    </script>
+                    <script>
+
+        function Add()
+        {
+                        $( "#HeuresSeance" ).clone().prependTo( "#body" );
+    
+
+        }
+     function Remove()
+        {
+       $('#body #HeuresSeance:last').remove();
+        }
+                    </script>
+                }

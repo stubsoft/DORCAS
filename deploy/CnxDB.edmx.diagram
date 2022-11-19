@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8be72bc94b5941f2bf5e78b2907f81d6" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="SportRestaurantModel.Categorie" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Coach" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Delivery" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Elements" Width="1.5" PointX="7.75" PointY="12" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Events" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Machin_Coach" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Materials" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Meals" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Meals_Elements" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Memberships" Width="1.5" PointX="5.75" PointY="6.125" />
+        <EntityTypeShape EntityType="SportRestaurantModel.ModePayement" Width="1.5" PointX="8" PointY="3.75" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Payment" Width="1.5" PointX="10.25" PointY="7.125" />
+        <EntityTypeShape EntityType="SportRestaurantModel.PreventiveIntervention" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Price" Width="1.5" PointX="10" PointY="12.25" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Reservation" Width="1.5" PointX="8" PointY="6.75" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Reservation_Machine" Width="1.5" PointX="4.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SportRestaurantModel.sysdiagrams" Width="1.5" PointX="12.75" PointY="7.75" />
+        <AssociationConnector Association="SportRestaurantModel.FK_Materials_Categorie" />
+        <AssociationConnector Association="SportRestaurantModel.FK_PreventiveIntervention_Coach" />
+        <AssociationConnector Association="SportRestaurantModel.FK_Price_Elements" />
+        <AssociationConnector Association="SportRestaurantModel.FK_PreventiveIntervention_Materials" />
+        <AssociationConnector Association="SportRestaurantModel.FK_Reservation_Memberships" />
+        <AssociationConnector Association="SportRestaurantModel.FK_Payment_ModePayement" />
+        <AssociationConnector Association="SportRestaurantModel.FK_Payment_Reservation" />
+        <AssociationConnector Association="SportRestaurantModel.FK_PreventiveIntervention_PreventiveIntervention" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Societe" Width="1.5" PointX="12.375" PointY="13.75" />
+        <AssociationConnector Association="SportRestaurantModel.FK_Reservation_Reservation" />
+        <EntityTypeShape EntityType="SportRestaurantModel.ConfigMenu" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Ordonnance" Width="1.5" PointX="16.625" PointY="16.875" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Role" Width="1.5" PointX="15.375" PointY="2.625" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Utilisateur" Width="1.5" PointX="17.625" PointY="1.125" />
+        <AssociationConnector Association="SportRestaurantModel.FK_Utilisateur_Role" />
+        <EntityTypeShape EntityType="SportRestaurantModel.Adherent" Width="1.5" PointX="14.375" PointY="20.125" />
+        <AssociationConnector Association="SportRestaurantModel.FK_Ordonnance_Ordonnance" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

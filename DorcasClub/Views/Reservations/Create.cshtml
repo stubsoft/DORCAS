@@ -1,0 +1,265 @@
+﻿@model DorcasClub.Reservation
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3 content-header-title">
+                    Créer nouvelle Réservation
+                </div>
+                <div class="col-md-6" style=" padding-top: 5px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Reservations">Réservation</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Création
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <style>
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+            color: #b8b8b8;
+        }
+
+        .nav-tabs > li > a {
+            margin-right: 2px;
+            line-height: 1.42857143;
+            border: 1px solid transparent;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            color: #7b0e0e;
+            cursor: default;
+            background-color: #fff;
+            border-bottom: 2px solid #9d0707;
+            font-weight: 600;
+        }
+    </style>
+
+    @using (Html.BeginForm("Create", "Reservations"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="row">
+    <div class="col-md-4">
+        <div class="recom-item">
+            <div class="recom-media">
+                <a href="">
+                    <div class="pic"><img src="@Url.Content(@ViewData["SessionImageMachine"].ToString())" alt="" height="240"></div>
+                </a>
+                <div class="location">
+                    <i class="flaticon-suntour-map"></i> @ViewData["SessionPrix"] TND
+                </div>
+            </div>
+            Recomended Content
+            <div class="recom-item-body">
+                <a href="#">
+                    <h4 class="blog-title"><b>Le @ViewData["SessionDateSession"].ToString().Replace(" 00:00:00", " ")<label class="badge badge-danger round"> 12</label> Dispo</b></h4>
+                </a>
+                <div class="stars stars-4">Du: @ViewData["SessionHeureDebut"] <br />Durée: @ViewData["SessionDure"] min</div>
+                <div class="stars stars-4">
+                    @ViewData["SessionIdSession"]
+                </div>
+                <a href="#" class="cws-button small alt">3 Réserver</a>
+            </div>
+            Recomended Image
+        </div>
+        <div class="card">
+            <div class="card-header">Etape 1: infos client</div>
+            <div class="card-body">
+                <div class="form-group row no-gutters">
+                    <label for="IdAdherent" class="col-sm-4 col-form-label"> Adhérant </label>
+                    <div class="col-sm-8">
+                        @Html.DropDownListFor(model => model.IdAdherent, (IEnumerable
+                          <SelectListItem>)ViewData["ListMembers"], "Sélectionner un Membre", new { @class = "selectize-control input-selectize multi", @id = "IdAdherent" })
+                    </div>
+                </div>
+                <div class="form-group row no-gutters">
+                    <label for="Description" class="col-sm-12 pt-0  col-form-label"> Notes </label>
+                    <div class="col-sm-12">
+                        @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                Etape 2: menu
+                <div class="heading-elements text-right">
+                    <button type="submit" class="btn btn-success"><i class="la la-save"></i> Enregistrer</button>
+                </div>
+            </div>
+            <div class="card-body pt-0 pb-0">
+                <ul class="nav nav-tabs">
+                    @{
+                        var i = 0;
+                    }
+                    @foreach (var item in ViewData["ListMeals"] as List<Menu>)
+                    {
+                        <li data-toggle="tab" class="@((i==0)?"active":"")"><a href="#" data-id="@item.IdMenu">@item.Nom</a></li>
+
+                        i++;
+                    }
+                </ul>
+                <div class="tab-content">
+                    <div id="load" style="zoom: 0.5">
+                        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    </div>
+                    <div class="tab-pane in active" id="ShowMenu">
+                        <small>Choisir un menu</small>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group row no-gutters">
+                            <label class="col-sm-6 col-form-label">Livraison</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="livraison" id="livraison">
+                                    <option value="local">Local</option>
+                                    <option value="porter">à poter</option>
+                                    <option value="domicile">à domicile</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group row no-gutters">
+                            <label class="col-sm-6 col-form-label">Mode de réservation</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="mode" id="mode">
+                                    <option value="direct">Direct</option>
+                                    <option value="telephone">Téléphone</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group row no-gutters">
+                            <label for="idElement" class="col-sm-4 col-form-label text-right"> Prix Total  </label>
+                            <div class="col-md-8 text-right">
+                                <h2 id="total_Price_all">0</h2>
+                            </div>
+
+                            <input type="hidden" value="enattente" id="Etat" name="Etat">
+                            <input type="hidden" value="@ViewData["Prix"]" id="Prix" name="Prix">
+                            <input type="hidden" value="@ViewData["SessionIdSession"]" id="IdSession" name="IdSession">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#load").hide();
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Menus/DetailsModal/" + $(".nav-tabs a").attr("data-id"),
+                    success: function (DetailsMeals) {
+                        $("#ShowMenu").html(DetailsMeals);
+                        $("#load").hide();
+                    },
+                    error: function () {
+                        alert("Error occured!!")
+                    }
+                });
+                $('.nav-tabs a').click(function (event) {
+                    $(this).addClass('active').siblings().removeClass('active')
+                    $("#load").show();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Menus/DetailsModal/" + $(this).attr("data-id"),
+                        success: function (DetailsMeals) {
+                            $("#ShowMenu").html(DetailsMeals);
+                            $("#load").hide();
+                        },
+                        error: function () {
+                            alert("Error occured!!")
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+
+            $('#IdMachine').change(function () {
+                var IdMaterials = $(this).val();
+                if (IdMaterials != "Sélectionner une machine") {
+                    $('#IdSession').find('option:contains("")').show();
+                    $('#IdSession').find('option:not(:contains("' + IdMaterials + '"))').hide();
+
+                }
+                else {
+                    $('#IdSession').find('option').show();
+
+                }
+            });
+
+        });
+
+    </script>
+    <script>
+        let sum = parseFloat(0);
+        $("#IdSession, #IdMenu").on("change", function () {
+            sum = 0;
+            var select = document.getElementById("IdSession");
+            select.options[select.selectedIndex].text;
+            var select1 = document.getElementById("IdMenu");
+            select1.options[select1.selectedIndex].text;
+
+            if (select1.options[select1.selectedIndex].text != '') {
+                sum = parseFloat((select.options[select.selectedIndex].text).split("|")[5])
+                    + parseFloat((select1.options[select1.selectedIndex].text).split("|")[2]);
+            }
+            else {
+                sum = parseFloat((select.options[select.selectedIndex].text).split("|")[4])
+                    + 0;
+            }
+            $("#Price").val(sum);
+        })
+    </script>
+}

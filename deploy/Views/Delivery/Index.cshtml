@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DorcasClub.Delivery>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noteDelivery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fees)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noteDelivery)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fees)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idDelivery }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idDelivery }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idDelivery })
+        </td>
+    </tr>
+}
+
+</table>

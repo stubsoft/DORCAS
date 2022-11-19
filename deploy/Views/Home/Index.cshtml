@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+
+
+<div class="content-wrapper">
+
+    <div class="col-12 mt-3">
+        <div class="row">
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content">
+                        <div class="card-body bg-hexagons">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="info"> @ViewData["Aliments"]</h3>
+                                    <h6>Aliments</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-cup font-large-2 float-right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content">
+                        <div class="card-body bg-hexagons">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="warning">@ViewData["Sessions"]</h3>
+                                    <h6>Séances</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-clock font-large-2 float-right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content">
+                        <div class="card-body bg-hexagons">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="success">@ViewData["Adherents"]</h3>
+                                    <h6>Adhérents</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-user-follow font-large-2 float-right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content collapse show bg-gradient-directional-danger ">
+                        <div class="card-body bg-hexagons-danger">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="white">@ViewData["Reservation"]</h3>
+                                    <h6 class="white">Réservations</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-calendar font-large-2 float-right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+           
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Rapport Ahérent/réservation</h4>
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+
+                    </div>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body">
+                        <canvas id="payments-chart" class="height-400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+    <script>
+      var  dataAdherent = [0, 2, 8, 10, 7, 5, 0,0,0,0,0,0];
+      var  dataReservation = [0, 5, 11, 8, 11, 9, 0,0,0,0,0,0];
+    </script>
+} 

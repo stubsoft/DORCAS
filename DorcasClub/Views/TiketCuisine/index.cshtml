@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-1 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Imprimer Tiket Cuisine</span>
+                </div>
+                <div class="col-md-3" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/TiketCuisine">Imprimer Tiket Pour Cuisine</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="content-wrapper mt-0 pt-0">
+        <form action="@Url.Action("Impression")" method="post" target="_blank">
+            <input type="hidden" name="Format" id="Format" value="PDF" />
+            @Html.AntiForgeryToken()
+            <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-light navbar-shadow bg-white bg-lighten-5 border-amber border-lighten-4">
+                <div class="input-group col-xl-4 col-lg-6 col-md-12" style="margin-left:10%;">
+                    <label class="mb-1 text-bold-700">DU</label>&nbsp; &nbsp;&nbsp;&nbsp;
+                    <input type="date" class="form-control border-success" id="DateDebut" name="DateDebut" value="@ViewData["DateDebut"]" />
+                </div>
+                <div class="input-group col-xl-4 col-lg-6 col-md-12">
+                    <label class="mb-1 text-bold-700">AU</label>&nbsp; &nbsp;&nbsp;&nbsp;
+                    <input type="date" class="form-control border-success" id="DateFin" name="DateFin" value="@ViewData["DateFin"]" />
+                </div>
+            </nav>
+            <br />
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+
+                        <div class="form-horizontal col-md-12">
+                            <div class="row">
+                                <div class="form-group row">
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <input name="PrintSelect" value="RepasPreparer" type="radio" checked />
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-10  pt-0 col-form-label"> Tiket Repas (réservation du jours)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="btn-group float-md-right">
+                                <button type="submit" class="btn btn-dark"><i class="la la-print"></i> Imprimer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,257 @@
+﻿@model DorcasClub.Adherent
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Modification Adhérent (@Model.Nom  @Model.Nom)</span>
+                </div>
+                <div class="col-md-6" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Adherents">Adhérents</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Modifier
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm("Edit", "Adherents", FormMethod.Post, new { id = "AdherentValidation", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <input name="membershipType" id="membershipType" type="hidden" value="Local" />
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Données Utilisateurs </h4>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success pull-right" style=" margin-top: -12px;"><i class="la la-save"></i> Enregistrer</button>
+
+                        </div>
+
+                        <hr />
+                    </div>
+                    <div class="card-body row pt-0">
+
+                        <div class="col-md-12 row ">
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Nom" class="col-sm-4 col-form-label"> Nom </label>
+                                            <div class="col-md-8">
+                                                @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Prenom" class="col-sm-4 col-form-label"> Prénom </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.Prenom, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="CIN" class="col-sm-4 col-form-label"> CIN </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.CIN, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.CIN, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="mobile1" class="col-sm-4 col-form-label"> Téléphone 1 </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.Mobile1, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Mobile1, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="mobile2" class="col-sm-4 col-form-label"> Téléphone 2 </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.Mobile2, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Mobile2, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Email" class="col-sm-4 col-form-label"> Email </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Facebook" class="col-sm-4 col-form-label"> Facebook </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.Facebook, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Facebook, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Instagram" class="col-sm-4 col-form-label"> Instagram </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.Instagram, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Instagram, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Adresse" class="col-sm-4 col-form-label"> Adresse </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Adresse, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div style="width: 200px; margin-top: 3px; ">
+                                    <img id="img" src="@Url.Content(Model.FilePath)" style="width: 100%" class="img-thumbnail" />
+                                </div>
+                                <br />
+                                <input type="file" name="FileImage" id="FileImage" onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4>Données Physiques</h4>
+                            <hr />
+                        </div>
+                        <div class="col-md-12 row">
+                            <div class="col-md-3">
+                                <div class="form-group row no-gutters">
+                                    <label for="Poids" class="col-sm-4 col-form-label"> Poids </label>
+                                    <div class="col-sm-8">
+                                        @Html.EditorFor(model => model.Poids, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                        @Html.ValidationMessageFor(model => model.Poids, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group row no-gutters">
+                                    <label for="Taille" class="col-sm-4 col-form-label"> Taille</label>
+                                    <div class="col-sm-8">
+                                        @Html.EditorFor(model => model.Taille, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                        @Html.ValidationMessageFor(model => model.Taille, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group row no-gutters">
+                                    <label for="DateNaissance" class="col-sm-5 col-form-label"> Date Naissance </label>
+                                    <div class="col-sm-7">
+                                        <input type="date" class="form-control" id="DateNaissance" name="DateNaissance" value="@ViewData["d1"]" />
+                                        @Html.ValidationMessageFor(model => model.DateNaissance, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.IdAdherent, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.FilePath, new { htmlAttributes = new { @class = "form-control" } })
+    }
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        function fileCheck(obj) {
+            var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+            if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
+            }
+        }
+    </script>
+    <script>
+        $("#AdherentValidation").submit(function (e) {
+            if ($("#Nom").val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Entrer un Nom ",
+                    button: "Fermer",
+                });
+            } else if ($("#Prenom").val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Entrer un Prénom ",
+                    button: "Fermer",
+                });
+            }
+            else if ($("#CIN").val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Entrer un CIN ",
+                    button: "Fermer",
+                });
+            }
+            else if ($("#Poids").val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Entrer un Poid ",
+                    button: "Fermer",
+                });
+            }
+            else if ($().val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Entrer un Taille ",
+                    button: "Fermer",
+                });
+            } else if ($("#Mobile1").val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Entrer un Tel ",
+                    button: "Fermer",
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,162 @@
+﻿@model DorcasClub.Payment
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Paiement</span>
+                </div>
+                <div class="col-md-3" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Payment">Paramétrage</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Paiement
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    @using (Html.BeginForm("Create", "Payment"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Information Genérale</h4>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success pull-right" style=" margin-top: -12px;"><i class="la la-save"></i> Enregistrer</button>
+
+                        </div>
+
+                        <hr />
+                    </div>
+                    <div class="card-body row pt-0">
+                        <div class="col-md-4">
+                            <div class="form-group row no-gutters">
+                                <label for="Membre" class="col-sm-4 col-form-label"> Réservation </label>
+                                <div class="col-sm-8">
+
+                                    <select name="@Html.NameFor(model => model.idReservation)" id="@Html.IdFor(model => model.idReservation)" class="selectpicker form-control" data-live-search="true" onchange="FixePrix()">
+                                        <option value="@ViewData["idreservation"]">Réservation N°: @ViewData["idreservation"] | Prix: | @ViewData["price"]</option>
+
+                                        @foreach (var item in ViewData["ListReservation"] as List<Reservation>)
+                                        {
+
+                                            <option value="@item.idReservation">Réservation N°: @item.idReservation | Prix: | @item.Price</option>
+                                        }
+
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group row no-gutters">
+                                <label for="Membre" class="col-sm-4 col-form-label"> Mode </label>
+                                <div class="col-sm-8">
+
+                                    @Html.DropDownListFor(model => model.idModePayment, (IEnumerable
+                                     <SelectListItem>)ViewData["ListModePaiement"], "Sélectionner une mode", new { @class = "select2 form-control" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row no-gutters">
+                                <label for="Devise" class="col-sm-4 pt-0  col-form-label"> Devise </label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="Devise" id="Devise" class="form-control" value="TND" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row no-gutters">
+                                <label for="insertion_date" class="col-sm-4 col-form-label"> Date Réception </label>
+                                <div class="col-sm-8">
+                                    <input type="datetime-local" name="dateReception" id="dateReception" class="form-control" value="@ViewData["d1"]" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row no-gutters">
+                                <label for="Menu" class="col-sm-4 col-form-label"> Etat</label>
+                                <div class="col-sm-6">
+                                    <select name=@Html.NameFor(model => model.etatPaiement) id=@Html.IdFor(model => model.etatPaiement) class="select2 form-control">
+                                        <option value="">Sélectionner une état</option>
+                                        <option value="Effectué">Effectué</option>
+                                        <option value="Non Effectué">Non Effectué</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row no-gutters">
+                                <label for="DateAu" class="col-sm-4 col-form-label"> Date Echéance </label>
+                                <div class="col-sm-8">
+                                    <input type="datetime-local" name="dateEcheance" id="dateEcheance" class="form-control" value="@ViewData["d2"]" />
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row no-gutters">
+                                <label for="idElement" class="col-sm-4 col-form-label"> Montant Total  </label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-primary bg-warning border-warning bg-darken-2" type="button"><i class="la la-cc-mastercard"></i></button>
+                                        </div>
+                                        <input type="text" class="form-control bg-warning border-warning white" value="@Model.montant" id="montant" name="montant">
+
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary bg-warning border-warning bg-darken-2" type="button">TND</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    function FixePrix()
+    {
+    var select=document.getElementById("idReservation");
+    document.getElementById("montant").value = parseFloat((select.options[select.selectedIndex].text).split("|")[2]);
+    }
+    </script>
+}

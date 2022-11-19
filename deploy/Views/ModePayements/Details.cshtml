@@ -1,0 +1,66 @@
+﻿@model DorcasClub.ModePayement
+@{
+    ViewBag.Title = "Consulter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Consulter Mode Paiement @Model.idModePayment </span>
+                </div>
+                <div class="col-md-3" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/ModePayements">Paramétrage</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Consulter
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+   
+            </div>
+
+
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Information</h4>
+                      <hr />
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.idModePayment)
+                            @Html.LabelFor(model => model.Mode, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Mode, new { htmlAttributes = new { @class = "form-control", @readonly="readonly" } })
+                                @Html.ValidationMessageFor(model => model.Mode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,424 @@
+﻿@model DorcasClub.Meals
+
+@{
+    ViewBag.Title = "Modification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ListeElements = ViewData["listAliments"] as IEnumerable<Elements>;
+    var Listselected = ViewData["listselected"] as IEnumerable<Elements>;
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-1 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3"><span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Modifier recette/repas</span></div>
+                <div class="col-md-4" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Meals">Recette/Repas</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Modification
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <style>
+        #modules {
+            padding: 20px;
+            background: #eee;
+            margin-bottom: 20px;
+            z-index: 1;
+            border-radius: 10px;
+        }
+
+        #dropzone {
+            height: 642px;
+            padding: 20px;
+            background: #fff;
+            min-height: 100px;
+            margin-bottom: 20px;
+            z-index: 0;
+            border-radius: 10px;
+            overflow: scroll;
+            transition: all 0.3s ease 0s;
+        }
+
+        .active {
+            /*outline: 1px solid red;*/
+            transform: scale(1.02)
+        }
+
+        .hover {
+            /*outline: 1px solid blue;*/
+            transform: scale(1.07)
+        }
+
+        .drop-item {
+            cursor: pointer;
+            margin-bottom: 10px;
+            background-color: rgb(255, 255, 255);
+            padding: 5px 10px;
+            border-radius: 45px;
+            border: 1px solid rgb(204, 204, 204);
+            position: relative;
+            height: auto;
+        }
+
+            .drop-item details {
+                padding: 10px
+            }
+
+            .drop-item .remove {
+                position: absolute;
+                top: 3px;
+                right: 20px;
+                border-radius: 45px;
+                width: 45px;
+                padding: 12px;
+            }
+    </style>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card mb-1">
+                    <div class="heading-elements" style="position: absolute; right:0">
+                        <button type="submit" class="btn btn-success pull-right mt-1 mr-1"><i class="la la-save"></i> Modifier recette/repas</button>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="col-md-12"> Nom de la recette/Repas</label>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.nameMeal, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.nameMeal, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="col-md-12">Type de Menu</label>
+                                <div class="col-md-12">
+                                    <select class="form-control" required>
+                                        <option value="">Choisir un type de Menu</option>
+                                        <option value="poisson">Poisson</option>
+                                        <option value="viande">Viande</option>
+                                        <option value="poulet">Poulet</option>
+                                    </select>
+                                </div>
+                            </div>
+                            @{var elements = ""; var i = 0; decimal price = 0m; }
+                            @foreach (var item in Listselected)
+                            {
+                                price = price + item.price;
+                                if (i == 0)
+                                {
+                                    elements = elements + item.idElement;
+                                }
+                                else
+                                {
+                                    elements = elements + "," + item.idElement;
+                                }
+
+                                i++;
+                            }
+                            <div class="col-md-3">
+                                <label>Prix Total Repas</label>
+                                <h2 id="priceAll" style="font-weight:bold">@price </h2>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title bt-6"><b>Aliments</b>-pour 100G</h4>
+                        <div class="row">
+                            <div class="col-md-10"><input type="search" placeholder="search" class="form-control" id="SearchAliments" /></div>
+                            <div class="col-md-2"><a href="/Elements/Create" target="_blank" class="btn btn-warning"><i class="la la-plus"></i></a></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body pt-0">
+                            <div id="modules" style=" overflow-y: auto; flex: 1 1 0%; padding: 0px 10px 10px; height: 500px;">
+                                    
+
+                                @foreach (var item in ListeElements)
+                                {
+                                    <div class="drag" style="cursor: move; width: 420px; margin: 10px 0px; display: flex; flex-direction: row; background: white; border-radius: 10px; box-shadow: rgb(0 0 0 / 10%) 0px 10px 50px 0px; padding: 10px 10px 16px 10px; -webkit-box-align: center; align-items: center; ">
+                                        <div style="text-align: center; margin-right:5px">
+                                            <img class="media-object rounded-circle" src="/Elements/RetrieveImage/@item.idElement" width="48" height="48" alt="image">
+                                            <br /> <small>
+                                                <strong>
+                                                    Prix: @item.price DT
+                                                </strong>
+                                            </small>
+                                        </div>
+                                        <div class="media-link" style=" display: flex; flex-direction: column; flex: 1 1 0%; }">
+                                            <h4>@item.nameElement</h4>
+                                            <p>
+                                                <small>
+                                                    Calorie: @item.Energie <strong>Kcal</strong> - Kj: @item.Kj <strong>kJ</strong>
+                                                    <br />
+                                                    G: @item.Glucide <strong>g</strong> | - P: @item.Proteine <strong>g</strong> | - L: @item.Lipide <strong>g</strong>
+                                                </small>
+                                            </p>
+                                            <span style="height:0; color: #fff">
+                                                @{var Checkelement = item.idElement;}
+                                                @Checkelement
+                                            </span>
+                                            <span>
+                                                @{var Priceelement = item.price; var IdPriceelement = "Priceelement" + item.idElement;}
+                                                @{var CalorieElement = item.Energie; var IdCalorieElement = "CalorieElement" + item.idElement;}
+
+                                                @{var GlucideElement = item.Glucide; var IdGlucideElement = "GlucideElement" + item.idElement;}
+                                                @{var ProteineElement = item.Proteine; var IdProteineElement = "ProteineElement" + item.idElement;}
+                                                @{var LipideElement = item.Lipide; var IdLipideElement = "LipideElement" + item.idElement;}
+                                                <input type="hidden" value="@Priceelement" id="@IdPriceelement" name="Priceelement" />
+                                                <input type="hidden" value="@CalorieElement" id="@IdCalorieElement" name="@IdCalorieElement" />
+                                                <input type="hidden" value="@GlucideElement" id="@IdGlucideElement" name="@IdGlucideElement" />
+                                                <input type="hidden" value="@ProteineElement" id="@IdProteineElement" name="@IdProteineElement" />
+                                                <input type="hidden" value="@LipideElement" id="@IdLipideElement" name="@IdLipideElement" />
+                                            </span>
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="19" viewBox="0 0 13 19"><g id="Group_9195" data-name="Group 9195" transform="translate(-756 -486)"><g id="Ellipse_3371" data-name="Ellipse 3371" transform="translate(756 486)" fill="#FF8D27CC" stroke="#FF8D27CC" stroke-width="1"><circle cx="2.5" cy="2.5" r="2.5" stroke="none"></circle><circle cx="2.5" cy="2.5" r="2" fill="none"></circle></g><g id="Ellipse_3373" data-name="Ellipse 3373" transform="translate(764 486)" fill="#FF8D27CC" stroke="#FF8D27CC" stroke-width="1"><circle cx="2.5" cy="2.5" r="2.5" stroke="none"></circle><circle cx="2.5" cy="2.5" r="2" fill="none"></circle></g><g id="Ellipse_3374" data-name="Ellipse 3374" transform="translate(756 500)" fill="#FF8D27CC" stroke="#FF8D27CC" stroke-width="1"><circle cx="2.5" cy="2.5" r="2.5" stroke="none"></circle><circle cx="2.5" cy="2.5" r="2" fill="none"></circle></g><g id="Ellipse_3375" data-name="Ellipse 3375" transform="translate(764 500)" fill="#FF8D27CC" stroke="#FF8D27CC" stroke-width="1"><circle cx="2.5" cy="2.5" r="2.5" stroke="none"></circle><circle cx="2.5" cy="2.5" r="2" fill="none"></circle></g><g id="Ellipse_3376" data-name="Ellipse 3376" transform="translate(756 493)" fill="#FF8D27CC" stroke="#FF8D27CC" stroke-width="1"><circle cx="2.5" cy="2.5" r="2.5" stroke="none"></circle><circle cx="2.5" cy="2.5" r="2" fill="none"></circle></g><g id="Ellipse_3377" data-name="Ellipse 3377" transform="translate(764 493)" fill="#FF8D27CC" stroke="#FF8D27CC" stroke-width="1"><circle cx="2.5" cy="2.5" r="2.5" stroke="none"></circle><circle cx="2.5" cy="2.5" r="2" fill="none"></circle></g></g></svg>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="ListAliment" name="ListAliment" value="@elements" />
+                    <input type="hidden" id="calorie" name="calorie" value="0" />
+                    <input type="hidden" id="glucide" name="glucide" value="0" />
+                    <input type="hidden" id="proteine" name="proteine" value="0" />
+                    <input type="hidden" id="lipide" name="lipide" value="0" />
+                    <input type="hidden" id="price" name="price" value="@price" />
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-12">
+                <div class="card" id="dropzone">
+                    <div class="card-header">
+                        <h4>Total : Calories : <span id="Calories">0</span> — Glucides : <span id="Glucides">0</span>g — Lipides : <span id="Lipides">0</span>g — Protéines : <span id="Proteines">0</span>g</h4>
+                    </div>
+                    @foreach (var item in Listselected)
+                    {
+                        <div class="drop-item">
+                            <details>
+                                <summary>@item.nameElement</summary><div>
+    <hr>
+    <h4>@item.nameElement</h4>
+    <p>
+        <small>
+            Calorie: @item.Energie <strong>Kcal</strong> - Kj: @item.Kj <strong>kJ</strong>
+            <br />
+            G: @item.Glucide <strong>g</strong> | - P: @item.Proteine <strong>g</strong> | - L: @item.Lipide <strong>g</strong>
+        </small>
+    </p>
+    <span style="height:0; color: #fff">
+        @{var Checkelement = item.idElement;}
+        @Checkelement
+    </span>
+    <span>
+        @{var Priceelement = item.price; var IdPriceelement = "Priceelement" + item.idElement;}
+        @{var CalorieElement = item.Energie; var IdCalorieElement = "CalorieElement" + item.idElement;}
+
+        @{var GlucideElement = item.Glucide; var IdGlucideElement = "GlucideElement" + item.idElement;}
+        @{var ProteineElement = item.Proteine; var IdProteineElement = "ProteineElement" + item.idElement;}
+        @{var LipideElement = item.Lipide; var IdLipideElement = "LipideElement" + item.idElement;}
+        <input type="hidden" value="@Priceelement" id="@IdPriceelement" name="Priceelement" />
+        <input type="hidden" value="@CalorieElement" id="@IdCalorieElement" name="@IdCalorieElement" />
+        <input type="hidden" value="@GlucideElement" id="@IdGlucideElement" name="@IdGlucideElement" />
+        <input type="hidden" value="@ProteineElement" id="@IdProteineElement" name="@IdProteineElement" />
+        <input type="hidden" value="@LipideElement" id="@IdLipideElement" name="@IdLipideElement" />
+    </span>
+</div>
+                            <input style="border:0" type="hidden" value="@Priceelement" id="@IdPriceelement" name="Priceelement">
+                            </details><button type="button" class="btn btn-dark btn-xs remove" onclick="$(this).parent().detach();removeItem(@item.idElement)"><span class="la la-remove"></span></button>
+                        </div>
+                    }    
+                </div>
+            </div>
+        </div>
+
+
+                                                    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+            $(document).ready(function(){
+  $("#SearchAliments").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#modules .drag").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+
+            $('.drag').draggable({
+  appendTo: 'body',
+  helper: 'clone'
+});
+
+$('#dropzone').droppable({
+  activeClass: 'active',
+  hoverClass: 'hover',
+  accept: ":not(.ui-sortable-helper)", // Reject clones generated by sortable
+  drop: function (e, ui) {
+    AddElementForMenu(ui.draggable[0].childNodes[3].childNodes[5].innerText);
+    var $el = $('<div class="drop-item"><details><summary>'+ui.draggable[0].childNodes[3].childNodes[1].innerHTML+'</summary><div><hr>' + ui.draggable[0].childNodes[3].innerHTML + '</div><input style="border:0" type="hidden" value="'+ui.draggable[0].childNodes[3].childNodes[6].innerText+'" id="Priceelement'+ui.draggable[0].childNodes[3].childNodes[5].innerText+'" name="Priceelement" /></details></div>');
+    $el.append($('<button type="button" class="btn btn-dark btn-xs remove"><span class="la la-remove"></span></button>').click(function () { $(this).parent().detach();removeItem(ui.draggable[0].childNodes[3].childNodes[5].innerText) }));
+    $(this).append($el);
+  }
+}).sortable({
+  items: '.drop-item',
+  sort: function() {
+    // gets added unintentionally by droppable interacting with sortable
+    // using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
+    $( this ).removeClass( "active" );
+  }
+});
+                // Replace the <textarea id="editor1"> with a CKEditor 4
+                // instance, using default configuration.
+               // CKEDITOR.replace( 'description' );
+
+
+function AddElementForMenu(idElement) {
+         //if item dropped
+        var ListAliments = $("#ListAliment").val();
+        var listCodeElement = "";
+        if(ListAliments==""){
+        listCodeElement = idElement;
+        }else{
+        listCodeElement = ListAliments  + "," + idElement;
+        }
+        $("#ListAliment").val(listCodeElement);
+
+   // add calorie
+   var TotalCalorie = parseFloat($("#calorie").val());
+   var unitCalorie= parseFloat($("#CalorieElement" + idElement).val());
+   TotalCalorie = parseFloat(TotalCalorie) + parseFloat(unitCalorie);
+   $("#calorie").val(TotalCalorie);
+   $("#Calories").html(TotalCalorie);
+
+        // add g
+   var TotalGlucide = parseFloat($("#glucide").val());
+   var unitGlucide= parseFloat($("#GlucideElement" + idElement).val());
+   TotalGlucide = parseFloat(TotalGlucide) + parseFloat(unitGlucide);
+   $("#glucide").val(TotalGlucide);
+   $("#Glucides").html(TotalGlucide);
+
+        // add l
+   var TotalLipides = parseFloat($("#lipide").val());
+   var unitLipides= parseFloat($("#LipideElement" + idElement).val());
+   TotalLipides = parseFloat(TotalLipides) + parseFloat(unitLipides);
+   $("#lipide").val(TotalLipides);
+   $("#Lipides").html(TotalLipides);
+
+        // add p
+   var TotalProteines = parseFloat($("#proteine").val());
+   var unitProteines= parseFloat($("#ProteineElement" + idElement).val());
+   TotalProteines = parseFloat(TotalProteines) + parseFloat(unitProteines);
+   $("#proteine").val(TotalProteines);
+   $("#Proteines").html(TotalProteines);
+
+
+
+   // price total
+   var Totalprice = parseFloat($("#price").val());
+   var unitPrice= parseFloat($("#Priceelement" + idElement).val());
+   Totalprice = parseFloat(Totalprice) + parseFloat(unitPrice);
+   $("#price").val(Totalprice);
+   $("#priceAll").html(Totalprice.toFixed(3)+" DT");
+
+
+}
+function removeItem(idElement)
+{
+        //remove item
+        var ListAliments= $("#ListAliment").val();
+        var elementToRemove = "," + idElement ;
+        var listCodeElement = "";
+        if(ListAliments.includes(elementToRemove)){
+         listCodeElement = ListAliments.replace(elementToRemove, "");
+        }else{
+         listCodeElement = ListAliments.replace(idElement, "");
+        }
+
+        $("#ListAliment").val(listCodeElement);
+
+   // decriment calorie
+   var TotalCalorie = parseFloat($("#calorie").val());
+   var unitCalorie= parseFloat($("#CalorieElement" + idElement).val());
+   TotalCalorie = TotalCalorie - unitCalorie;
+   $("#calorie").val(parseFloat(TotalCalorie));
+   $("#Calories").html(TotalCalorie);
+
+
+        // remove g
+   var TotalGlucide = parseFloat($("#glucide").val());
+   var unitGlucide= parseFloat($("#GlucideElement" + idElement).val());
+   TotalGlucide = TotalGlucide - unitGlucide;
+        if(TotalGlucide<0){
+        TotalGlucide = 0
+        }
+   $("#glucide").val(parseFloat(TotalGlucide));
+   $("#Glucides").html(TotalGlucide);
+
+
+        // add l
+   var TotalLipides = parseFloat($("#lipide").val());
+   var unitLipides= parseFloat($("#LipideElement" + idElement).val());
+   TotalLipides = TotalLipides - unitLipides;
+        if(TotalLipides<0){
+        TotalLipides = 0
+        }
+   $("#lipide").val(parseFloat(TotalLipides));
+   $("#Lipides").html(TotalLipides);
+
+        // add p
+   var TotalProteines = parseFloat($("#proteine").val());
+   var unitProteines= parseFloat($("#ProteineElement" + idElement).val());
+   TotalProteines = TotalProteines - unitProteines;
+        if(TotalProteines<0){
+        TotalProteines = 0
+        }
+   $("#proteine").val(parseFloat(TotalProteines));
+   $("#Proteines").html(TotalProteines);
+
+
+        //decriment price
+   var Totalprice = parseFloat($("#price").val());
+   var unitPrice= parseFloat($("#Priceelement" + idElement).val());
+   Totalprice = Totalprice - unitPrice;
+        if(Totalprice<0){
+        Totalprice = 0
+        }
+   $("#price").val(parseFloat(Totalprice));
+   $("#priceAll").html(Totalprice+".000");
+
+
+}
+    </script>
+}

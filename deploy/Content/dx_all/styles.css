@@ -1,0 +1,49 @@
+	.dx-datagrid .dx-data-row > td.bullet {
+  padding-top: 0;
+  padding-bottom: 0;
+}#gridContainer {
+  height: 440px;
+}
+
+.form {
+  padding: 20% 0;
+  text-align: center;
+}
+
+#progress-button {
+  margin-bottom: 20px;
+}
+
+#progressBarStatus {
+  display: inline-block;
+}
+
+.complete .dx-progressbar-range {
+  background-color: green;
+}#buttons {
+    display: flex;
+}
+#small-indicator,
+#medium-indicator,
+#large-indicator {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+#button,
+#button .dx-button-content {
+  padding: 0;
+}
+
+#button .button-indicator {
+  height: 32px;
+  width: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.indicators {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,134 @@
+﻿@model DorcasClub.Machine
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+        <div class="row no-gutters">
+            <div class="col-md-3"><span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Création machine</span></div>
+            <div class="col-md-6" style=" padding-top: 8px;">
+                <div class="row breadcrumbs-top d-inline-block">
+                    <div class="breadcrumb-wrapper">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">Tableau de Bord</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/Machines">Machines</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Créer
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Create", "Machines", FormMethod.Post, new { id = "MachineValidation", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header border-bottom mb-1">
+                        <h2 class="card-title" style="padding-top: 10px;">Données de Machine</h2>
+                        <div class="text-right" style="margin-top: -30px;">
+                            <button type="submit" class="btn btn-success"><i class="la la-save"></i> Enregistrer</button>
+                        </div>
+                    </div>
+                    <div class="card-body row pt-0">
+                        <div class="col-md-12 row">
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="IdCategorie" class="col-sm-4 col-form-label"> Categorie </label>
+                                            <div class="col-sm-8">
+                                                @Html.DropDownListFor(model => model.IdCategorie, (IEnumerable<SelectListItem>)ViewData["Listcategorie"], "Sélectionner une catégorie", new { @class = "select2 form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Designation" class="col-sm-4 col-form-label"> Désignation </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="MaxOccupation" class="col-sm-4 col-form-label"> Max Occ </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.MaxOccupation, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                                                @Html.ValidationMessageFor(model => model.MaxOccupation, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div style="width: 200px; margin-top: 3px; ">
+                                    <img id="img" src="~/Content/img/empty_picture.png" style="width: 100%" class="img-thumbnail" />
+                                </div>
+                                <br />
+                                <input type="file" name="FileImage" id="FileImage" onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])" />
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        function fileCheck(obj) {
+            var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+            if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
+            }
+        }
+    </script>
+    <script>
+        $("#MachineValidation").submit(function (e) {
+            if ($("#IdCategorie").val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Sélectionner une Catégorie ",
+                    icon: "error",
+                    button: "Fermer",
+                });
+
+            } else if ($("#Designation").val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Entrer une Désignation ",
+                    icon: "error",
+                    button: "Fermer",
+                });
+            } else if ($("#MaxOccupation").val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Entrer l'occupation ",
+                    icon: "error",
+                    button: "Fermer",
+                });
+            }
+        });
+    </script>
+}

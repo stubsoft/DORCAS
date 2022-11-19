@@ -1,0 +1,220 @@
+﻿@model IEnumerable<DorcasClub.Machine>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Liste des Machines</span>
+                </div>
+                <div class="col-md-6" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Machines
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group float-md-right">
+                        <a href="@Url.Action("Create","Machines")" class="btn btn-success"><i class="la la-plus"></i>Ajouter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="demo-container card">
+            <div id="machine_Grid"></div>
+        </div>*@
+    <div class="row match-height">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card pull-up">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div style="text-align: right">
+                                <a href="/Machines/Edit/@item.IdMachine" class="success edit la la-pencil" style="font-size: 1.8rem"></a>
+                                <a href="/Machines/Details/@item.IdMachine" class="warning details la la-eye" style="font-size: 1.8rem"></a>
+                                <a onclick="openModaldelete(@item.IdMachine, 'Machine N° ')" class="danger delete  la la-trash-o" style="font-size: 1.8rem"></a>
+                            </div>
+                            <a href="">
+                                <div class="badge badge-success round">@item.MaxOccupation</div>
+                                <div class="product-img d-flex align-items-center">
+                                    <img class="img-fluid mb-1" src="@Url.Content(@item.FilePath)" height="350" width="250" alt="Card image cap">
+                                </div>
+                                <h4 class="product-title">@item.Designation</h4>
+                                <div class="price-reviews">
+                                    <span class="price-box">
+                                        <span class="price">250 DT</span>
+                                    </span>
+                                    <span class="ratings float-right"></span>
+                                </div>
+                            </a>
+                            <div class="product-action d-flex justify-content-around">
+                                <a href="#like" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Wishlist"><i class="ft-heart"></i></a><span class="saperator">|</span>
+                                <a href="#view" data-toggle="tooltip" data-placement="top" title="" data-original-title="Quick View"><i class="ft-eye"></i></a><span class="saperator">|</span>
+                                <a href="#compare" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="ft-sliders"></i></a><span class="saperator">|</span>
+                                <a href="#cart" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add To Cart"><i class="ft-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h1 class="modal-title">Confirmation Suppression</h1>
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                Modal body..
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" name="supprimer" id="supprimer" class="btn btn-danger" style="width:100px">Supprimer</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal" style="width:100px">Fermer</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    function openModaldelete(ID, name) {
+        $(".modal-body").html("Voulez vous Supprimez " + name + ID);
+        $("#myModal").modal('show');
+        $("#supprimer").click(function () {
+            window.location.href = "/Machines/DeleteConfirmed?id=" + ID
+        });
+    }
+</script>
+@*<script>
+        var columns = [{
+            dataField: 'IdMachine',
+            caption: 'Id',
+        },
+        {
+            dataField: 'Designation',
+            caption: 'Designation',
+            dataType: 'string',
+            alignment: 'left',
+        },
+        {
+            dataField: 'MaxOccupation',
+            caption: 'Max Occupation',
+            dataType: 'string',
+            alignment: 'left',
+        },
+
+        {
+            caption: 'Actions',
+            width: 100,
+            alignment: 'center',
+            cellTemplate: function (container, options) {
+                $('<a href="/Machines/Edit/' + options.key + '" class="success edit la la-pencil"></a>')
+                    .on('dxclick', function (e) {
+                    })
+                    .appendTo(container);
+
+                $('<a href="/Machines/Details/' + options.key + '" class="warning details la la-eye"></a>')
+                    .on('dxclick', function () {
+
+                    })
+                    .appendTo(container);
+
+                $('<button class="btn p-0"><i class="danger delete  la la-trash-o"></i></button>')
+                    .on('dxclick', function () {
+                        openModaldelete('' + options.key + '', 'Menu N° ')
+                    })
+                    .appendTo(container);
+
+            }
+        },
+
+        ];
+
+    </script>
+    <script>
+        $(() => {
+            $('#machine_Grid').dxDataGrid({
+
+                dataSource: {
+                    store: {
+                        type: 'odata',
+                        url: '/Machines/listeMachines',
+                        key: 'IdMachine',
+                        beforeSend(request) {
+                            request.params.startDate = '2020-05-10';
+                            request.params.endDate = '2020-05-15';
+                        },
+                    },
+                },
+                selection: {
+                    mode: 'multiple',
+                },
+                focusedRowEnabled: true,
+                hoverStateEnabled: true,
+
+                columnChooser: { enabled: true },
+                scrolling: {
+                    mode: 'virtual',
+                },
+                allowColumnResizing: true,
+                showBorders: true,
+                columnResizingMode: 'nextColumn',
+                columnMinWidth: 50,
+                columnAutoWidth: true,
+                headerFilter: {
+                    visible: true,
+                },
+                filterPanel: {
+                    visible: true,
+                },
+                filterRow: { visible: true, applyFilter: "onClick" },
+                paging: {
+                    pageSize: 10,
+                },
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [10, 25, 50, 100],
+                },
+                remoteOperations: false,
+                searchPanel: {
+                    visible: true,
+                    highlightCaseSensitive: true,
+                },
+                groupPanel: { visible: true },
+                grouping: {
+                    autoExpandAll: false,
+                },
+                allowColumnReordering: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                columns: columns,
+                onContentReady(e) {
+
+                },
+            });
+        });
+
+
+
+    </script>*@
+

@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SportRestaurantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SportRestaurantEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Session" EntityType="SportRestaurantModel.Session" />
+    <EntitySet Name="Categorie" EntityType="SportRestaurantModel.Categorie" />
+    <EntitySet Name="Coach" EntityType="SportRestaurantModel.Coach" />
+    <EntitySet Name="Delivery" EntityType="SportRestaurantModel.Delivery" />
+    <EntitySet Name="Elements" EntityType="SportRestaurantModel.Elements" />
+    <EntitySet Name="Events" EntityType="SportRestaurantModel.Events" />
+    <EntitySet Name="Machin_Coach" EntityType="SportRestaurantModel.Machin_Coach" />
+    <EntitySet Name="Materials" EntityType="SportRestaurantModel.Materials" />
+    <EntitySet Name="Meals" EntityType="SportRestaurantModel.Meals" />
+    <EntitySet Name="Meals_Elements" EntityType="SportRestaurantModel.Meals_Elements" />
+    <EntitySet Name="ModePayement" EntityType="SportRestaurantModel.ModePayement" />
+    <EntitySet Name="Payment" EntityType="SportRestaurantModel.Payment" />
+    <EntitySet Name="PreventiveIntervention" EntityType="SportRestaurantModel.PreventiveIntervention" />
+    <EntitySet Name="Price" EntityType="SportRestaurantModel.Price" />
+    <EntitySet Name="Reservation" EntityType="SportRestaurantModel.Reservation" />
+    <EntitySet Name="Reservation_Machine" EntityType="SportRestaurantModel.Reservation_Machine" />
+    <EntitySet Name="sysdiagrams" EntityType="SportRestaurantModel.sysdiagrams" />
+    <AssociationSet Name="FK_Materials_Categorie" Association="SportRestaurantModel.FK_Materials_Categorie">
+      <End Role="Categorie" EntitySet="Categorie" />
+      <End Role="Materials" EntitySet="Materials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreventiveIntervention_Coach" Association="SportRestaurantModel.FK_PreventiveIntervention_Coach">
+      <End Role="Coach" EntitySet="Coach" />
+      <End Role="PreventiveIntervention" EntitySet="PreventiveIntervention" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Price_Elements" Association="SportRestaurantModel.FK_Price_Elements">
+      <End Role="Elements" EntitySet="Elements" />
+      <End Role="Price" EntitySet="Price" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Session_Materials" Association="SportRestaurantModel.FK_Session_Materials">
+      <End Role="Materials" EntitySet="Materials" />
+      <End Role="Session" EntitySet="Session" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_ModePayement" Association="SportRestaurantModel.FK_Payment_ModePayement">
+      <End Role="ModePayement" EntitySet="ModePayement" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Reservation" Association="SportRestaurantModel.FK_Payment_Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreventiveIntervention_PreventiveIntervention" Association="SportRestaurantModel.FK_PreventiveIntervention_PreventiveIntervention">
+      <End Role="PreventiveIntervention" EntitySet="PreventiveIntervention" />
+      <End Role="PreventiveIntervention1" EntitySet="PreventiveIntervention" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Session" Association="SportRestaurantModel.FK_Reservation_Session">
+      <End Role="Session" EntitySet="Session" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <EntitySet Name="Societe" EntityType="SportRestaurantModel.Societe" />
+    <AssociationSet Name="FK_Reservation_Reservation" Association="SportRestaurantModel.FK_Reservation_Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Reservation1" EntitySet="Reservation" />
+    </AssociationSet>
+    <EntitySet Name="ConfigMenu" EntityType="SportRestaurantModel.ConfigMenu" />
+    <AssociationSet Name="Coach_idCoach" Association="SportRestaurantModel.Coach_idCoach">
+      <End Role="Coach" EntitySet="Coach" />
+      <End Role="Session" EntitySet="Session" />
+    </AssociationSet>
+    <EntitySet Name="Ordonnance" EntityType="SportRestaurantModel.Ordonnance" />
+    <EntitySet Name="Role" EntityType="SportRestaurantModel.Role" />
+    <EntitySet Name="Utilisateur" EntityType="SportRestaurantModel.Utilisateur" />
+    <AssociationSet Name="FK_Utilisateur_Role" Association="SportRestaurantModel.FK_Utilisateur_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+    </AssociationSet>
+    <EntitySet Name="Adherent" EntityType="SportRestaurantModel.Adherent" />
+    <AssociationSet Name="FK_Ordonnance_Ordonnance" Association="SportRestaurantModel.FK_Ordonnance_Ordonnance">
+      <End Role="Adherent" EntitySet="Adherent" />
+      <End Role="Ordonnance" EntitySet="Ordonnance" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Session">
+    <Key>
+      <PropertyRef Name="idSession" />
+    </Key>
+    <Property Name="idSession" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="etat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="startHeure" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="endHeure" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreation" Type="DateTime" Precision="3" />
+    <Property Name="UserCreator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Materials_idMaterials" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+    <Property Name="DateSESSION" Type="DateTime" Precision="3" />
+    <Property Name="Dure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Materials" Relationship="SportRestaurantModel.FK_Session_Materials" FromRole="Session" ToRole="Materials" />
+    <NavigationProperty Name="Reservation" Relationship="SportRestaurantModel.FK_Reservation_Session" FromRole="Session" ToRole="Reservation" />
+    <Property Name="Coach_idCoach" Type="Int32" />
+    <NavigationProperty Name="Coach" Relationship="SportRestaurantModel.Coach_idCoach" FromRole="Session" ToRole="Coach" />
+  </EntityType>
+  <EntityType Name="Categorie">
+    <Key>
+      <PropertyRef Name="IdCategorie" />
+    </Key>
+    <Property Name="IdCategorie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Libelle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Materials" Relationship="SportRestaurantModel.FK_Materials_Categorie" FromRole="Categorie" ToRole="Materials" />
+  </EntityType>
+  <EntityType Name="Coach">
+    <Key>
+      <PropertyRef Name="idCoach" />
+    </Key>
+    <Property Name="idCoach" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="start_Date" Type="DateTime" Precision="0" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateBirdh" Type="DateTime" Precision="0" />
+    <Property Name="Adresse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="imageelement" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="imagephysique" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PreventiveIntervention" Relationship="SportRestaurantModel.FK_PreventiveIntervention_Coach" FromRole="Coach" ToRole="PreventiveIntervention" />
+    <Property Name="SelectedMachine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Session" Relationship="SportRestaurantModel.Coach_idCoach" FromRole="Coach" ToRole="Session" />
+  </EntityType>
+  <EntityType Name="Delivery">
+    <Key>
+      <PropertyRef Name="idDelivery" />
+    </Key>
+    <Property Name="idDelivery" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <Property Name="noteDelivery" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fees" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Elements">
+    <Key>
+      <PropertyRef Name="idElement" />
+    </Key>
+    <Property Name="idElement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameElement" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Energie" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+    <Property Name="Kj" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+    <Property Name="Glucide" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+    <Property Name="Proteine" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+    <Property Name="insertionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="weightUnity" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+    <Property Name="Lipide" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+    <Property Name="imageElement" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="imagephysique" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Price1" Relationship="SportRestaurantModel.FK_Price_Elements" FromRole="Elements" ToRole="Price" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="text" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Machin_Coach">
+    <Key>
+      <PropertyRef Name="idCoach" />
+      <PropertyRef Name="idMaterials" />
+    </Key>
+    <Property Name="idCoach" Type="Int32" Nullable="false" />
+    <Property Name="idMaterials" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Materials">
+    <Key>
+      <PropertyRef Name="idMaterials" />
+    </Key>
+    <Property Name="idMaterials" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameMaterials" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MaxOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Availability" Type="DateTime" Precision="3" />
+    <Property Name="idCoach" Type="Int32" />
+    <Property Name="imageElement" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="imagephysique" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdCategorie" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categorie" Relationship="SportRestaurantModel.FK_Materials_Categorie" FromRole="Materials" ToRole="Categorie" />
+    <Property Name="SelectedCoach" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DureeSeances" Type="Int32" />
+    <Property Name="PrixSeances" Type="Decimal" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="Meals">
+    <Key>
+      <PropertyRef Name="idMeal" />
+    </Key>
+    <Property Name="idMeal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameMeal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="Meals_Elements">
+    <Key>
+      <PropertyRef Name="idelements" />
+      <PropertyRef Name="idMeals" />
+    </Key>
+    <Property Name="idelements" Type="Int32" Nullable="false" />
+    <Property Name="idMeals" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModePayement">
+    <Key>
+      <PropertyRef Name="idModePayment" />
+    </Key>
+    <Property Name="idModePayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Payment" Relationship="SportRestaurantModel.FK_Payment_ModePayement" FromRole="ModePayement" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="idPayment" />
+    </Key>
+    <Property Name="idPayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateEcheance" Type="DateTime" Precision="0" />
+    <Property Name="dateReception" Type="DateTime" Precision="0" />
+    <Property Name="montant" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="idReservation" Type="Int32" Nullable="false" />
+    <Property Name="idModePayment" Type="Int32" Nullable="false" />
+    <Property Name="etatPaiement" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Devise" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ModePayement" Relationship="SportRestaurantModel.FK_Payment_ModePayement" FromRole="Payment" ToRole="ModePayement" />
+    <NavigationProperty Name="Reservation" Relationship="SportRestaurantModel.FK_Payment_Reservation" FromRole="Payment" ToRole="Reservation" />
+    <Property Name="Createur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PreventiveIntervention">
+    <Key>
+      <PropertyRef Name="idIntervention" />
+    </Key>
+    <Property Name="idIntervention" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateIntervention" Type="DateTime" Precision="0" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Materials_idMaterials" Type="Int32" Nullable="false" />
+    <Property Name="Materials_Coach_idCoach" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Coach" Relationship="SportRestaurantModel.FK_PreventiveIntervention_Coach" FromRole="PreventiveIntervention" ToRole="Coach" />
+    <NavigationProperty Name="PreventiveIntervention1" Relationship="SportRestaurantModel.FK_PreventiveIntervention_PreventiveIntervention" FromRole="PreventiveIntervention" ToRole="PreventiveIntervention1" />
+    <NavigationProperty Name="PreventiveIntervention2" Relationship="SportRestaurantModel.FK_PreventiveIntervention_PreventiveIntervention" FromRole="PreventiveIntervention1" ToRole="PreventiveIntervention" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="idPrice" />
+    </Key>
+    <Property Name="idPrice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="from" Type="DateTime" Precision="0" />
+    <Property Name="to" Type="DateTime" Precision="0" />
+    <Property Name="purchase_Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sale_Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="insertionDate" Type="DateTime" Precision="3" />
+    <Property Name="codeDevis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="product_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="type_product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Session_idSession" Type="Int32" Nullable="false" />
+    <Property Name="Elements_Meals_idMeal" Type="Int32" Nullable="false" />
+    <Property Name="etat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Elements" Relationship="SportRestaurantModel.FK_Price_Elements" FromRole="Price" ToRole="Elements" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="idReservation" />
+    </Key>
+    <Property Name="idReservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateDu" Type="DateTime" Precision="3" />
+    <Property Name="DateAu" Type="DateTime" Precision="3" />
+    <Property Name="Membership_idMembers" Type="Int32" Nullable="false" />
+    <Property Name="Session_idSession" Type="Int32" Nullable="false" />
+    <Property Name="Session_Materials_idMaterials" Type="Int32" Nullable="false" />
+    <Property Name="Element_Meals_idMeal" Type="Int32" Nullable="false" />
+    <Property Name="DateCreation" Type="DateTime" Precision="3" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="etat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Payment" Relationship="SportRestaurantModel.FK_Payment_Reservation" FromRole="Reservation" ToRole="Payment" />
+    <NavigationProperty Name="Session" Relationship="SportRestaurantModel.FK_Reservation_Session" FromRole="Reservation" ToRole="Session" />
+    <Property Name="livraison" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="mode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Reservation_Machine">
+    <Key>
+      <PropertyRef Name="idReservation" />
+      <PropertyRef Name="idMaterials" />
+    </Key>
+    <Property Name="idReservation" Type="Int32" Nullable="false" />
+    <Property Name="idMaterials" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Materials_Categorie">
+    <End Type="SportRestaurantModel.Categorie" Role="Categorie" Multiplicity="1" />
+    <End Type="SportRestaurantModel.Materials" Role="Materials" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorie">
+        <PropertyRef Name="IdCategorie" />
+      </Principal>
+      <Dependent Role="Materials">
+        <PropertyRef Name="IdCategorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreventiveIntervention_Coach">
+    <End Type="SportRestaurantModel.Coach" Role="Coach" Multiplicity="1" />
+    <End Type="SportRestaurantModel.PreventiveIntervention" Role="PreventiveIntervention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coach">
+        <PropertyRef Name="idCoach" />
+      </Principal>
+      <Dependent Role="PreventiveIntervention">
+        <PropertyRef Name="Materials_Coach_idCoach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Price_Elements">
+    <End Type="SportRestaurantModel.Elements" Role="Elements" Multiplicity="1" />
+    <End Type="SportRestaurantModel.Price" Role="Price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Elements">
+        <PropertyRef Name="idElement" />
+      </Principal>
+      <Dependent Role="Price">
+        <PropertyRef Name="Elements_Meals_idMeal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Session_Materials">
+    <End Type="SportRestaurantModel.Materials" Role="Materials" Multiplicity="1" />
+    <End Type="SportRestaurantModel.Session" Role="Session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materials">
+        <PropertyRef Name="idMaterials" />
+      </Principal>
+      <Dependent Role="Session">
+        <PropertyRef Name="Materials_idMaterials" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_ModePayement">
+    <End Type="SportRestaurantModel.ModePayement" Role="ModePayement" Multiplicity="1" />
+    <End Type="SportRestaurantModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModePayement">
+        <PropertyRef Name="idModePayment" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="idModePayment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Reservation">
+    <End Type="SportRestaurantModel.Reservation" Role="Reservation" Multiplicity="1" />
+    <End Type="SportRestaurantModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="idReservation" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="idReservation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreventiveIntervention_PreventiveIntervention">
+    <End Type="SportRestaurantModel.PreventiveIntervention" Role="PreventiveIntervention" Multiplicity="1" />
+    <End Type="SportRestaurantModel.PreventiveIntervention" Role="PreventiveIntervention1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PreventiveIntervention">
+        <PropertyRef Name="idIntervention" />
+      </Principal>
+      <Dependent Role="PreventiveIntervention1">
+        <PropertyRef Name="idIntervention" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Session">
+    <End Type="SportRestaurantModel.Session" Role="Session" Multiplicity="1" />
+    <End Type="SportRestaurantModel.Reservation" Role="Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Session">
+        <PropertyRef Name="idSession" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="Session_idSession" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Societe">
+    <Key>
+      <PropertyRef Name="CodeSociete" />
+    </Key>
+    <Property Name="CodeSociete" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="CodeForme" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="RaisonSociale" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="true" />
+    <Property Name="Responsable" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="MatriculeFiscale" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="RegistreCommerce" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CodeBanque" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="RibBanquaire" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Adresse" Type="String" Nullable="false" MaxLength="1500" FixedLength="false" Unicode="true" />
+    <Property Name="CodePostal" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Ville" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Pays" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Tel1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Tel2" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="FAX" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="SiteWeb" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Observation" Type="String" Nullable="false" MaxLength="1500" FixedLength="false" Unicode="true" />
+    <Property Name="CodeCNAM" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Reservation_Reservation">
+    <End Type="SportRestaurantModel.Reservation" Role="Reservation" Multiplicity="1" />
+    <End Type="SportRestaurantModel.Reservation" Role="Reservation1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="idReservation" />
+      </Principal>
+      <Dependent Role="Reservation1">
+        <PropertyRef Name="idReservation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ConfigMenu">
+    <Key>
+      <PropertyRef Name="IdMenu" />
+      <PropertyRef Name="Controller" />
+      <PropertyRef Name="Action" />
+      <PropertyRef Name="IdChild" />
+    </Key>
+    <Property Name="IdMenu" Type="Int32" Nullable="false" />
+    <Property Name="LibelleMenu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Controller" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdParent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdChild" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="Coach_idCoach">
+    <End Type="SportRestaurantModel.Coach" Role="Coach" Multiplicity="0..1" />
+    <End Type="SportRestaurantModel.Session" Role="Session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coach">
+        <PropertyRef Name="idCoach" />
+      </Principal>
+      <Dependent Role="Session">
+        <PropertyRef Name="Coach_idCoach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Ordonnance">
+    <Key>
+      <PropertyRef Name="idOrdonnace" />
+    </Key>
+    <Property Name="idOrdonnace" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NbCalorie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NomMedecin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOrdonnance" Type="DateTime" Precision="3" />
+    <Property Name="idAdherent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Adherent" Relationship="SportRestaurantModel.FK_Ordonnance_Ordonnance" FromRole="Ordonnance" ToRole="Adherent" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="IdRole" />
+    </Key>
+    <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Libelle" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Utilisateur" Relationship="SportRestaurantModel.FK_Utilisateur_Role" FromRole="Role" ToRole="Utilisateur" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomUtilisateur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MotDePasse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdRole" Type="Int32" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateNaissance" Type="DateTime" Precision="3" />
+    <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fixe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pays" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Role" Relationship="SportRestaurantModel.FK_Utilisateur_Role" FromRole="Utilisateur" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_Utilisateur_Role">
+    <End Type="SportRestaurantModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="SportRestaurantModel.Utilisateur" Role="Utilisateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="Utilisateur">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Adherent">
+    <Key>
+      <PropertyRef Name="idAdherent" />
+    </Key>
+    <Property Name="idAdherent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pays" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Instagram" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Poids" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Taille" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateNaissance" Type="DateTime" Precision="3" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreation" Type="DateTime" Precision="3" />
+    <Property Name="imageElement" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="imagephysique" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ordonnance" Relationship="SportRestaurantModel.FK_Ordonnance_Ordonnance" FromRole="Adherent" ToRole="Ordonnance" />
+  </EntityType>
+  <Association Name="FK_Ordonnance_Ordonnance">
+    <End Type="SportRestaurantModel.Adherent" Role="Adherent" Multiplicity="1" />
+    <End Type="SportRestaurantModel.Ordonnance" Role="Ordonnance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adherent">
+        <PropertyRef Name="idAdherent" />
+      </Principal>
+      <Dependent Role="Ordonnance">
+        <PropertyRef Name="idAdherent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

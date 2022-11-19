@@ -1,0 +1,105 @@
+﻿@model DorcasClub.Utilisateur
+
+@{
+    ViewBag.Title = "Consulter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Consultation Utilisateur (@Model.Prenom @Model.Nom)</span>
+                </div>
+                <div class="col-md-6" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Utilisateurs">Utilisateurs</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Consulter
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Information Genérale</h4>
+                      
+                        <hr />
+                    </div>
+                    <div class="card-body row pt-0">
+
+                        <div class="col-md-4">
+                            <h4>Données Personnels</h4>
+                            <hr />
+                            <div class="form-group row no-gutters">
+                                <label for="Nom" class="col-sm-4 col-form-label"> Nom </label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row no-gutters">
+                                <label for="Prenom" class="col-sm-4 col-form-label"> Prénom </label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.Prenom, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <h4>Compte</h4>
+                            <hr />
+                            <div class="form-group row no-gutters">
+                                <label for="NomUtilisateur" class="col-sm-4 col-form-label"> Login</label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.NomUtilisateur, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.NomUtilisateur, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row no-gutters">
+                                <label for="nameElement" class="col-sm-4 col-form-label"> Mot de passe</label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "password" } })
+                                    @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>
+                                Role
+                            </h4>
+                            <hr />
+                            <div class="form-group row no-gutters">
+                                <label for="IdRole" class="col-sm-4 col-form-label"> Role</label>
+                                <div class="col-sm-6">
+                               <input type="text" value="@ViewData["Role"]"  class = "form-control" readonly= "readonly"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+

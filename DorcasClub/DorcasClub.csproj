@@ -1,0 +1,1233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\MSBuild.Node.0.5.1\build\MSBuild.Node.props" Condition="Exists('..\packages\MSBuild.Node.0.5.1\build\MSBuild.Node.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{623977A0-B7F6-4A5F-822F-960042D722D7}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DorcasClub</RootNamespace>
+    <AssemblyName>DorcasClub</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44399</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind />
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.TemplateEngine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.CrystalReports.TemplateEngine.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.Data.AdoDotNetInterop, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.Data.AdoDotNetInterop.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Enterprise.Viewing.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.Enterprise.Viewing.ReportSource.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.CommonObjectModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Controllers, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.Controllers.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CubeDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.CubeDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.DataDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.ObjectFactory.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.Prompting, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.Prompting.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.ReportDefModel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportAppServer.XmlSerialize.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="DHTMLX, Version=4.0.7963.42414, Culture=neutral, PublicKeyToken=53f24791214eb8ac, processorArchitecture=MSIL">
+      <HintPath>..\packages\DHTMLX.Scheduler.NET.4.0.3\lib\DHTMLX.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\FlashControlV71.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http, Version=2.2.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.2.2.2\lib\netstandard2.0\Microsoft.AspNetCore.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.2.2.0\lib\netstandard2.0\Microsoft.Extensions.ObjectPool.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
+    </Reference>
+    <Reference Include="Node, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Node.1.0.0.0\lib\net45\Node.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Quartz, Version=2.6.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.2.6.1\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="QuartzHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuartzHelper.1.0.1\lib\QuartzHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="SAPBusinessObjects.WPF.Viewer, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\SAPBusinessObjects.WPF.Viewer.dll</HintPath>
+    </Reference>
+    <Reference Include="SAPBusinessObjects.WPF.ViewerShared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\SAPBusinessObjects.WPF.ViewerShared.dll</HintPath>
+    </Reference>
+    <Reference Include="ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\ShockwaveFlashObjects.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adherent.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Categorie.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CnxDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CnxDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CnxDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CnxDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CnxDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Coach.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigMenu.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdherentsController.cs" />
+    <Compile Include="Controllers\AuthentificationController.cs" />
+    <Compile Include="Controllers\BasicSchedulerController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CoachController.cs" />
+    <Compile Include="Controllers\DeliveryController.cs" />
+    <Compile Include="Controllers\ElementsController.cs" />
+    <Compile Include="Controllers\FonctionsController.cs" />
+    <Compile Include="Controllers\InterventionController.cs" />
+    <Compile Include="Controllers\Meals_Element_Controller.cs" />
+    <Compile Include="Controllers\ModePayementsController.cs" />
+    <Compile Include="Controllers\OrdonnancesController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PriceController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MealsController.cs" />
+    <Compile Include="Controllers\MaterialsController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Controllers\SocietesController.cs" />
+    <Compile Include="Controllers\TiketCuisineController.cs" />
+    <Compile Include="Controllers\UtilisateurController.cs" />
+    <Compile Include="Delivery.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Elements.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Events.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Machin_Coach.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Materials.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Meals.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Meals_Elements.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModel.cs" />
+    <Compile Include="ModePayement.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="Ordonnance.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PreventiveIntervention.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Price.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reservation.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reservation_Machine.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Business\SecurityServices.cs" />
+    <Compile Include="Services\Data\SecurityDAO.cs" />
+    <Compile Include="Session.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Societe.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utilisateur.cs">
+      <DependentUpon>CnxDB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CnxDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CnxDB.Context.cs</LastGenOutput>
+      <DependentUpon>CnxDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="CnxDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CnxDB.edmx</DependentUpon>
+      <LastGenOutput>CnxDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\add-on-drag-drop.min.css" />
+    <Content Include="Content\css\app-kanban.css" />
+    <Content Include="Content\css\app-kanban.js" />
+    <Content Include="Content\css\bootstrap-duallistbox.min.css" />
+    <Content Include="Content\css\bootstrap-extended.min.css" />
+    <Content Include="Content\css\bootstrap-select.min.css" />
+    <Content Include="Content\css\bootstrap-switch.min.css" />
+    <Content Include="Content\css\bootstrap-treeview.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\calendars\clndr.min.css" />
+    <Content Include="Content\css\calendars\daygrid.min.css" />
+    <Content Include="Content\css\calendars\fullcalendar.min.css" />
+    <Content Include="Content\css\calendars\fullcalendars.min.css" />
+    <Content Include="Content\css\calendars\timegrid.min.css" />
+    <Content Include="Content\css\colors.min.css" />
+    <Content Include="Content\css\components.min.css" />
+    <Content Include="Content\css\dragula.min.css" />
+    <Content Include="Content\css\dual-listbox.min.css" />
+    <Content Include="Content\css\editor-quill.min.js" />
+    <Content Include="Content\css\ex-component-tree-views.min.css" />
+    <Content Include="Content\css\fonts\feather\style.min.css" />
+    <Content Include="Content\css\fonts\line-awesome\css\line-awesome.min.css" />
+    <Content Include="Content\css\fonts\line-awesome\fonts\line-awesome.svg" />
+    <Content Include="Content\css\fonts\meteocons\style.min.css" />
+    <Content Include="Content\css\fonts\simple-line-icons\style.min.css" />
+    <Content Include="Content\css\gallery.min.css" />
+    <Content Include="Content\css\highlight.min.js" />
+    <Content Include="Content\css\jkanban.min.css" />
+    <Content Include="Content\css\jkanban.min.js" />
+    <Content Include="Content\css\katex.min.css" />
+    <Content Include="Content\css\katex.min.js" />
+    <Content Include="Content\css\login-register.min.css" />
+    <Content Include="Content\css\monokai-sublime.min.css" />
+    <Content Include="Content\css\palette-gradient.min.css" />
+    <Content Include="Content\css\pickadate.css" />
+    <Content Include="Content\css\picker.date.js" />
+    <Content Include="Content\css\picker.js" />
+    <Content Include="Content\css\quill.bubble.css" />
+    <Content Include="Content\css\quill.min.js" />
+    <Content Include="Content\css\quill.snow.css" />
+    <Content Include="Content\css\search.min.css" />
+    <Content Include="Content\css\select2.min.css" />
+    <Content Include="Content\css\selectize.css" />
+    <Content Include="Content\css\selectize.default.css" />
+    <Content Include="Content\css\selectize.min.css" />
+    <Content Include="Content\css\switch.min.css" />
+    <Content Include="Content\css\switchery.min.css" />
+    <Content Include="Content\css\vendors.min.css" />
+    <Content Include="Content\css\vertical-menu-modern.css" />
+    <Content Include="Content\css\wizard-steps.min.js" />
+    <Content Include="Content\dx_all\cldr.min.js" />
+    <Content Include="Content\dx_all\dx.all.js" />
+    <Content Include="Content\dx_all\dx.common.css" />
+    <Content Include="Content\dx_all\dx.light.css" />
+    <Content Include="Content\dx_all\event.min.js" />
+    <Content Include="Content\dx_all\index.js" />
+    <Content Include="Content\dx_all\jquery.min.js" />
+    <Content Include="Content\dx_all\styles.css" />
+    <Content Include="Content\dx_all\supplemental.min.js" />
+    <Content Include="Content\dx_all\unresolved.min.js" />
+    <Content Include="Content\img\bg-shape.png" />
+    <Content Include="Content\img\bg_menu.gif" />
+    <Content Include="Content\img\empty_picture.png" />
+    <Content Include="Content\img\login.svg" />
+    <Content Include="Content\img\logo-crm.svg" />
+    <Content Include="Content\img\logo-mobile-all.svg" />
+    <Content Include="Content\img\logo-mobile.png" />
+    <Content Include="Content\img\logo-mobile.svg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\minus.svg" />
+    <Content Include="Content\img\plus.svg" />
+    <Content Include="Content\img\pngwing.com.png" />
+    <Content Include="Content\js\add-on-drag-drop.min.js" />
+    <Content Include="Content\js\app-kanban.js" />
+    <Content Include="Content\js\app-menu.min.js" />
+    <Content Include="Content\js\app.min.js" />
+    <Content Include="Content\js\bootstrap-checkbox.min.js" />
+    <Content Include="Content\js\bootstrap-select.min.js" />
+    <Content Include="Content\js\bootstrap-switch.min.js" />
+    <Content Include="Content\js\bootstrap-treeview.min.js" />
+    <Content Include="Content\js\charts\chart.min.js" />
+    <Content Include="Content\js\charts\jquery.sparkline.min.js" />
+    <Content Include="Content\js\charts\morris.min.js" />
+    <Content Include="Content\js\charts\raphael-min.js" />
+    <Content Include="Content\js\ckeditor\adapters\jquery.js" />
+    <Content Include="Content\js\ckeditor\build-config.js" />
+    <Content Include="Content\js\ckeditor\ckeditor.js" />
+    <Content Include="Content\js\ckeditor\config.js" />
+    <Content Include="Content\js\ckeditor\contents.css" />
+    <Content Include="Content\js\ckeditor\lang\af.js" />
+    <Content Include="Content\js\ckeditor\lang\ar.js" />
+    <Content Include="Content\js\ckeditor\lang\az.js" />
+    <Content Include="Content\js\ckeditor\lang\bg.js" />
+    <Content Include="Content\js\ckeditor\lang\bn.js" />
+    <Content Include="Content\js\ckeditor\lang\bs.js" />
+    <Content Include="Content\js\ckeditor\lang\ca.js" />
+    <Content Include="Content\js\ckeditor\lang\cs.js" />
+    <Content Include="Content\js\ckeditor\lang\cy.js" />
+    <Content Include="Content\js\ckeditor\lang\da.js" />
+    <Content Include="Content\js\ckeditor\lang\de-ch.js" />
+    <Content Include="Content\js\ckeditor\lang\de.js" />
+    <Content Include="Content\js\ckeditor\lang\el.js" />
+    <Content Include="Content\js\ckeditor\lang\en-au.js" />
+    <Content Include="Content\js\ckeditor\lang\en-ca.js" />
+    <Content Include="Content\js\ckeditor\lang\en-gb.js" />
+    <Content Include="Content\js\ckeditor\lang\en.js" />
+    <Content Include="Content\js\ckeditor\lang\eo.js" />
+    <Content Include="Content\js\ckeditor\lang\es-mx.js" />
+    <Content Include="Content\js\ckeditor\lang\es.js" />
+    <Content Include="Content\js\ckeditor\lang\et.js" />
+    <Content Include="Content\js\ckeditor\lang\eu.js" />
+    <Content Include="Content\js\ckeditor\lang\fa.js" />
+    <Content Include="Content\js\ckeditor\lang\fi.js" />
+    <Content Include="Content\js\ckeditor\lang\fo.js" />
+    <Content Include="Content\js\ckeditor\lang\fr-ca.js" />
+    <Content Include="Content\js\ckeditor\lang\fr.js" />
+    <Content Include="Content\js\ckeditor\lang\gl.js" />
+    <Content Include="Content\js\ckeditor\lang\gu.js" />
+    <Content Include="Content\js\ckeditor\lang\he.js" />
+    <Content Include="Content\js\ckeditor\lang\hi.js" />
+    <Content Include="Content\js\ckeditor\lang\hr.js" />
+    <Content Include="Content\js\ckeditor\lang\hu.js" />
+    <Content Include="Content\js\ckeditor\lang\id.js" />
+    <Content Include="Content\js\ckeditor\lang\is.js" />
+    <Content Include="Content\js\ckeditor\lang\it.js" />
+    <Content Include="Content\js\ckeditor\lang\ja.js" />
+    <Content Include="Content\js\ckeditor\lang\ka.js" />
+    <Content Include="Content\js\ckeditor\lang\km.js" />
+    <Content Include="Content\js\ckeditor\lang\ko.js" />
+    <Content Include="Content\js\ckeditor\lang\ku.js" />
+    <Content Include="Content\js\ckeditor\lang\lt.js" />
+    <Content Include="Content\js\ckeditor\lang\lv.js" />
+    <Content Include="Content\js\ckeditor\lang\mk.js" />
+    <Content Include="Content\js\ckeditor\lang\mn.js" />
+    <Content Include="Content\js\ckeditor\lang\ms.js" />
+    <Content Include="Content\js\ckeditor\lang\nb.js" />
+    <Content Include="Content\js\ckeditor\lang\nl.js" />
+    <Content Include="Content\js\ckeditor\lang\no.js" />
+    <Content Include="Content\js\ckeditor\lang\oc.js" />
+    <Content Include="Content\js\ckeditor\lang\pl.js" />
+    <Content Include="Content\js\ckeditor\lang\pt-br.js" />
+    <Content Include="Content\js\ckeditor\lang\pt.js" />
+    <Content Include="Content\js\ckeditor\lang\ro.js" />
+    <Content Include="Content\js\ckeditor\lang\ru.js" />
+    <Content Include="Content\js\ckeditor\lang\si.js" />
+    <Content Include="Content\js\ckeditor\lang\sk.js" />
+    <Content Include="Content\js\ckeditor\lang\sl.js" />
+    <Content Include="Content\js\ckeditor\lang\sq.js" />
+    <Content Include="Content\js\ckeditor\lang\sr-latn.js" />
+    <Content Include="Content\js\ckeditor\lang\sr.js" />
+    <Content Include="Content\js\ckeditor\lang\sv.js" />
+    <Content Include="Content\js\ckeditor\lang\th.js" />
+    <Content Include="Content\js\ckeditor\lang\tr.js" />
+    <Content Include="Content\js\ckeditor\lang\tt.js" />
+    <Content Include="Content\js\ckeditor\lang\ug.js" />
+    <Content Include="Content\js\ckeditor\lang\uk.js" />
+    <Content Include="Content\js\ckeditor\lang\vi.js" />
+    <Content Include="Content\js\ckeditor\lang\zh-cn.js" />
+    <Content Include="Content\js\ckeditor\lang\zh.js" />
+    <Content Include="Content\js\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="Content\js\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Content\js\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Content\js\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Content\js\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Content\js\ckeditor\plugins\dialog\styles\dialog.css" />
+    <Content Include="Content\js\ckeditor\plugins\icons.png" />
+    <Content Include="Content\js\ckeditor\plugins\icons_hidpi.png" />
+    <Content Include="Content\js\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Content\js\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="Content\js\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="Content\js\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Content\js\ckeditor\samples\css\samples.css" />
+    <Content Include="Content\js\ckeditor\samples\img\github-top.png" />
+    <Content Include="Content\js\ckeditor\samples\img\header-bg.png" />
+    <Content Include="Content\js\ckeditor\samples\img\header-separator.png" />
+    <Content Include="Content\js\ckeditor\samples\img\logo.png" />
+    <Content Include="Content\js\ckeditor\samples\img\logo.svg" />
+    <Content Include="Content\js\ckeditor\samples\img\navigation-tip.png" />
+    <Content Include="Content\js\ckeditor\samples\index.html" />
+    <Content Include="Content\js\ckeditor\samples\js\sample.js" />
+    <Content Include="Content\js\ckeditor\samples\js\sf.js" />
+    <Content Include="Content\js\ckeditor\samples\old\ajax.html" />
+    <Content Include="Content\js\ckeditor\samples\old\api.html" />
+    <Content Include="Content\js\ckeditor\samples\old\appendto.html" />
+    <Content Include="Content\js\ckeditor\samples\old\assets\inlineall\logo.png" />
+    <Content Include="Content\js\ckeditor\samples\old\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="Content\js\ckeditor\samples\old\assets\sample.jpg" />
+    <Content Include="Content\js\ckeditor\samples\old\assets\uilanguages\languages.js" />
+    <Content Include="Content\js\ckeditor\samples\old\datafiltering.html" />
+    <Content Include="Content\js\ckeditor\samples\old\dialog\assets\my_dialog.js" />
+    <Content Include="Content\js\ckeditor\samples\old\dialog\dialog.html" />
+    <Content Include="Content\js\ckeditor\samples\old\divreplace.html" />
+    <Content Include="Content\js\ckeditor\samples\old\enterkey\enterkey.html" />
+    <Content Include="Content\js\ckeditor\samples\old\index.html" />
+    <Content Include="Content\js\ckeditor\samples\old\inlineall.html" />
+    <Content Include="Content\js\ckeditor\samples\old\inlinebycode.html" />
+    <Content Include="Content\js\ckeditor\samples\old\inlinetextarea.html" />
+    <Content Include="Content\js\ckeditor\samples\old\jquery.html" />
+    <Content Include="Content\js\ckeditor\samples\old\readonly.html" />
+    <Content Include="Content\js\ckeditor\samples\old\replacebyclass.html" />
+    <Content Include="Content\js\ckeditor\samples\old\replacebycode.html" />
+    <Content Include="Content\js\ckeditor\samples\old\sample.css" />
+    <Content Include="Content\js\ckeditor\samples\old\sample.js" />
+    <Content Include="Content\js\ckeditor\samples\old\tabindex.html" />
+    <Content Include="Content\js\ckeditor\samples\old\toolbar\toolbar.html" />
+    <Content Include="Content\js\ckeditor\samples\old\uicolor.html" />
+    <Content Include="Content\js\ckeditor\samples\old\uilanguages.html" />
+    <Content Include="Content\js\ckeditor\samples\old\wysiwygarea\fullpage.html" />
+    <Content Include="Content\js\ckeditor\samples\old\xhtmlstyle.html" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\css\fontello.css" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\font\fontello.svg" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\font\LICENSE.txt" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\index.html" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\js\abstracttoolbarmodifier.js" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\js\fulltoolbareditor.js" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\js\toolbarmodifier.js" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\js\toolbartextmodifier.js" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.css" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.js" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\javascript.js" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\dialog.css" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\dialog_ie.css" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\dialog_ie8.css" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\dialog_iequirks.css" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\editor.css" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\editor_gecko.css" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\editor_ie.css" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\editor_ie8.css" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\editor_iequirks.css" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\icons.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\icons_hidpi.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\arrow.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\close.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\hidpi\close.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\hidpi\lock-open.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\hidpi\lock.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\hidpi\refresh.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\lock-open.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\lock.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\refresh.png" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\images\spinner.gif" />
+    <Content Include="Content\js\ckeditor\styles.js" />
+    <Content Include="Content\js\ckeditor\vendor\promise.js" />
+    <Content Include="Content\js\customizer.min.js" />
+    <Content Include="Content\js\dashboard-ecommerce.min.js" />
+    <Content Include="Content\js\daygrid.min.js" />
+    <Content Include="Content\js\dragula.min.js" />
+    <Content Include="Content\js\editor-quill.min.js" />
+    <Content Include="Content\js\editor-tinymce.min.js" />
+    <Content Include="Content\js\ex-component-tree-views.min.js" />
+    <Content Include="Content\js\extensions\jquery.knob.min.js" />
+    <Content Include="Content\js\footer.min.js" />
+    <Content Include="Content\js\form-duallistbox.min.js" />
+    <Content Include="Content\js\form-select2.min.js" />
+    <Content Include="Content\js\form-selectize.min.js" />
+    <Content Include="Content\js\fullcalendar.min.js" />
+    <Content Include="Content\js\highlight.min.js" />
+    <Content Include="Content\js\interactions.min.js" />
+    <Content Include="Content\js\jkanban.min.js" />
+    <Content Include="Content\js\jquery-ui.min.js" />
+    <Content Include="Content\js\jquery.bootstrap-duallistbox.min.js" />
+    <Content Include="Content\js\katex.min.js" />
+    <Content Include="Content\js\moment.min.js" />
+    <Content Include="Content\js\picker.date.js" />
+    <Content Include="Content\js\picker.js" />
+    <Content Include="Content\js\quill.min.js" />
+    <Content Include="Content\js\quill.snow.css" />
+    <Content Include="Content\js\scripts\pages\hospital-payment-reports.min.js" />
+    <Content Include="Content\js\select2.full.min.js" />
+    <Content Include="Content\js\selectize.min.js" />
+    <Content Include="Content\js\switch.min.js" />
+    <Content Include="Content\js\switchery.min.js" />
+    <Content Include="Content\js\timegrid.min.js" />
+    <Content Include="Content\js\tinymce.min.js" />
+    <Content Include="Content\js\vendors.min.js" />
+    <Content Include="Content\Vendors\DataTable\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\Vendors\DataTable\css\jquery.dataTables.min.css" />
+    <Content Include="Content\Vendors\DataTable\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\Vendors\DataTable\js\jquery.dataTables.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="CnxDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CnxDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="CnxDB.edmx.diagram">
+      <DependentUpon>CnxDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\css\fonts\feather\fonts\feather2467.woff" />
+    <Content Include="Content\css\fonts\line-awesome\fonts\line-awesome.ttf" />
+    <Content Include="Content\css\fonts\line-awesome\fonts\line-awesome.woff" />
+    <Content Include="Content\css\fonts\line-awesome\fonts\line-awesome.woff2" />
+    <Content Include="Content\css\fonts\meteocons\fonts\meteoconsddea.eot" />
+    <Content Include="Content\css\fonts\meteocons\fonts\meteoconsddea.ttf" />
+    <Content Include="Content\css\fonts\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\css\fonts\simple-line-icons\fonts\Simple-Line-Iconsd41d.eot" />
+    <Content Include="Content\js\ckeditor\bender-runner.config.json" />
+    <Content Include="Content\js\ckeditor\CHANGES.md" />
+    <Content Include="Content\js\ckeditor\LICENSE.md" />
+    <Content Include="Content\js\ckeditor\README.md" />
+    <Content Include="Content\js\ckeditor\samples\old\assets\posteddata.php" />
+    <Content Include="Content\js\ckeditor\samples\old\sample_posteddata.php" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\font\config.json" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
+    <Content Include="Content\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <Content Include="Content\js\ckeditor\SECURITY.md" />
+    <Content Include="Content\js\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Content\Vendors\DataTable\js\fr-FR.json" />
+    <Content Include="Content\dx_all\icons\dxicons.ttf" />
+    <Content Include="Content\dx_all\icons\dxicons.woff" />
+    <Content Include="Content\dx_all\icons\dxicons.woff2" />
+    <Content Include="CrystalReports\Etat_RecuClient.rpt" />
+    <Content Include="CrystalReports\Etat_RepasKcal.rpt" />
+    <Content Include="CrystalReports\Etat_RepasLivrer.rpt" />
+    <Content Include="CrystalReports\Etat_RepasPreparer.rpt" />
+    <Content Include="CrystalReports\Etat_SeancesMachine.rpt" />
+    <Content Include="CrystalReports\Etat_ClientRecouvrement.rpt" />
+    <Content Include="CrystalReports\Etat_TiketRepas.rpt" />
+    <Content Include=".bin\node.cmd" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.css" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.js" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_contrast_black.css" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_contrast_white.css" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_custom_lightbox.js" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_flat.css" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_material.css" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_terrace.css" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_active_links.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_agenda_view.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_all_timed.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_collision.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_container_autoresize.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_cookie.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_csp.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_daytimeline.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_drag_between.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_editors.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_expand.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_grid_view.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_html_templates.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_key_nav.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_layer.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_limit.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_live_updates.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_map_view.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_minical.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_monthheight.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_multisection.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_multiselect.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_multisource.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_mvc.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_offline.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_outerdrag.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_pdf.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_quick_info.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_readonly.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_recurring.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_serialize.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_timeline.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_tooltip.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_treetimeline.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_units.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_url.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_week_agenda.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_wp.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_year_view.js" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\buttons.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\but_repeat.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\calendar.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\clock_big.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\clock_small.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\collapse_expand_icon.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\controls.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\databg.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\databg_now.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\export_ical.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\export_pdf.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\icon.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\images.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\loading.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs\resize_dots.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\arrow_left.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\arrow_right.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\but_repeat.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\calendar.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\clock_big.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\clock_small.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\close_icon.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\collapse_expand_icon.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\controls.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\databg.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\databg_now.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\export_ical.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\export_pdf.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\resize_dots.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_black\resizing.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\arrow_left.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\arrow_right.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\but_repeat.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\calendar.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\clock_big.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\clock_small.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\close_icon.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\collapse_expand_icon.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\controls.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\databg.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\export_ical.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\export_pdf.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\quick_info_edit.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\resize_dots.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_contrast_white\resizing.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\agenda-calendar-hov.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\agenda-calendar.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\agenda_bg.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\arrow_left.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\arrow_left_hov.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\arrow_right.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\arrow_right_hov.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\but_repeat.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\calendar.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\clock_big.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\clock_small.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\close_icon.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\collapse_expand_icon.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\controls.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\databg.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\drag-horizontal.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\drag-vertical.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\export_ical.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\export_pdf.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\icon.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\menu-down.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\resizing.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\Shape.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\time.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_material\tree_arrow.svg" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\arrow_left.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\arrow_right.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\but_repeat.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\calendar.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\clock_big.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\clock_small.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\close_icon.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\collapse_expand_icon.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\controls.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\databg.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\databg_now.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\export_ical.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\export_pdf.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\resize_dots.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_dhx_terrace\resizing.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\agenda_bg.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\arrow_left.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\arrow_right.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\but_repeat.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\calendar.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\clock.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\clock_big.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\clock_small.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\close_icon.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\collapse_expand_icon.gif" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\controls.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\databg.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\databg_now.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\export_ical.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\export_pdf.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\resize_dots.png" />
+    <Content Include="Scripts\dhtmlxScheduler\imgs_flat\resizing.png" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_ar.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_be.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_ca.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_cn.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_cs.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_da.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_de.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_el.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_en.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_es.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_fi.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_fr.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_he.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_hu.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_id.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_it.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_jp.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_nb.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_nl.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_no.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_pl.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_pt.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_ro.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_ru.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_si.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_sk.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_sv.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_tr.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\locale_ua.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_be.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_cn.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_cs.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_da.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_de.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_el.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_en.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_es.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_fi.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_fr.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_he.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_it.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_nb.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_nl.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_pl.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_pt.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_ro.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_ru.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_sk.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_sv.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\locale_recurring_ua.js" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_be.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_cn.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_de.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_el.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_en.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_es.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_fr.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_he.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_it.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_nl.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_ro.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_ru.html" />
+    <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_sk.html" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Meals\Create.cshtml" />
+    <Content Include="Views\Meals\Delete.cshtml" />
+    <Content Include="Views\Meals\Details.cshtml" />
+    <Content Include="Views\Meals\Edit.cshtml" />
+    <Content Include="Views\Meals\Index.cshtml" />
+    <Content Include="Views\Elements\Create.cshtml" />
+    <Content Include="Views\Elements\Delete.cshtml" />
+    <Content Include="Views\Elements\Details.cshtml" />
+    <Content Include="Views\Elements\Edit.cshtml" />
+    <Content Include="Views\Elements\Index.cshtml" />
+    <Content Include="Views\Coach\Create.cshtml" />
+    <Content Include="Views\Coach\Delete.cshtml" />
+    <Content Include="Views\Coach\Details.cshtml" />
+    <Content Include="Views\Coach\Edit.cshtml" />
+    <Content Include="Views\Coach\Index.cshtml" />
+    <Content Include="Views\Session\Create.cshtml" />
+    <Content Include="Views\Session\Delete.cshtml" />
+    <Content Include="Views\Session\Details.cshtml" />
+    <Content Include="Views\Session\Edit.cshtml" />
+    <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Delivery\Create.cshtml" />
+    <Content Include="Views\Delivery\Delete.cshtml" />
+    <Content Include="Views\Delivery\Details.cshtml" />
+    <Content Include="Views\Delivery\Edit.cshtml" />
+    <Content Include="Views\Delivery\Index.cshtml" />
+    <Content Include="Views\Payment\Create.cshtml" />
+    <Content Include="Views\Payment\Delete.cshtml" />
+    <Content Include="Views\Payment\Details.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Intervention\Create.cshtml" />
+    <Content Include="Views\Intervention\Delete.cshtml" />
+    <Content Include="Views\Intervention\Details.cshtml" />
+    <Content Include="Views\Intervention\Edit.cshtml" />
+    <Content Include="Views\Intervention\Index.cshtml" />
+    <Content Include="Views\Price\Create.cshtml" />
+    <Content Include="Views\Price\Delete.cshtml" />
+    <Content Include="Views\Price\Details.cshtml" />
+    <Content Include="Views\Price\Edit.cshtml" />
+    <Content Include="Views\Price\Index.cshtml" />
+    <Content Include="Views\Materials\Create.cshtml" />
+    <Content Include="Views\Materials\Delete.cshtml" />
+    <Content Include="Views\Materials\Details.cshtml" />
+    <Content Include="Views\Materials\Edit.cshtml" />
+    <Content Include="Views\Materials\Index.cshtml" />
+    <Content Include="Views\Reservation\Create.cshtml" />
+    <Content Include="Views\Reservation\Delete.cshtml" />
+    <Content Include="Views\Reservation\Details.cshtml" />
+    <Content Include="Views\Reservation\Edit.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
+    <Content Include="Views\Utilisateur\Create.cshtml" />
+    <Content Include="Views\Utilisateur\Delete.cshtml" />
+    <Content Include="Views\Utilisateur\Details.cshtml" />
+    <Content Include="Views\Utilisateur\Edit.cshtml" />
+    <Content Include="Views\Utilisateur\Index.cshtml" />
+    <Content Include="Views\Authentification\Index.cshtml" />
+    <Content Include="Views\Meals\DetailsModal.cshtml" />
+    <Content Include="Views\Reservation\SearchSeance.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\ModePayements\Create.cshtml" />
+    <Content Include="Views\ModePayements\Delete.cshtml" />
+    <Content Include="Views\ModePayements\Details.cshtml" />
+    <Content Include="Views\ModePayements\Edit.cshtml" />
+    <Content Include="Views\ModePayements\Index.cshtml" />
+    <Content Include="Views\BasicScheduler\Index.cshtml" />
+    <Content Include="Views\Materials\PlanMachine.cshtml" />
+    <Content Include="Views\Shared\_DataGrid.cshtml" />
+    <Content Include="Views\Session\Calendrier.cshtml" />
+    <Content Include="Views\Fonctions\Create.cshtml" />
+    <Content Include="Views\Fonctions\Delete.cshtml" />
+    <Content Include="Views\Fonctions\Details.cshtml" />
+    <Content Include="Views\Fonctions\Edit.cshtml" />
+    <Content Include="Views\Fonctions\Index.cshtml" />
+    <Content Include="Views\Societes\Create.cshtml" />
+    <Content Include="Views\Societes\Delete.cshtml" />
+    <Content Include="Views\Societes\Details.cshtml" />
+    <Content Include="Views\Societes\Edit.cshtml" />
+    <Content Include="Views\Societes\Index.cshtml" />
+    <Content Include="Views\Adherents\Create.cshtml" />
+    <Content Include="Views\Adherents\Delete.cshtml" />
+    <Content Include="Views\Adherents\Details.cshtml" />
+    <Content Include="Views\Adherents\Edit.cshtml" />
+    <Content Include="Views\Adherents\Index.cshtml" />
+    <Content Include="Views\Ordonnances\Create.cshtml" />
+    <Content Include="Views\Ordonnances\Delete.cshtml" />
+    <Content Include="Views\Ordonnances\Details.cshtml" />
+    <Content Include="Views\Ordonnances\Edit.cshtml" />
+    <Content Include="Views\Ordonnances\Index.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\TiketCuisine\index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\img\icon\" />
+    <Folder Include="UploadedFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.d.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53662</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44399/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\MSBuild.Node.0.5.1\build\MSBuild.Node.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.Node.0.5.1\build\MSBuild.Node.props'))" />
+    <Error Condition="!Exists('..\packages\MSBuild.Node.0.5.1\build\MSBuild.Node.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.Node.0.5.1\build\MSBuild.Node.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\MSBuild.Node.0.5.1\build\MSBuild.Node.targets" Condition="Exists('..\packages\MSBuild.Node.0.5.1\build\MSBuild.Node.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

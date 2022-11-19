@@ -1,0 +1,127 @@
+﻿<script src="~/Content/dx_all/jquery.min.js"></script>
+<script>
+    $(() => {
+    $('#@ViewBag.IdGrid').dxDataGrid({
+
+        dataSource: {
+            store: {
+                type: 'odata',
+                url: '@ViewBag.UrlAction',
+                key: '@ViewBag.key',
+                beforeSend(request) {
+                    request.params.startDate = '2020-05-10';
+                    request.params.endDate = '2020-05-15';
+                },
+            },
+        },
+        selection: {
+            mode: 'multiple',
+        },
+        focusedRowEnabled: true,
+        hoverStateEnabled: true,
+
+        columnChooser: { enabled: true },
+        scrolling: {
+            mode: 'virtual',
+        },
+        allowColumnResizing: true,
+        showBorders: true,
+        columnResizingMode: 'nextColumn',
+        columnMinWidth: 50,
+        columnAutoWidth: true,
+        headerFilter: {
+            visible: true,
+        },
+        filterPanel: {
+            visible: true,
+        },
+        filterRow: { visible: true, applyFilter: "onClick" },
+        paging: {
+            pageSize: 10,
+        },
+        pager: {
+            showPageSizeSelector: true,
+            allowedPageSizes: [10, 25, 50, 100],
+        },
+        remoteOperations: false,
+        searchPanel: {
+            visible: true,
+            highlightCaseSensitive: true,
+        },
+        groupPanel: { visible: true },
+        grouping: {
+            autoExpandAll: false,
+        },
+        allowColumnReordering: true,
+        rowAlternationEnabled: true,
+        showBorders: true,
+        columns:columns,
+        onContentReady(e) {
+            if (!collapsed) {
+                collapsed = true;
+                e.component.expandRow(['EnviroCare']);
+            }
+        },
+    });
+});
+
+
+
+$(function() {
+    const types = ['error', 'info', 'success', 'warning'];
+
+    $("#show-message").dxButton({
+        text: "Show message",
+        onClick: function() {
+            DevExpress.ui.notify({
+                    message: "You have a new message",
+                    width: 230,
+                    position: {
+                        my: "bottom",
+                        at: "bottom",
+                        of: "#container"
+                    }
+                },
+                types[Math.floor(Math.random() * 4)],
+                500
+            );
+        },
+    });
+    //
+
+
+    const data = [{
+        ID: 1,
+        Name: 'Banana',
+        Category: 'Fruits'
+    }, {
+        ID: 2,
+        Name: 'Cucumber',
+        Category: 'Vegetables'
+    }, {
+        ID: 3,
+        Name: 'Apple',
+        Category: 'Fruits'
+    }, {
+        ID: 4,
+        Name: 'Tomato',
+        Category: 'Vegetables'
+    }, {
+        ID: 5,
+        Name: 'Apricot',
+        Category: 'Fruits'
+    }]
+
+    $("#selectBox").dxSelectBox({
+        dataSource: data,
+        searchEnabled: true,
+        valueExpr: "ID",
+        displayExpr: "Name",
+
+    });
+});
+</script>
+
+<div class="demo-container">
+    <div id="@ViewBag.IdGrid"></div>
+</div>

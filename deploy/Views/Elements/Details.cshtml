@@ -1,0 +1,143 @@
+﻿@model DorcasClub.Elements
+@{
+    ViewBag.Title = "Consulter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Consulter Aliment @Model.nameElement</span>
+                </div>
+                <div class="col-md-4" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Elements">Aliments</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Aliments
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="row col-md-12">
+
+        <div class="col-md-4">
+            <div class="grid-hover">
+                <figure class="effect-zoe">
+                    <img src="/Elements/RetrieveImage/@Model.idElement" alt="" height=200 width=400 />
+                    <figcaption>
+
+                        <h3> @Model.nameElement</h3>
+                        <p class="description">@Model.description</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="col-md-8">
+
+            <div class="col-md-6">
+
+                <div class="form-group row no-gutters">
+                    <label for="nameElement" class="col-sm-5 col-form-label"> Nom Aliment </label>
+                    <div class="col-sm-7">
+                        @Html.EditorFor(model => model.nameElement, new { htmlAttributes = new { @class = "form-control", @readonly= "readonly" } })
+                        @Html.ValidationMessageFor(model => model.nameElement, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group  row no-gutters">
+                    <label for="weightUnity" class="col-sm-5 col-form-label"> Poids aliment (G) </label>
+                    <div class="col-sm-7">
+                        @Html.EditorFor(model => model.weightUnity, new { htmlAttributes = new { @class = "form-control", @onchange = "energieKJ()", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.weightUnity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group  row no-gutters">
+                    <label for="price" class="col-sm-5 col-form-label"> Prix </label>
+                    <div class="col-sm-7">
+                        @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group row no-gutters">
+                    <label for="description" class="col-sm-2 col-form-label"> Description </label>
+                    <div class="col-sm-8">
+                        @Html.TextAreaFor(model => model.description, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-4">
+                <div class="form-group row no-gutters">
+                    <label for="Glucide" class="col-sm-5 col-form-label"> Glucide/100g </label>
+                    <div class="col-sm-5">
+                        @Html.EditorFor(model => model.Glucide, new { htmlAttributes = new { @class = "form-control", @type = "number", @onchange = "energieKJ()", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Glucide, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group row no-gutters">
+                    <label for="Proteine" class="col-sm-5 col-form-label"> Proteine/100g  </label>
+                    <div class="col-sm-5">
+                        @Html.EditorFor(model => model.Proteine, new { htmlAttributes = new { @class = "form-control", @type = "number", @onchange = "energieKJ()", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Proteine, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="form-group  row no-gutters">
+                    <label for="Lipide" class="col-sm-5 col-form-label"> Lipide/100g  </label>
+                    <div class="col-sm-5">
+                        @Html.EditorFor(model => model.Lipide, new { htmlAttributes = new { @class = "form-control", @type = "number", @onchange = "energieKJ()", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Lipide, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group  row no-gutters">
+                    <label for="Energie" class="col-sm-5 col-form-label"> Energie (Kcal) </label>
+                    <div class="col-sm-5">
+                        @Html.EditorFor(model => model.Energie, new { htmlAttributes = new { @class = "form-control", @type = "number", @onchange = "energieKJ()", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Energie, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group  row no-gutters">
+                    <label for="Kj" class="col-sm-5 col-form-label"> Energie (kJ) </label>
+                    <div class="col-sm-5">
+                        @Html.EditorFor(model => model.Kj, new { htmlAttributes = new { @class = "form-control", @type = "number", @onchange = "energieKJ()", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Kj, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>

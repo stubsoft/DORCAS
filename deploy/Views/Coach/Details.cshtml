@@ -1,0 +1,378 @@
+﻿@model DorcasClub.Coach
+@{
+    ViewBag.Title = "Consulter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-6"><span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Consulter Entreneur @Model.FirstName @Model.LastName </span></div>
+                <div class="col-md-4" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Coach">Entreneur</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Consultation
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Information Personnel </h4>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success pull-right" style=" margin-top: -12px;"><i class="la la-save"></i> Enregistrer</button>
+
+                        </div>
+
+                        <hr />
+                    </div>
+                    <div class="card-body row pt-0">
+                        <div class="col-md-12 row">
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Nom" class="col-sm-4 col-form-label"> Nom </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Prenom" class="col-sm-4 col-form-label"> Prénom </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="Nom" class="col-sm-4 col-form-label"> CIN </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="DateCreation" class="col-sm-4 col-form-label"> Date Naissance </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.DateBirdh, new { htmlAttributes = new { @class = "form-control", @type = "date" }, @value = @ViewData["dc"] })
+                                                @Html.ValidationMessageFor(model => model.DateBirdh, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row no-gutters">
+                                            <label for="DateCreation" class="col-sm-4 col-form-label"> Rejoindre le </label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.start_Date, new { htmlAttributes = new { @class = "form-control", @type = "date" }, @value = @ViewData["d1"] })
+                                                @Html.ValidationMessageFor(model => model.start_Date, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group  row no-gutters">
+                                            <label for="Etat" class="col-sm-4 col-form-label"> Genre </label>
+                                            <div class="col-sm-8">
+                                                <select name=@Html.NameFor(model => model.FirstName) id=@Html.IdFor(model => model.FirstName) class="selectize-control input-selectize multi">
+                                                    <option value="">Sélectionner une Genre</option>
+                                                    <option value="Homme">Homme</option>
+                                                    <option value="Femme">Femme</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="grid-hover">
+                                    <figure class="effect-zoe">
+                                        <img src="/Coach/RetrieveImage/@Model.idCoach" alt="" height=200 width=400 />
+                                        <figcaption>
+                                            <h3> @Model.FirstName @Model.LastName</h3>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <h4>Contact</h4>
+                                <hr />
+                            </div>
+
+                            <div class="col-md-12 row">
+                                <div class="col-md-3">
+                                    <div class="form-group row no-gutters">
+                                        <label for="idElement" class="col-sm-4 col-form-label"> Mobile 1</label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.mobile, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group row no-gutters">
+                                        <label for="idElement" class="col-sm-4 col-form-label"> Mobile 2 </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.mobile, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group row no-gutters">
+                                        <label for="DescriptionTache" class="col-sm-4 pt-0  col-form-label"> Fixe </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group row no-gutters">
+                                        <label for="DescriptionTache" class="col-sm-4 pt-0  col-form-label"> Email 1 </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group row no-gutters">
+                                        <label for="DescriptionTache" class="col-sm-4 pt-0  col-form-label"> Email 2 </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group row no-gutters">
+                                        <label for="DescriptionTache" class="col-sm-4 pt-0  col-form-label"> Adresse </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Adresse, "", new { @class = "text-danger" })
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group row no-gutters">
+                                        <label for="DescriptionTache" class="col-sm-4 pt-0  col-form-label"> Ville </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Adresse, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h4>Equipement </h4>
+                                <hr />
+                            </div>
+
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Information Entreneur</h4>
+                                        <hr />
+                                    </div>
+                                    <div class="card-body row pt-0">
+                                        <div class="col-md-4">
+                                            <div class="grid-hover">
+                                                <figure class="effect-zoe">
+                                                    <img src="/Coach/RetrieveImage/@Model.idCoach" alt="" height=200 width=400 />
+                                                    <figcaption>
+                                                        <h3> @Model.FirstName @Model.LastName</h3>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="border p-2 h-100">
+                                                <legend class="w-auto">Personnel</legend>
+
+                                                <div class="form-group row no-gutters">
+                                                    <label for="Nom" class="col-sm-4 col-form-label"> Nom </label>
+                                                    <div class="col-sm-8">
+                                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row no-gutters">
+                                                    <label for="Prenom" class="col-sm-4 col-form-label"> Prénom </label>
+                                                    <div class="col-sm-8">
+                                                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row no-gutters">
+                                                    <label for="DateCreation" class="col-sm-4 col-form-label"> Date Naissance </label>
+                                                    <div class="col-sm-8">
+                                                        @Html.EditorFor(model => model.DateBirdh, new { htmlAttributes = new { @class = "form-control", @type = "date" }, @value = @ViewData["dc"], @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.DateBirdh, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row no-gutters">
+                                                    <label for="DateCreation" class="col-sm-4 col-form-label"> Rejoindre le </label>
+                                                    <div class="col-sm-8">
+                                                        @Html.EditorFor(model => model.start_Date, new { htmlAttributes = new { @class = "form-control", @type = "date" }, @value = @ViewData["d1"], @readonly = "readonly" })
+                                                        @Html.ValidationMessageFor(model => model.start_Date, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <fieldset class="border p-2 h-100">
+                                                <legend class="w-auto">Contact</legend>
+
+                                                <div class="form-group row no-gutters">
+                                                    <label for="idElement" class="col-sm-4 col-form-label"> Mobile</label>
+                                                    <div class="col-sm-8">
+                                                        @Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.mobile, "", new { @class = "text-danger" })
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row no-gutters">
+                                                    <label for="DescriptionTache" class="col-sm-4 pt-0  col-form-label"> Fixe </label>
+                                                    <div class="col-sm-8">
+                                                        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row no-gutters">
+                                                    <label for="DescriptionTache" class="col-sm-4 pt-0  col-form-label"> Email </label>
+                                                    <div class="col-sm-8">
+                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row no-gutters">
+                                                    <label for="DescriptionTache" class="col-sm-3 pt-0  col-form-label"> Adresse </label>
+                                                    <div class="col-sm-9">
+                                                        @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                        @Html.ValidationMessageFor(model => model.Adresse, "", new { @class = "text-danger" })
+
+
+                                                    </div>
+
+                                                </div>
+                                            </fieldset>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        }
+
+                    </div>
+
+
+                    @section Scripts {
+                        @Scripts.Render("~/bundles/jqueryval")
+                        <script>
+                            var now = new Date();
+                            now.setDate(now.getDate());
+                            $('#DateBirdh').val(now.toISOString().split('T')[0]);
+                            $('#start_Date').val(now.toISOString().split('T')[0]);
+                        </script>
+                    }

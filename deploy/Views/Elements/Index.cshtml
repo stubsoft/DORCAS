@@ -1,0 +1,224 @@
+﻿@model IEnumerable<DorcasClub.Elements>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-2 content-header-title">
+                    <span>Liste des  Aliments</span>
+                </div>
+                <div class="col-md-4">
+                    <div class="breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Elements">Nutrition</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Liste des Aliments
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="btn-group float-md-right">
+                        <a href="@Url.Action("Create","Elements")" class="btn btn-success"><i class="la la-plus"></i>Ajouter</a>
+
+                        <button class="btn btn-primary pull-right" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="la la-filter"></i>   Filtrer
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="demo-container card">
+        <div id="aliment_Grid"></div>
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+
+                <h1 class="modal-title">Confirmation Suppression</h1>
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Modal body..
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" name="supprimer" id="supprimer" class="btn btn-danger" style="width:100px">Supprimer</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal" style="width:100px">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var columns = [{
+        dataField: 'idElement',
+        caption: 'Id ',
+    },
+    
+    {
+    caption: 'Image',
+    cellTemplate: function (container, options) {
+    $('<img src="/Elements/RetrieveImage/' + options.key + '" height=50 width=50 />')
+                .on('dxclick', function (e) {
+                })
+                .appendTo(container);
+
+    }
+    },
+    {
+        dataField: 'nameElement',
+        caption: 'Nom',
+        dataType: 'string',
+        alignment: 'left',
+    },
+    {
+        dataField: 'Energie',
+        caption: 'Energie',
+        dataType: 'string',
+        alignment: 'left',
+    },
+    {
+        dataField: 'Glucide',
+        caption: 'Glucide',
+        dataType: 'string',
+        alignment: 'left',
+    },
+    {
+        dataField: 'Proteine',
+        caption: 'Proteine',
+        dataType: 'string',
+        alignment: 'left',
+    },
+
+    {
+        caption: 'Actions',
+        width: 100,
+        alignment: 'center',
+        cellTemplate: function (container, options) {
+            $('<a href="/Elements/Edit/' + options.key + '" class="success edit la la-pencil"></a>')
+                .on('dxclick', function (e) {
+                })
+                .appendTo(container);
+
+            $('<a href="/Elements/Details/' + options.key + '" class="warning details la la-eye"></a>')
+                .on('dxclick', function () {
+
+                })
+                .appendTo(container);
+
+            $('<button class="btn p-0"><i class="danger delete  la la-trash-o"></i></button>')
+                .on('dxclick', function () {
+                    openModaldelete('' + options.key + '', 'Menu N° ')
+                })
+                .appendTo(container);
+
+        }
+    },
+
+    ];
+
+</script>
+
+
+<script>
+    $(() => {
+        $('#aliment_Grid').dxDataGrid({
+
+            dataSource: {
+                store: {
+                    type: 'odata',
+                    url: '/Elements/listeelements',
+                    key: 'idElement',
+                    beforeSend(request) {
+                        request.params.startDate = '2020-05-10';
+                        request.params.endDate = '2020-05-15';
+                    },
+                },
+            },
+            selection: {
+                mode: 'multiple',
+            },
+            focusedRowEnabled: true,
+            hoverStateEnabled: true,
+
+            columnChooser: { enabled: true },
+            scrolling: {
+                mode: 'virtual',
+            },
+            allowColumnResizing: true,
+            showBorders: true,
+            columnResizingMode: 'nextColumn',
+            columnMinWidth: 50,
+            columnAutoWidth: true,
+            headerFilter: {
+                visible: true,
+            },
+            filterPanel: {
+                visible: true,
+            },
+            filterRow: { visible: true, applyFilter: "onClick" },
+            paging: {
+                pageSize: 10,
+            },
+            pager: {
+                showPageSizeSelector: true,
+                allowedPageSizes: [10, 25, 50, 100],
+            },
+            remoteOperations: false,
+            searchPanel: {
+                visible: true,
+                highlightCaseSensitive: true,
+            },
+            groupPanel: { visible: true },
+            grouping: {
+                autoExpandAll: false,
+            },
+            allowColumnReordering: true,
+            rowAlternationEnabled: true,
+            showBorders: true,
+            columns: columns,
+            onContentReady(e) {
+
+            },
+        });
+    });
+
+
+
+</script>
+
+<script>
+    function openModaldelete(ID, name) {
+        $(".modal-body").html("Voulez vous Supprimez " + name + ID);
+        $("#myModal").modal('show');
+        $("#supprimer").click(function () {
+            window.location.href = "/Elements/DeleteConfirmed?id=" + ID
+        });
+    }
+</script>

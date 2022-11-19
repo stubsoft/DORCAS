@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SportRestaurantModelStoreContainer" CdmEntityContainer="SportRestaurantEntities">
+    <EntitySetMapping Name="Session">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Session">
+        <MappingFragment StoreEntitySet="Session">
+          <ScalarProperty Name="Coach_idCoach" ColumnName="Coach_idCoach" />
+          <ScalarProperty Name="Dure" ColumnName="Dure" />
+          <ScalarProperty Name="DateSESSION" ColumnName="DateSESSION" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Materials_idMaterials" ColumnName="Materials_idMaterials" />
+          <ScalarProperty Name="UserCreator" ColumnName="UserCreator" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="endHeure" ColumnName="endHeure" />
+          <ScalarProperty Name="startHeure" ColumnName="startHeure" />
+          <ScalarProperty Name="etat" ColumnName="etat" />
+          <ScalarProperty Name="idSession" ColumnName="idSession" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorie">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Categorie">
+        <MappingFragment StoreEntitySet="Categorie">
+          <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+          <ScalarProperty Name="IdCategorie" ColumnName="IdCategorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Coach">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Coach">
+        <MappingFragment StoreEntitySet="Coach">
+          <ScalarProperty Name="SelectedMachine" ColumnName="SelectedMachine" />
+          <ScalarProperty Name="imagephysique" ColumnName="imagephysique" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="imageelement" ColumnName="imageelement" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="DateBirdh" ColumnName="DateBirdh" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="start_Date" ColumnName="start_Date" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="idCoach" ColumnName="idCoach" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Delivery">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Delivery">
+        <MappingFragment StoreEntitySet="Delivery">
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="noteDelivery" ColumnName="noteDelivery" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="idDelivery" ColumnName="idDelivery" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Elements">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Elements">
+        <MappingFragment StoreEntitySet="Elements">
+          <ScalarProperty Name="imagephysique" ColumnName="imagephysique" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="imageElement" ColumnName="imageElement" />
+          <ScalarProperty Name="Lipide" ColumnName="Lipide" />
+          <ScalarProperty Name="weightUnity" ColumnName="weightUnity" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="insertionDate" ColumnName="insertionDate" />
+          <ScalarProperty Name="Proteine" ColumnName="Proteine" />
+          <ScalarProperty Name="Glucide" ColumnName="Glucide" />
+          <ScalarProperty Name="Kj" ColumnName="Kj" />
+          <ScalarProperty Name="Energie" ColumnName="Energie" />
+          <ScalarProperty Name="nameElement" ColumnName="nameElement" />
+          <ScalarProperty Name="idElement" ColumnName="idElement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Events">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Machin_Coach">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Machin_Coach">
+        <MappingFragment StoreEntitySet="Machin_Coach">
+          <ScalarProperty Name="idMaterials" ColumnName="idMaterials" />
+          <ScalarProperty Name="idCoach" ColumnName="idCoach" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materials">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Materials">
+        <MappingFragment StoreEntitySet="Materials">
+          <ScalarProperty Name="PrixSeances" ColumnName="PrixSeances" />
+          <ScalarProperty Name="DureeSeances" ColumnName="DureeSeances" />
+          <ScalarProperty Name="SelectedCoach" ColumnName="SelectedCoach" />
+          <ScalarProperty Name="IdCategorie" ColumnName="IdCategorie" />
+          <ScalarProperty Name="imagephysique" ColumnName="imagephysique" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="imageElement" ColumnName="imageElement" />
+          <ScalarProperty Name="idCoach" ColumnName="idCoach" />
+          <ScalarProperty Name="Availability" ColumnName="Availability" />
+          <ScalarProperty Name="MaxOccupation" ColumnName="MaxOccupation" />
+          <ScalarProperty Name="nameMaterials" ColumnName="nameMaterials" />
+          <ScalarProperty Name="idMaterials" ColumnName="idMaterials" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Meals">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Meals">
+        <MappingFragment StoreEntitySet="Meals">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="nameMeal" ColumnName="nameMeal" />
+          <ScalarProperty Name="idMeal" ColumnName="idMeal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Meals_Elements">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Meals_Elements">
+        <MappingFragment StoreEntitySet="Meals_Elements">
+          <ScalarProperty Name="idMeals" ColumnName="idMeals" />
+          <ScalarProperty Name="idelements" ColumnName="idelements" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Memberships">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Memberships">
+        <MappingFragment StoreEntitySet="Memberships">
+          <ScalarProperty Name="Taille" ColumnName="Taille" />
+          <ScalarProperty Name="Wieght" ColumnName="Wieght" />
+          <ScalarProperty Name="imagephysique" ColumnName="imagephysique" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="imageelement" ColumnName="imageelement" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="DateAu" ColumnName="DateAu" />
+          <ScalarProperty Name="DateDu" ColumnName="DateDu" />
+          <ScalarProperty Name="Duree" ColumnName="Duree" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="membershipType" ColumnName="membershipType" />
+          <ScalarProperty Name="CIN_Members" ColumnName="CIN_Members" />
+          <ScalarProperty Name="adress_Members" ColumnName="adress_Members" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="name_Members" ColumnName="name_Members" />
+          <ScalarProperty Name="idMembers" ColumnName="idMembers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModePayement">
+      <EntityTypeMapping TypeName="SportRestaurantModel.ModePayement">
+        <MappingFragment StoreEntitySet="ModePayement">
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="idModePayment" ColumnName="idModePayment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payment">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="Createur" ColumnName="Createur" />
+          <ScalarProperty Name="Devise" ColumnName="Devise" />
+          <ScalarProperty Name="etatPaiement" ColumnName="etatPaiement" />
+          <ScalarProperty Name="idModePayment" ColumnName="idModePayment" />
+          <ScalarProperty Name="idReservation" ColumnName="idReservation" />
+          <ScalarProperty Name="montant" ColumnName="montant" />
+          <ScalarProperty Name="dateReception" ColumnName="dateReception" />
+          <ScalarProperty Name="dateEcheance" ColumnName="dateEcheance" />
+          <ScalarProperty Name="idPayment" ColumnName="idPayment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PreventiveIntervention">
+      <EntityTypeMapping TypeName="SportRestaurantModel.PreventiveIntervention">
+        <MappingFragment StoreEntitySet="PreventiveIntervention">
+          <ScalarProperty Name="Materials_Coach_idCoach" ColumnName="Materials_Coach_idCoach" />
+          <ScalarProperty Name="Materials_idMaterials" ColumnName="Materials_idMaterials" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="dateIntervention" ColumnName="dateIntervention" />
+          <ScalarProperty Name="idIntervention" ColumnName="idIntervention" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Price">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Price">
+        <MappingFragment StoreEntitySet="Price">
+          <ScalarProperty Name="etat" ColumnName="etat" />
+          <ScalarProperty Name="Elements_Meals_idMeal" ColumnName="Elements_Meals_idMeal" />
+          <ScalarProperty Name="Session_idSession" ColumnName="Session_idSession" />
+          <ScalarProperty Name="type_product" ColumnName="type_product" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="codeDevis" ColumnName="codeDevis" />
+          <ScalarProperty Name="insertionDate" ColumnName="insertionDate" />
+          <ScalarProperty Name="sale_Price" ColumnName="sale_Price" />
+          <ScalarProperty Name="purchase_Price" ColumnName="purchase_Price" />
+          <ScalarProperty Name="to" ColumnName="to" />
+          <ScalarProperty Name="from" ColumnName="from" />
+          <ScalarProperty Name="idPrice" ColumnName="idPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservation">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Reservation">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="mode" ColumnName="mode" />
+          <ScalarProperty Name="livraison" ColumnName="livraison" />
+          <ScalarProperty Name="etat" ColumnName="etat" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="Element_Meals_idMeal" ColumnName="Element_Meals_idMeal" />
+          <ScalarProperty Name="Session_Materials_idMaterials" ColumnName="Session_Materials_idMaterials" />
+          <ScalarProperty Name="Session_idSession" ColumnName="Session_idSession" />
+          <ScalarProperty Name="Membership_idMembers" ColumnName="Membership_idMembers" />
+          <ScalarProperty Name="DateAu" ColumnName="DateAu" />
+          <ScalarProperty Name="DateDu" ColumnName="DateDu" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="idReservation" ColumnName="idReservation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservation_Machine">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Reservation_Machine">
+        <MappingFragment StoreEntitySet="Reservation_Machine">
+          <ScalarProperty Name="idMaterials" ColumnName="idMaterials" />
+          <ScalarProperty Name="idReservation" ColumnName="idReservation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SportRestaurantModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Societe">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Societe">
+        <MappingFragment StoreEntitySet="Societe">
+          <ScalarProperty Name="CodeCNAM" ColumnName="CodeCNAM" />
+          <ScalarProperty Name="Observation" ColumnName="Observation" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="SiteWeb" ColumnName="SiteWeb" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+          <ScalarProperty Name="Tel2" ColumnName="Tel2" />
+          <ScalarProperty Name="Tel1" ColumnName="Tel1" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="RibBanquaire" ColumnName="RibBanquaire" />
+          <ScalarProperty Name="CodeBanque" ColumnName="CodeBanque" />
+          <ScalarProperty Name="RegistreCommerce" ColumnName="RegistreCommerce" />
+          <ScalarProperty Name="MatriculeFiscale" ColumnName="MatriculeFiscale" />
+          <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+          <ScalarProperty Name="RaisonSociale" ColumnName="RaisonSociale" />
+          <ScalarProperty Name="CodeForme" ColumnName="CodeForme" />
+          <ScalarProperty Name="CodeSociete" ColumnName="CodeSociete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigMenu">
+      <EntityTypeMapping TypeName="SportRestaurantModel.ConfigMenu">
+        <MappingFragment StoreEntitySet="ConfigMenu">
+          <ScalarProperty Name="IdChild" ColumnName="IdChild" />
+          <ScalarProperty Name="IdParent" ColumnName="IdParent" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="LibelleMenu" ColumnName="LibelleMenu" />
+          <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ordonnance">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Ordonnance">
+        <MappingFragment StoreEntitySet="Ordonnance">
+          <ScalarProperty Name="idAdherent" ColumnName="idAdherent" />
+          <ScalarProperty Name="DateOrdonnance" ColumnName="DateOrdonnance" />
+          <ScalarProperty Name="NomMedecin" ColumnName="NomMedecin" />
+          <ScalarProperty Name="NbCalorie" ColumnName="NbCalorie" />
+          <ScalarProperty Name="idOrdonnace" ColumnName="idOrdonnace" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utilisateur">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Utilisateur">
+        <MappingFragment StoreEntitySet="Utilisateur">
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="pays" ColumnName="pays" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="Email1" ColumnName="Email1" />
+          <ScalarProperty Name="Fixe" ColumnName="Fixe" />
+          <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+          <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+          <ScalarProperty Name="CIN" ColumnName="CIN" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+          <ScalarProperty Name="MotDePasse" ColumnName="MotDePasse" />
+          <ScalarProperty Name="NomUtilisateur" ColumnName="NomUtilisateur" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adherent">
+      <EntityTypeMapping TypeName="SportRestaurantModel.Adherent">
+        <MappingFragment StoreEntitySet="Adherent">
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="imagephysique" ColumnName="imagephysique" />
+          <ScalarProperty Name="imageElement" ColumnName="imageElement" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+          <ScalarProperty Name="Taille" ColumnName="Taille" />
+          <ScalarProperty Name="Poids" ColumnName="Poids" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Tel2" ColumnName="Tel2" />
+          <ScalarProperty Name="Tel1" ColumnName="Tel1" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="Email1" ColumnName="Email1" />
+          <ScalarProperty Name="CIN" ColumnName="CIN" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="idAdherent" ColumnName="idAdherent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

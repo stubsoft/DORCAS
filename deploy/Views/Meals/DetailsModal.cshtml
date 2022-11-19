@@ -1,0 +1,176 @@
+﻿@model DorcasClub.Meals
+
+@{
+    ViewBag.Title = "DetailsModal";
+    var ListeElements = ViewData["listselected"] as IEnumerable<Elements>;
+    Layout = "";
+}
+
+<div class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>nom</th>
+                <th>Energie</th>
+                <th>Glucide</th>
+                <th>Proteine</th>
+                <th>Lipide</th>
+                <th style="width: 16%;">Nbre</th>
+                <th>price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ListeElements)
+            {
+                <tr style="background: #efefef; border-bottom: 1px solid #dedede">
+                    <td><img class="media-object rounded-circle" src="/Elements/RetrieveImage/@item.idElement" width="56" height="56" alt="image"><input type="hidden" id="ListAliment" name="ListAliment" /></td>
+                    <td>Ref:@item.idElement : @item.nameElement</td>
+                    <td data-energie="@item.Energie">@item.Energie</td>
+                    <td data-glucide="@item.Glucide">@item.Glucide</td>
+                    <td data-proteine="@item.Proteine">@item.Proteine</td>
+                    <td data-lipide="@item.Lipide">@item.Lipide</td>
+                    <td>
+                        <div class="quantity">
+                            <button class="plus-btn" type="button" name="button">
+                                <img src="~/Content/img/plus.svg" alt="" />
+                            </button>
+                            <input type="text" name="name" value="1" data-qte="1">
+                            <button class="minus-btn" type="button" name="button">
+                                <img src="~/Content/img/minus.svg" alt="" />
+                            </button>
+                        </div>
+                    </td>
+                    <td>@item.price</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2" style="text-align: right; font-weight: bold">TOTAL:</td>
+                <td style="text-align: center; font-weight: bold " id="total_Energie">0</td>
+                <td style="text-align: center; font-weight: bold" id="total_GLucide">0</td>
+                <td style="text-align: center; font-weight: bold" id="total_Proteine">0</td>
+                <td style="text-align: center; font-weight: bold" id="total_Lipide">0</td>
+                <td style="text-align: center; font-weight: bold"></td>
+                <td id="total_Price" style="text-align: center; font-weight: bold">
+                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+<script>
+    var sumEnergie = 0;
+    var sumGLucide = 0;
+    var sumEnergie = 0;
+    var sumProteine = 0;
+    var sumLipide = 0;
+    var sumPrice = 0;
+    $("table tbody tr").each(function(){
+
+    var valueEnergie =  $(this).find("td")[2].innerText;
+    var valueGLucide =  $(this).find("td")[3].innerText;
+    var valueProteine =  $(this).find("td")[4].innerText;
+    var valueLipide =  $(this).find("td")[5].innerText;
+    var valuePrice=  $(this).find("td")[7].innerText;
+
+    sumEnergie = sumEnergie + parseFloat(valueEnergie);
+    sumGLucide = sumGLucide + parseFloat(valueGLucide);
+    sumProteine = sumProteine + parseFloat(valueProteine);
+    sumLipide = sumLipide + parseFloat(valueLipide);
+    sumPrice = sumPrice + parseFloat(valuePrice);
+
+    $("#total_Energie").text(sumEnergie.toFixed(3));
+    $("#total_GLucide").text(sumGLucide.toFixed(3));
+    $("#total_Proteine").text(sumProteine.toFixed(3));
+    $("#total_Lipide").text(sumLipide.toFixed(3));
+    $("#total_Price").text(sumPrice.toFixed(3));
+    $("#total_Price_all").text(sumPrice.toFixed(3));
+
+    });
+
+
+      $('.minus-btn').click(function(e) {
+    		var $this = $(this);
+    		var $input = $this.closest('div').find('input');
+    		var value = parseInt($input.val());
+
+    		if (value >= 1) {
+    			value = value - 1;
+    
+    var valueEnergie =  $this.closest('tr').find("td")[2].innerText;
+    var valueGLucide =  $this.closest('tr').find("td")[3].innerText;
+    var valueProteine =  $this.closest('tr').find("td")[4].innerText;
+    var valueLipide =  $this.closest('tr').find("td")[5].innerText;
+    var valuePrice=  $this.closest('tr').find("td")[7].innerText;
+
+    sumEnergie = sumEnergie - parseFloat(valueEnergie);
+    sumGLucide = sumGLucide - parseFloat(valueGLucide);
+    sumProteine = sumProteine - parseFloat(valueProteine);
+    sumLipide = sumLipide - parseFloat(valueLipide);
+    sumPrice = sumPrice - parseFloat(valuePrice);
+
+    $("#total_Energie").text(sumEnergie.toFixed(3));
+    $("#total_GLucide").text(sumGLucide.toFixed(3));
+    $("#total_Proteine").text(sumProteine.toFixed(3));
+    $("#total_Lipide").text(sumLipide.toFixed(3));
+    $("#total_Price").text(sumPrice.toFixed(3));
+    $("#total_Price_all").text(sumPrice.toFixed(3));
+    		} else {
+
+    			value = 0;
+    		}
+
+        $input.val(value);
+
+
+    	});
+
+    	$('.plus-btn').click(function(e) {
+    		var $this = $(this);
+    		var $input = $this.closest('div').find('input');
+    		var value = parseInt($input.val());
+
+    		if (value < 100) {
+      		value = value + 1;
+    		} else {
+    			value =100;
+    		}
+
+    		$input.val(value);
+
+    var valueEnergie =  $this.closest('tr').find("td")[2].innerText;
+    var valueGLucide =  $this.closest('tr').find("td")[3].innerText;
+    var valueProteine =  $this.closest('tr').find("td")[4].innerText;
+    var valueLipide =  $this.closest('tr').find("td")[5].innerText;
+    var valuePrice=  $this.closest('tr').find("td")[7].innerText;
+
+    sumEnergie = sumEnergie + parseFloat(valueEnergie);
+    sumGLucide = sumGLucide + parseFloat(valueGLucide);
+    sumProteine = sumProteine + parseFloat(valueProteine);
+    sumLipide = sumLipide + parseFloat(valueLipide);
+    sumPrice = sumPrice + parseFloat(valuePrice);
+
+    $("#total_Energie").text(sumEnergie.toFixed(3));
+    $("#total_GLucide").text(sumGLucide.toFixed(3));
+    $("#total_Proteine").text(sumProteine.toFixed(3));
+    $("#total_Lipide").text(sumLipide.toFixed(3));
+    $("#total_Price").text(sumPrice.toFixed(3));
+    $("#total_Price_all").text(sumPrice.toFixed(3));
+
+    	});
+
+      $('.like-btn').on('click', function() {
+        $(this).toggleClass('is-active');
+      });
+
+</script>

@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SportRestaurantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adherent">
+    <Key>
+      <PropertyRef Name="idAdherent" />
+    </Key>
+    <Property Name="idAdherent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="varchar" MaxLength="50" />
+    <Property Name="Prenom" Type="varchar" MaxLength="50" />
+    <Property Name="CIN" Type="varchar" MaxLength="50" />
+    <Property Name="Email1" Type="varchar" MaxLength="50" />
+    <Property Name="Email2" Type="varchar" MaxLength="50" />
+    <Property Name="Tel1" Type="varchar" MaxLength="50" />
+    <Property Name="Tel2" Type="varchar" MaxLength="50" />
+    <Property Name="Adresse" Type="varchar" MaxLength="50" />
+    <Property Name="Ville" Type="varchar" MaxLength="50" />
+    <Property Name="Pays" Type="varchar" MaxLength="50" />
+    <Property Name="Facebook" Type="varchar" MaxLength="50" />
+    <Property Name="Instagram" Type="varchar" MaxLength="50" />
+    <Property Name="Genre" Type="varchar" MaxLength="50" />
+    <Property Name="Poids" Type="varchar" MaxLength="50" />
+    <Property Name="Taille" Type="varchar" MaxLength="50" />
+    <Property Name="DateNaissance" Type="datetime" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="Note" Type="varchar" MaxLength="50" />
+    <Property Name="DateCreation" Type="datetime" />
+    <Property Name="imageElement" Type="varbinary(max)" />
+    <Property Name="imagephysique" Type="varchar" MaxLength="50" />
+    <Property Name="FileName" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Categorie">
+    <Key>
+      <PropertyRef Name="IdCategorie" />
+    </Key>
+    <Property Name="IdCategorie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Coach">
+    <Key>
+      <PropertyRef Name="idCoach" />
+    </Key>
+    <Property Name="idCoach" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="login" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="start_Date" Type="date" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="DateBirdh" Type="date" />
+    <Property Name="Adresse" Type="varchar" MaxLength="200" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="imageelement" Type="varbinary(max)" />
+    <Property Name="FileName" Type="varchar(max)" />
+    <Property Name="imagephysique" Type="varchar" MaxLength="50" />
+    <Property Name="SelectedMachine" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'SportRestaurantTest.dbo.ConfigMenu' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="ConfigMenu">
+    <Key>
+      <PropertyRef Name="IdMenu" />
+      <PropertyRef Name="Controller" />
+      <PropertyRef Name="Action" />
+      <PropertyRef Name="IdChild" />
+    </Key>
+    <Property Name="IdMenu" Type="int" Nullable="false" />
+    <Property Name="LibelleMenu" Type="nvarchar" MaxLength="50" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdParent" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdChild" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Delivery">
+    <Key>
+      <PropertyRef Name="idDelivery" />
+    </Key>
+    <Property Name="idDelivery" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Time" Type="datetime" />
+    <Property Name="noteDelivery" Type="varchar" MaxLength="50" />
+    <Property Name="fees" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Elements">
+    <Key>
+      <PropertyRef Name="idElement" />
+    </Key>
+    <Property Name="idElement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameElement" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Energie" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Kj" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Glucide" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Proteine" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="insertionDate" Type="datetime" Nullable="false" />
+    <Property Name="price" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+    <Property Name="weightUnity" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Lipide" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="imageElement" Type="varbinary(max)" />
+    <Property Name="imagephysique" Type="varchar" MaxLength="50" />
+    <Property Name="FileName" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="256" />
+    <Property Name="start_date" Type="datetime" Nullable="false" />
+    <Property Name="end_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Machin_Coach">
+    <Key>
+      <PropertyRef Name="idCoach" />
+      <PropertyRef Name="idMaterials" />
+    </Key>
+    <Property Name="idCoach" Type="int" Nullable="false" />
+    <Property Name="idMaterials" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Materials">
+    <Key>
+      <PropertyRef Name="idMaterials" />
+    </Key>
+    <Property Name="idMaterials" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameMaterials" Type="varchar" MaxLength="50" />
+    <Property Name="MaxOccupation" Type="varchar" MaxLength="50" />
+    <Property Name="Availability" Type="datetime" />
+    <Property Name="idCoach" Type="int" />
+    <Property Name="imageElement" Type="varbinary(max)" />
+    <Property Name="FileName" Type="varchar(max)" />
+    <Property Name="imagephysique" Type="varchar" MaxLength="50" />
+    <Property Name="IdCategorie" Type="int" Nullable="false" />
+    <Property Name="SelectedCoach" Type="varchar" MaxLength="50" />
+    <Property Name="DureeSeances" Type="int" />
+    <Property Name="PrixSeances" Type="numeric" Precision="18" Scale="3" />
+  </EntityType>
+  <EntityType Name="Meals">
+    <Key>
+      <PropertyRef Name="idMeal" />
+    </Key>
+    <Property Name="idMeal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameMeal" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="price" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Meals_Elements">
+    <Key>
+      <PropertyRef Name="idelements" />
+      <PropertyRef Name="idMeals" />
+    </Key>
+    <Property Name="idelements" Type="int" Nullable="false" />
+    <Property Name="idMeals" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModePayement">
+    <Key>
+      <PropertyRef Name="idModePayment" />
+    </Key>
+    <Property Name="idModePayment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Ordonnance">
+    <Key>
+      <PropertyRef Name="idOrdonnace" />
+    </Key>
+    <Property Name="idOrdonnace" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NbCalorie" Type="varchar" MaxLength="50" />
+    <Property Name="NomMedecin" Type="varchar" MaxLength="50" />
+    <Property Name="DateOrdonnance" Type="datetime" />
+    <Property Name="idAdherent" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="idPayment" />
+    </Key>
+    <Property Name="idPayment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dateEcheance" Type="date" />
+    <Property Name="dateReception" Type="date" />
+    <Property Name="montant" Type="numeric" Precision="18" Scale="3" />
+    <Property Name="idReservation" Type="int" Nullable="false" />
+    <Property Name="idModePayment" Type="int" Nullable="false" />
+    <Property Name="etatPaiement" Type="varchar" MaxLength="50" />
+    <Property Name="Devise" Type="varchar" MaxLength="50" />
+    <Property Name="Createur" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PreventiveIntervention">
+    <Key>
+      <PropertyRef Name="idIntervention" />
+    </Key>
+    <Property Name="idIntervention" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dateIntervention" Type="date" />
+    <Property Name="title" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Materials_idMaterials" Type="int" Nullable="false" />
+    <Property Name="Materials_Coach_idCoach" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="idPrice" />
+    </Key>
+    <Property Name="idPrice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="from" Type="date" />
+    <Property Name="to" Type="date" />
+    <Property Name="purchase_Price" Type="varchar" MaxLength="50" />
+    <Property Name="sale_Price" Type="varchar" MaxLength="50" />
+    <Property Name="insertionDate" Type="datetime" />
+    <Property Name="codeDevis" Type="varchar" MaxLength="50" />
+    <Property Name="product_id" Type="varchar" MaxLength="50" />
+    <Property Name="type_product" Type="varchar" MaxLength="50" />
+    <Property Name="Session_idSession" Type="int" Nullable="false" />
+    <Property Name="Elements_Meals_idMeal" Type="int" Nullable="false" />
+    <Property Name="etat" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="idReservation" />
+    </Key>
+    <Property Name="idReservation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="DateDu" Type="datetime" />
+    <Property Name="DateAu" Type="datetime" />
+    <Property Name="Membership_idMembers" Type="int" Nullable="false" />
+    <Property Name="Session_idSession" Type="int" Nullable="false" />
+    <Property Name="Session_Materials_idMaterials" Type="int" Nullable="false" />
+    <Property Name="Element_Meals_idMeal" Type="int" Nullable="false" />
+    <Property Name="DateCreation" Type="datetime" />
+    <Property Name="Price" Type="numeric" Precision="18" Scale="3" />
+    <Property Name="etat" Type="nvarchar" MaxLength="50" />
+    <Property Name="livraison" Type="nchar" MaxLength="10" />
+    <Property Name="mode" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Reservation_Machine">
+    <Key>
+      <PropertyRef Name="idReservation" />
+      <PropertyRef Name="idMaterials" />
+    </Key>
+    <Property Name="idReservation" Type="int" Nullable="false" />
+    <Property Name="idMaterials" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="IdRole" />
+    </Key>
+    <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Libelle" Type="varchar" MaxLength="60" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Session">
+    <Key>
+      <PropertyRef Name="idSession" />
+    </Key>
+    <Property Name="idSession" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="etat" Type="varchar" MaxLength="50" />
+    <Property Name="startHeure" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="endHeure" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateCreation" Type="datetime" />
+    <Property Name="UserCreator" Type="varchar" MaxLength="50" />
+    <Property Name="Materials_idMaterials" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="DateSESSION" Type="datetime" />
+    <Property Name="Dure" Type="varchar" MaxLength="50" />
+    <Property Name="Coach_idCoach" Type="int" />
+  </EntityType>
+  <EntityType Name="Societe">
+    <Key>
+      <PropertyRef Name="CodeSociete" />
+    </Key>
+    <Property Name="CodeSociete" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="CodeForme" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="RaisonSociale" Type="nvarchar" MaxLength="600" Nullable="false" />
+    <Property Name="Responsable" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="MatriculeFiscale" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="RegistreCommerce" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CodeBanque" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="RibBanquaire" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Adresse" Type="nvarchar" MaxLength="1500" Nullable="false" />
+    <Property Name="CodePostal" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Ville" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Pays" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Tel1" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Tel2" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="FAX" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="SiteWeb" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="Logo" Type="image" />
+    <Property Name="Observation" Type="nvarchar" MaxLength="1500" Nullable="false" />
+    <Property Name="CodeCNAM" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomUtilisateur" Type="nvarchar" MaxLength="50" />
+    <Property Name="MotDePasse" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdRole" Type="int" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="50" />
+    <Property Name="Prenom" Type="nvarchar" MaxLength="50" />
+    <Property Name="CIN" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateNaissance" Type="datetime" />
+    <Property Name="Genre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fixe" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Adresse" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+    <Property Name="pays" Type="nvarchar" MaxLength="50" />
+    <Property Name="StartDate" Type="datetime" />
+  </EntityType>
+  <Association Name="Coach_idCoach">
+    <End Role="Coach" Type="Self.Coach" Multiplicity="0..1" />
+    <End Role="Session" Type="Self.Session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coach">
+        <PropertyRef Name="idCoach" />
+      </Principal>
+      <Dependent Role="Session">
+        <PropertyRef Name="Coach_idCoach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Materials_Categorie">
+    <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+    <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorie">
+        <PropertyRef Name="IdCategorie" />
+      </Principal>
+      <Dependent Role="Materials">
+        <PropertyRef Name="IdCategorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ordonnance_Ordonnance">
+    <End Role="Adherent" Type="Self.Adherent" Multiplicity="1" />
+    <End Role="Ordonnance" Type="Self.Ordonnance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adherent">
+        <PropertyRef Name="idAdherent" />
+      </Principal>
+      <Dependent Role="Ordonnance">
+        <PropertyRef Name="idAdherent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_ModePayement">
+    <End Role="ModePayement" Type="Self.ModePayement" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModePayement">
+        <PropertyRef Name="idModePayment" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="idModePayment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Reservation">
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="idReservation" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="idReservation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreventiveIntervention_Coach">
+    <End Role="Coach" Type="Self.Coach" Multiplicity="1" />
+    <End Role="PreventiveIntervention" Type="Self.PreventiveIntervention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coach">
+        <PropertyRef Name="idCoach" />
+      </Principal>
+      <Dependent Role="PreventiveIntervention">
+        <PropertyRef Name="Materials_Coach_idCoach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreventiveIntervention_PreventiveIntervention">
+    <End Role="PreventiveIntervention" Type="Self.PreventiveIntervention" Multiplicity="1" />
+    <End Role="PreventiveIntervention1" Type="Self.PreventiveIntervention" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PreventiveIntervention">
+        <PropertyRef Name="idIntervention" />
+      </Principal>
+      <Dependent Role="PreventiveIntervention1">
+        <PropertyRef Name="idIntervention" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Price_Elements">
+    <End Role="Elements" Type="Self.Elements" Multiplicity="1" />
+    <End Role="Price" Type="Self.Price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Elements">
+        <PropertyRef Name="idElement" />
+      </Principal>
+      <Dependent Role="Price">
+        <PropertyRef Name="Elements_Meals_idMeal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Utilisateur_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="Utilisateur">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SportRestaurantModelStoreContainer">
+    <EntitySet Name="Adherent" EntityType="Self.Adherent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Elements" EntityType="Self.Elements" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Machin_Coach" EntityType="Self.Machin_Coach" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Meals" EntityType="Self.Meals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Meals_Elements" EntityType="Self.Meals_Elements" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModePayement" EntityType="Self.ModePayement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ordonnance" EntityType="Self.Ordonnance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PreventiveIntervention" EntityType="Self.PreventiveIntervention" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservation_Machine" EntityType="Self.Reservation_Machine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Societe" EntityType="Self.Societe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConfigMenu" EntityType="Self.ConfigMenu" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ConfigMenu].[IdMenu] AS [IdMenu], 
+    [ConfigMenu].[LibelleMenu] AS [LibelleMenu], 
+    [ConfigMenu].[Controller] AS [Controller], 
+    [ConfigMenu].[Action] AS [Action], 
+    [ConfigMenu].[IdParent] AS [IdParent], 
+    [ConfigMenu].[IdChild] AS [IdChild]
+    FROM [dbo].[ConfigMenu] AS [ConfigMenu]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="Coach_idCoach" Association="Self.Coach_idCoach">
+      <End Role="Coach" EntitySet="Coach" />
+      <End Role="Session" EntitySet="Session" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Materials_Categorie" Association="Self.FK_Materials_Categorie">
+      <End Role="Categorie" EntitySet="Categorie" />
+      <End Role="Materials" EntitySet="Materials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ordonnance_Ordonnance" Association="Self.FK_Ordonnance_Ordonnance">
+      <End Role="Adherent" EntitySet="Adherent" />
+      <End Role="Ordonnance" EntitySet="Ordonnance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_ModePayement" Association="Self.FK_Payment_ModePayement">
+      <End Role="ModePayement" EntitySet="ModePayement" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Reservation" Association="Self.FK_Payment_Reservation">
+      <End Role="Reservation" EntitySet="Reservation" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreventiveIntervention_Coach" Association="Self.FK_PreventiveIntervention_Coach">
+      <End Role="Coach" EntitySet="Coach" />
+      <End Role="PreventiveIntervention" EntitySet="PreventiveIntervention" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreventiveIntervention_PreventiveIntervention" Association="Self.FK_PreventiveIntervention_PreventiveIntervention">
+      <End Role="PreventiveIntervention" EntitySet="PreventiveIntervention" />
+      <End Role="PreventiveIntervention1" EntitySet="PreventiveIntervention" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Price_Elements" Association="Self.FK_Price_Elements">
+      <End Role="Elements" EntitySet="Elements" />
+      <End Role="Price" EntitySet="Price" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Utilisateur_Role" Association="Self.FK_Utilisateur_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

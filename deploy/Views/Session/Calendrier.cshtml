@@ -1,0 +1,65 @@
+﻿@model DorcasClub.Session
+@{
+    ViewBag.Title = "Calendrier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    table thead tr {
+        background: #e7eaf6;
+        border-right: none !important;
+        color: inherit;
+    }
+</style>
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3"><span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block"> Calendrier des Séances</span></div>
+                <div class="col-md-4" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Séances</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="">Calendrier des Séances</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Calendrier
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+    <div id="calendarModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                    <h4 id="modalTitle" class="modal-title"></h4>
+                </div>
+                <div id="modalBody" class="modal-body"> </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,240 @@
+﻿@model DorcasClub.Session
+@{
+    ViewBag.Title = "Calendrier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3"><span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block"> Calendrier des Séances</span></div>
+                <div class="col-md-4" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Sessions">Séances</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Calendrier
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="btn-group float-md-right">
+                        <a href="@Url.Action("Create","Sessions")" class="btn btn-success"><i class="la la-plus"></i>Ajouter</a>
+                        <button class="btn btn-primary pull-right" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="la la-filter"></i>   Filtrer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="basic-button-icons">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-content collapse" id="collapseFilter">
+                        <div class="card-body">
+                            <form action="/Sessions/SearchIndex" method="post">
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label><b>Entreneur</b></label>
+                                        @Html.DropDownListFor(model => model.IdEntreneur, (IEnumerable
+                                            <SelectListItem>)ViewData["ListCoach"], "--Selectionner un Entreneur--", new { @class = "selectpicker form-control", data_live_search = "true", })
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label> <b>Machine</b></label>
+                                        @Html.DropDownListFor(model => model.IdMaChine, (IEnumerable
+                                      <SelectListItem>)ViewData["ListMaterials"], "--Selectionner une Machine--", new { @class = "selectpicker form-control", data_live_search = "true", })
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-success pull-right mt-2" id="btnFilter">
+                                            <i class="la la-search"></i>  Chercher
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="text-align: right; display: block ">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" style="width: 100px">&times;Fermer</button>
+                </div>
+                <div class="modal-body">
+                    <p id="pDetails"></p>
+                </div>
+                <div class="modal-footer" style="text-align: right; display: block ">
+                    <button id="btnDelete" class="btn btn-danger">Supprimer</button>
+                    <button id="btnEdit" class="btn btn-primary" style="margin-right:5px;">Modifier</button>
+                    <button id="btnReserver" class="btn btn-teal" style="margin-right:5px;">Réserver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalDelete" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h1 class="modal-title">Confirmation Suppression</h1>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" name="supprimer" id="supprimer" class="btn btn-danger" style="width:100px">Supprimer</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" style="width:100px">Fermer</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.navigation-main li a').click(function () {
+            $(this).parent('has-sub').addClass('open');
+        });
+        var selectedEvent = null;
+        FetchEventAndRenderCalendar();
+        function FetchEventAndRenderCalendar() {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                dataType: "JSON",
+                url: "/Sessions/listesessionCalendar",
+                success: function (result) {
+                    $.each(result, function (i, data) {
+                        var dateheure = new Date(parseInt(data.DateSession.substr(6)));
+                        events.push({
+                            IdSession: data.IdSession,
+                            title: moment(dateheure).format('Y-MM-DD '),
+                            start: moment(dateheure).format('Y-MM-DD ' + data.HeureDebut + ':ss'),
+                            HeureDebut: data.HeureDebut,
+                            HeureFin: data.HeureFin,
+                            Machine: data.Machine,
+                            Entreneur: data.Entreneur,
+                            Prix: data.Prix + " DT",
+                            nbPersonne: data.nbPersonne,
+                            color: data.Color,
+                            NbrReservation: data.NbrReservation,
+                        });
+
+
+                    })
+                    GenerateCalender(events);
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+        }
+
+        function GenerateCalender(events) {
+            $('#calendar').fullCalendar('destroy');
+            $('#calendar').fullCalendar({
+                //contentHeight: 400,
+                height: 580,
+                defaultDate: new Date(),
+                defaultView: 'basicWeek',
+                timeFormat: 'H:mm',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay,agenda'
+                },
+                eventRender: function (event, element) {
+                    element.find('.fc-title, .fc-list-item-title').html('<label>' + '- ' + event.HeureFin + '</label>'+' '+'<label class= "badge badge-danger round" > ' + event.NbrReservation +' / ' + event.nbPersonne + '</label > <br>Machine :' + event.Machine + '<br>Entreneur :' + event.Entreneur);
+                    element.popover({
+                        animation: false,
+                        delay: 300,
+                        html: true,
+                        content: '<div ng-show="checked"><button>abc</button><b>Prix </b>:' + event.Prix + "<b>Fin</b>:" + event.Machine + "</div>",
+                        //offset: 10,
+                        //container: '#calendar',
+                        trigger: 'hover'
+                    })
+                        .on("mouseenter", function () {
+                            var _this = this;
+                            $(this).popover("show");
+                            $(".popover").on("mouseleave", function () {
+                                $(_this).popover('hide');
+                            });
+                        }).on("mouseleave", function () {
+                            var _this = this;
+                            setTimeout(function () {
+                                if (!$(".popover:hover").length) {
+                                    $(_this).popover("hide");
+                                }
+                            }, 300);
+                        });
+                },
+            eventLimit: true,
+                events: events,
+                eventClick: function (calEvent, jsEvent, view) {
+                    selectedEvent = calEvent;
+                    $('#myModal #eventTitle').text();
+                    var $Content = $('<div/>');
+                    $Content.append($('<p/>').html('<b> Session :</b>' + calEvent.title + '<b> Machine :</b>' + calEvent.Machine + '<b> Entreneur :</b>' + calEvent.Entreneur));
+                    $Content.append($('<p/>').html('<b> Heure Début :</b>' + calEvent.HeureDebut + '<b> Heure Fin :</b>' + calEvent.HeureFin));
+                    $Content.append($('<p/>').html('<b>Prix : </b>' + calEvent.Prix));
+                    $('#myModal #pDetails').empty().html($Content);
+                    $("#myModalDelete").modal('hide');
+                    $('#myModal').modal();
+                },
+                selectable: false,
+            })
+        }
+
+        $('#btnEdit').click(function () {
+            $('#myModal').modal('hide');
+            window.location.href = "/Sessions/Edit/" + selectedEvent.IdSession
+        })
+        $('#btnReserver').click(function () {
+            $('#myModal').modal('hide');
+            window.location.href = "/Reservations/Create?SessionID=" + selectedEvent.IdSession
+        })
+        $('#btnDelete').click(function () {
+            $('#myModal').modal('hide');
+            openModaldelete(selectedEvent.IdSession, "Session N°");
+        })
+        function openModaldelete(ID, name) {
+            $(".modal-body").html("Voulez vous Supprimez " + name + ID);
+            $("#myModalDelete").modal('show');
+            $("#supprimer").click(function () {
+                window.location.href = "/Sessions/DeleteConfirmed?id=" + ID
+            });
+            $("#myModalDelete").modal('hide');
+        }
+    })
+</script>
+

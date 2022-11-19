@@ -1,0 +1,344 @@
+﻿@{
+    var message = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Dorcas Fitness</title>
+    <link rel="~/Content/css/katex.min.css">
+    <link rel="~/Content/css/monokai-sublime.min.css">
+    <link rel="~/Content/css/quill.snow.css">
+    <link rel="~/Content/css/quill.bubble.css">
+    <link rel="~/Content/css/daterangepicker.css">
+
+    <link href="~/Content/css/vendors.min.css" rel="stylesheet">
+
+    <link href="~/Content/css/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="~/Content/css/switchery.min.css" rel="stylesheet">
+    <link href="~/Content/css/selectize.css" rel="stylesheet">
+    <link href="~/Content/css/selectize.default.css" rel="stylesheet">
+    <link href="~/Content/css/select2.min.css" rel="stylesheet">
+
+
+    <link href="~/Content/css/jkanban.min.css" rel="stylesheet">
+    <link href="~/Content/css/quill.snow.css" rel="stylesheet">
+    <link href="~/Content/css/pickadate.css" rel="stylesheet">
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap-extended.min.css" rel="stylesheet">
+    <link href="~/Content/css/colors.min.css" rel="stylesheet">
+    <link href="~/Content/css/components.min.css" rel="stylesheet">
+    <link href="~/Content/css/vertical-menu-modern.css" rel="stylesheet">
+    <link href="~/Content/css/switch.min.css" rel="stylesheet">
+    <link href="~/Content/css/palette-gradient.min.css" rel="stylesheet">
+
+
+    <link href="~/Content/css/login-register.min.css" rel="stylesheet">
+    <link href="~/Content/css/search.min.css" rel="stylesheet">
+    <link href="~/Content/css/app-kanban.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap-select.min.css" rel="stylesheet">
+
+    <link href="~/Content/css/calendars/fullcalendar.min.css" rel="stylesheet" />
+    <link href="~/Content/css/calendars/daygrid.min.css" rel="stylesheet" />
+    <link href="~/Content/css/calendars/timegrid.min.css" rel="stylesheet" />
+    <link href="~/Content/css/calendars/fullcalendars.min.css" rel="stylesheet" />
+    <link href="~/Content/css/calendars/clndr.min.css" rel="stylesheet" />
+    <link href="~/Content/css/fonts/feather/style.min.css" rel="stylesheet">
+    <link href="~/Content/css/fonts/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/Vendors/DataTable/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="~/Content/Vendors/DataTable/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">
+    <link href="~/Content/css/gallery.min.css" rel="stylesheet" />
+
+    <link href="~/Content/css/bootstrap-treeview.min.css" rel="stylesheet" />
+    <link href="~/Content/css/ex-component-tree-views.min.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Content/dx_all/jquery.min.js"></script>
+</head>
+<body class="vertical-layout vertical-menu-modern 2-columns pace-done menu-collapsed" data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+    @if (Session["UserNom"] != null)
+    {
+        message = "content";
+
+        <nav class="header-navbar navbar-expand-lg navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow">
+            <div class="navbar-wrapper">
+                <div class="navbar-header">
+                    <ul class="nav navbar-nav flex-row">
+                        <li class="nav-item mobile-menu d-lg-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs is-active" href="#"><i class="ft-menu font-large-1"></i></a></li>
+                        <li class="nav-item mr-auto">
+                            <a class="navbar-brand" href="/">
+                                <img class="brand-logo" alt="modern admin logo" src="~/Content/img/logo-mobile.png">
+
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-container content">
+                    <div class="collapse navbar-collapse" id="navbar-mobile">
+                        <div class="nav navbar-nav mr-auto float-left">
+                            <a class="dropdown-item" href="@Url.Action("Logout","Authentification")"><i class="ft-power"></i> Déconnection</a>
+                        </div>
+                        <ul class="nav navbar-nav float-right">
+                            <li class="dropdown dropdown-user nav-item">
+                                <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">Bienvenue: @Session["UserNom"] @Session["UserPrenom"]</span></a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+            <div class="main-menu-content" style="height: 500px; overflow-y: scroll;">
+                <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse">
+                    <svg width="42" height="42" color="red" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" class="jss1996"><g filter="url(#filter0_d_1873_2120)"><circle cx="21" cy="17" r="17" fill="white"></circle></g><path d="M17 22.355L22.5628 17L17 11.645L18.7126 10L26 17L18.7126 24L17 22.355Z" fill="url(#paint0_linear_1873_2120)"></path><defs><filter id="filter0_d_1873_2120" x="0" y="0" width="42" height="42" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix><feOffset dy="4"></feOffset><feGaussianBlur stdDeviation="2"></feGaussianBlur><feComposite in2="hardAlpha" operator="out"></feComposite><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></feColorMatrix><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1873_2120"></feBlend><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1873_2120" result="shape"></feBlend></filter><linearGradient id="paint0_linear_1830_2266" x1="10.3081" y1="-0.963245" x2="-6.97251" y2="13.0168" gradientUnits="userSpaceOnUse"><stop stop-color="#FF8D27"></stop><stop offset="1" stop-color="#FF8D27"></stop></linearGradient><linearGradient id="paint0_linear_1800_2220" x1="11.4534" y1="-1.10085" x2="-8.17257" y2="14.3356" gradientUnits="userSpaceOnUse"><stop stop-color="#FF8D27"></stop><stop offset="1" stop-color="#FF8D27"></stop></linearGradient><linearGradient id="paint0_linear_1873_2120" x1="15.6919" y1="24.9632" x2="32.9725" y2="10.9832" gradientUnits="userSpaceOnUse"><stop stop-color="#FF8D27"></stop><stop offset="1" stop-color="#FF8D27"></stop></linearGradient></defs></svg>
+                </a>
+
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class="nav-item has-sub" id="reservation">
+                        <a href="#"><i class="la la-apple"></i><span class="menu-title" data-i18n="Templates">Nutrition</span></a>
+                        <ul class="menu-content" style="">
+                            <li>
+                                <a class="menu-item" href="@Url.Action("Index", "Elements")"><i></i><span data-i18n="Vertical">Aliments</span></a>
+                            </li>
+                            <li>
+                                <a class="menu-item" href="@Url.Action("Index", "Meals")"><i></i><span data-i18n="Vertical">Menu/Repas</span></a>
+                            </li>
+                            <li>
+                                <a class="menu-item" href="@Url.Action("Index", "Meals")"><i></i><span data-i18n="Vertical">Tiket Repas</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-sub" id="dossier">
+                        <a href="#"><i class="la la-clock-o"></i><span class="menu-title" data-i18n="Templates">Séances</span></a>
+                        <ul class="menu-content" style="">
+                            <li><a class="menu-item" href="@Url.Action("Index", "Session")"><i></i><span data-i18n="Vertical">Liste des Séances</span></a></li>
+                            <li><a class="menu-item" href="@Url.Action("PlanMachine","Materials")"><i></i><span data-i18n="Vertical">Planification des Machines</span></a> </li>
+                            <li><a class="menu-item" href="@Url.Action("Calendrier","Session")"><i></i><span data-i18n="Vertical">Calendrier des Séances</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-sub" id="reservation">
+                        <a href="#"><i class="la la-check-square"></i><span class="menu-title" data-i18n="Templates">Réservation</span></a>
+                        <ul class="menu-content" style="">
+                            <li>
+                                <a class="menu-item" href="@Url.Action("SearchSeance", "Reservation")"><i></i><span data-i18n="Classic Menu">Recherche des séances</span></a>
+                            </li>
+                            <li>
+
+                                <a class="menu-item" href="@Url.Action("Index", "Reservation")"><i></i><span data-i18n="Classic Menu">Liste des réservation</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-sub" id="Paiement">
+                        <a href="#"><i class="la la-credit-card"></i><span class="menu-title" data-i18n="Templates">Paiement</span></a>
+                        <ul class="menu-content">
+                            <li>
+                                <a class="menu-item" href="@Url.Action("Index", "ModePayements")"><i></i><span data-i18n="Vertical">Mode de Paiement</span></a>
+                            </li>
+                            <li>
+                                <a class="menu-item" href="@Url.Action("Index", "Payment")"><i></i><span data-i18n="Vertical">Paiement</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-sub">
+                        <a class="menu-item" href="#"><i class="la la-wrench"></i><span data-i18n="Horizontal">Gestion des Machines</span></a>
+                        <ul class="menu-content">
+                            <li>
+                                <a class="menu-item" href="@Url.Action("Index", "Categories")"><i></i><span data-i18n="Vertical">Catégories</span></a>
+                            </li>
+                            <li>
+                                <a class="menu-item" href="@Url.Action("Index", "Materials")"><i></i><span data-i18n="Vertical">Liste des Machines</span></a>
+
+                            </li>
+                            <li>
+                                <a href="#"><span class="menu-title" data-i18n="Templates">Maintenance </span></a>
+                                <ul class="menu-content">
+                                    <li><a class="menu-item" href="@Url.Action("Index", "Intervention")"><i></i><span data-i18n="Vertical">Maintenance Machines</span></a> </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-sub" id="sav">
+                        <a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="Templates">Paramétrage Personne</span></a>
+                        <ul class="menu-content">
+
+                            <li><a class="menu-item" href="@Url.Action("Index", "Coach")"><i></i><span data-i18n="Vertical">Liste des Entreneurs</span></a> </li>
+                            <li><a class="menu-item" href="@Url.Action("Index", "Utilisateur")"><i></i><span data-i18n="Vertical">Liste des Utilisateurs</span></a></li>
+                            <li><a class="menu-item" href="@Url.Action("Index", "Adherents")"><i></i><span data-i18n="Vertical">Liste des Adherents</span></a></li>
+                            <li><a class="menu-item" href="@Url.Action("Index", "Ordonnances")"><i></i><span data-i18n="Vertical">Liste des Ordonnances </span></a> </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item has-sub" id="sav">
+                        <a href="#"><i class="la la-print"></i><span class="menu-title" data-i18n="Templates">Rapports</span></a>
+                        <ul class="menu-content">
+
+                            <li><a class="menu-item" href="@Url.Action("Index", "Report")"><i></i><span data-i18n="Vertical">Impression des Rapports</span></a> </li>
+                            <li><a class="menu-item" href="@Url.Action("Index", "TiketCuisine")"><i></i><span data-i18n="Vertical">Impression Tiket Cuisine</span></a> </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+                <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 585px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 80px;"></div></div>
+            </div>
+        </div>
+    }
+    <div class="app-content content">
+        @RenderBody()
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/dx_all/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/dx_all/dx.light.css" />
+    <script src="~/Content/dx_all/dx.all.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/dx_all/styles.css" />
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Content/js/ckeditor/ckeditor.js"></script>
+    <!-- BEGIN: Vendor JS-->
+    <script src="~/Content/js/vendors.min.js"></script>
+    <script src="~/Content/js/bootstrap-switch.min.js"></script>
+    <script src="~/Content/js/switchery.min.js"></script>
+    <script src="~/Content/js/bootstrap-checkbox.min.js"></script>
+    <script src="~/Content/js/selectize.min.js"></script>
+    <script src="~/Content/js/form-selectize.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="~/Content/js/jkanban.min.js"></script>
+
+
+    <script src="~/Content/js/picker.js"></script>
+    <script src="~/Content/js/picker.date.js"></script>
+    <!-- END: Page Vendor JS-->
+    <!-- BEGIN: Theme JS-->
+    <script src="~/Content/Vendors/DataTable/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Vendors/DataTable/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/js/app-menu.min.js"></script>
+    <script src="~/Content/js/app.min.js"></script>
+    <script src="~/Content/js/customizer.min.js"></script>
+    <script src="~/Content/js/footer.min.js"></script>
+    <script src="~/Content/js/select2.full.min.js"></script>
+    <script src="~/Content/js/bootstrap-select.min.js"></script>
+    <script src="~/Content/js/jquery-ui.min.js"></script>
+    <script src="~/Content/js/moment.min.js"></script>
+    <script src="~/Content/js/fullcalendar.min.js"></script>
+    <script src="~/Content/js/bootstrap-treeview.min.js"></script>
+    <script src="~/Content/js/ex-component-tree-views.min.js"></script>
+
+    <script src="~/Content/js/extensions/jquery.knob.min.js"></script>
+    <script src="~/Content/js/charts/raphael-min.js"></script>
+    <script src="~/Content/js/charts/morris.min.js"></script>
+    <script src="~/Content/js/charts/jquery.sparkline.min.js"></script>
+    <script src="~/Content/js/charts/chart.min.js"></script>
+
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('.navigation-main li a').click(function () {
+                $(this).parent('has-sub').addClass('open');
+            });
+            var calendar = $('#calendar').fullCalendar({
+        eventClick: function(event, jsEvent, view) {
+
+           $('#modalTitle').html(event.title);
+                    $('#modalBody').html(event);
+                    $('#eventUrl').attr('href',event.url);
+                    $('#calendarModal').modal();
+        },
+                editable: false,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                events: function (start, end, timezone, callback) {
+                    $.ajax({
+                        url: '/Session/listesessionCalendar',
+                        type: "GET",
+                        dataType: "JSON",
+
+                        success: function (result) {
+                            var events = [];
+
+                            //resultes = JSON.parse(result);
+                            resultes = result;
+
+                            $.each(resultes, function (i, data) {
+
+                                var dateheure = new Date(parseInt(data.DateSESSION.substr(6)));
+
+                                $vals = data.startHeure.split(':');
+
+                                var hours = Math.floor(parseInt(data.Dure) / 60) + parseInt($vals[0]);          
+                                var minutes = parseInt(data.Dure) % 60 + parseInt($vals[1]);
+
+                                events.push(
+                                    {
+                                        title: "Séance Machine: " + data.Machine,
+                                        description: "",
+                                        start: moment(dateheure).format('Y-MM-DD '+data.startHeure+':ss'),
+                                        end: moment(dateheure).format('Y-MM-DD '+hours+':'+minutes+':ss'),
+                                       // backgroundColor: "#9501fc",
+                                        //borderColor: "#fc0101"
+                                    });
+                            });
+
+                            callback(events);
+                        },
+                 });
+                },
+                selectable: false,
+                selectHelper: false,
+
+                editable: false,
+                eventResize: function (event) {
+                    var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                    var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                    var title = event.title;
+                    var id = event.id;
+                    $.ajax({
+                        url: "/Session/listesessionCalendar",
+                        type: "POST",
+                        data: { title: title, start: start, end: end, id: id },
+                        success: function () {
+                            calendar.fullCalendar('refetchEvents');
+                        }
+                    })
+                },
+
+
+
+            });
+        });
+
+    </script>
+    <script>
+
+         sessionAutorizeView = '@Session["UserFunction"]';
+         UserID = '@Session["UserID"]';
+         var name = '@Session["UserPrenom"]';
+         userName = name.replace(/\s/g, '');
+         userRole = '@Session["UserRole"]';
+
+    </script>
+    <script src="~/Content/js/sweetalert.min.js"></script>
+
+
+    <script src="~/Content/js/switch.min.js"></script>
+    <script src="~/Content/js/app-kanban.js"></script>
+    <script src="~/Content/js/form-select2.min.js"></script>
+   
+    @RenderSection("scripts", required: false)
+    <script src="~/Content/js/scripts/pages/hospital-payment-reports.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+﻿@model DorcasClub.Session
+
+@{
+    ViewBag.Title = "Modifier séance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ListeSession = ViewData["ListSessionDate"] as IEnumerable<DorcasClub.Session>;
+}
+
+
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3 content-header-title mb-0">
+                    Edilter les séances
+                </div>
+                <div class="col-md-8">
+                    <div class="breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Session">Session</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Création
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Parametrage Session</h4>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success pull-right" style=" margin-top: -12px;"><i class="la la-save"></i> Enregistrer</button>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="card-body row pt-0">
+                        <div class="col-md-4">
+                            <div class="form-group row no-gutters">
+                                <label for="insertion_date" class="col-sm-4 col-form-label"> Jours de séance</label>
+                                <div class="col-sm-8">
+                                    <input type="date" class="form-control" id="DateSESSION" name="DateSESSION" value="@ViewData["d1"]" />
+                                    @Html.ValidationMessageFor(model => model.DateSESSION, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group  row no-gutters">
+                                <label for="Etat" class="col-sm-4 col-form-label"> Etat </label>
+                                <div class="col-sm-8">
+                                    <select name=@Html.NameFor(model => model.etat) id=@Html.IdFor(model => model.etat) class="selectize-control input-selectize multi">
+                                        <option value="@Model.etat">@Model.etat</option>
+                                        @if (Model.etat == "Publiée")
+                                        {
+                                            <option value="Non Publiée">Non Publiée</option>
+                                        }
+                                        @if (Model.etat == "Non Publiée")
+                                        {
+                                            <option value="Publiée">Publiée</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-right"><button type="button" class="btn btn-dark roundedBtn" onclick="Add()"><i class="delete la la-plus" id="Add" name="Add"></i></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div id="body">
+                    @foreach (var item in ListeSession)
+                    {
+                    <div class="card mt-1 mb-1 p-0" id="HeuresSeance">
+                        <div class="card-body row">
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="Machine" class="col-sm-4 col-form-label"> Machine </label>
+                                    <div class="col-sm-8">
+                                       @* @item.Materials_idMaterials*@
+                                        @Html.DropDownListFor(model => model.Materials_idMaterials, (IEnumerable
+                               <SelectListItem>)ViewData["ListMaterials"], "Sélectionner Machine", new { @class = "form-control", @id = "Materials_idMaterials" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="Machine" class="col-sm-4 col-form-label"> Coach </label>
+                                    <div class="col-sm-8">
+                                        @*@item.Coach_idCoach*@
+                                        @Html.DropDownListFor(model => model.Coach_idCoach, (IEnumerable
+                                        <SelectListItem>)ViewData["ListCoach"], "Sélectionner Coach", new { @class = "form-control", @id = "Coach_idCoach", @Value = item.Coach_idCoach })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="insertion_date" class="col-sm-6 col-form-label"> Heure Début </label>
+                                    <div class="col-sm-6">
+                                        <input type="time" name="startHeure" id="startHeure" class="form-control" value="@item.startHeure" />
+                                        <input type="hidden" name="endHeure" id="endHeure" class="form-control" value="@item.startHeure" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="insertion_date" class="col-sm-6 col-form-label"> Durée (min)</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="Dure" id="Dure" class="form-control" value="@item.Dure" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group row no-gutters">
+                                    <label for="price" class="col-sm-4 col-form-label"> Prix </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="Price" id="Price" class="form-control" value="@item.Price" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1 text-right">
+                                <button type="button" class="btn btn-danger roundedBtn" onclick="Remove()">
+                                    <i class="la la-minus"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                            }
+                        </div>
+
+                   
+            </div>
+        </div>
+    }
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+
+        function Add()
+        {
+                        $( "#HeuresSeance" ).clone().prependTo( "#body" );
+
+
+        }
+     function Remove()
+        {
+       $('#body #HeuresSeance:last').remove();
+        }
+</script>
+}
+

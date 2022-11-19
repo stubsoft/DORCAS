@@ -1,0 +1,131 @@
+﻿@model IEnumerable<DorcasClub.Session>
+
+@{
+    ViewBag.Title = "SearchSeance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-1 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Liste des séances</span>
+                </div>
+                <div class="col-md-3" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Reservations">Réservation</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card mb-1">
+                <form action="/Reservations/SearchSeancedate" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="header-navbar navbar-expand-sm navbar navbar-with-menu">
+                        <div class="col pb-1  no-gutters">
+                            <label class="col-sm-6">Machine</label>
+                            <div class="col-sm-12">
+                                @Html.DropDownList("IdMachine", (IEnumerable
+                                  <SelectListItem>)ViewData["ListMaterials"], "Sélectionner une Machine", new { @class = "select2 form-control", @id = "IdMachine" })
+                            </div>
+                        </div>
+                        <div class="col pb-1  no-gutters">
+                            <label class="col-sm-6">Date Du</label>
+                            <div class="col-sm-12">
+                                <input type="datetime-local" class="form-control" id="d1" name="d1" value="@ViewData["d1"]" />
+                            </div>
+                        </div>
+                        <div class="col pb-1  no-gutters">
+                            <label class="col-sm-6">Date Au</label>
+                            <div class="col-sm-12">
+                                <input type="datetime-local" class="form-control" id="d2" name="d2" value="@ViewData["d2"]" />
+                            </div>
+                        </div>
+                        <div class="col-md-1 roundedBtn">
+                            <button type="submit" class="btn btn-info pull-right">Chercher</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="content-body">
+        <div class="product-shop">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>
+                                <label class="badge badge-danger round">@ViewData["Nbre"]</label>
+                                Séances
+                            </h4>
+                        </div>
+                        <div class="col-md-5"></div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="product-cat ps">
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-xl-3 col-md-6 col-sm-12">
+                <div class="recom-item">
+                    <div class="recom-media">
+                        <a href="">
+                            <div class="pic"><img src="@Url.Content(@item.Machine.FilePath)" data-at2x="@Url.Content(@item.Machine.FilePath)" alt="" height="240"></div>
+                        </a>
+                        <div class="location"><i class="flaticon-suntour-map"></i> @item.Prix TND</div>
+                    </div>
+                    <!-- Recomended Content-->
+                    <div class="recom-item-body">
+                        <a href="#">
+                            <h4 class="blog-title"><b>@item.Machine.Designation</b></h4>
+                            <h4 class="blog-title"><b>Le @item.DateSession.ToString().Replace(" 00:00:00", "")</b></h4>
+                        </a>
+                        <div class="stars stars-4">Du: @item.HeureDebut <br />Durée: @item.Dure min</div>
+                        <div class="stars stars-4">
+
+
+                            @foreach (var itemCoach in ViewData["ListCoach"] as List<Entreneur>)
+                            {
+                                if (@item.IdEntreneur == @itemCoach.IdEntreneur)
+                                {
+                                    @("Entreneur : " + itemCoach.Nom)
+                                }
+                            }
+                        </div>
+                        <a href="#" onclick="AddReservation(@item.IdSession)" id="reservation" class="cws-button small alt">Réserver</a>
+                    </div>
+                    <!-- Recomended Image-->
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        function AddReservation(ID, Machine) {
+            window.location.href = "/Reservations/Create?SessionID=" + ID;
+        }
+    </script>
+}

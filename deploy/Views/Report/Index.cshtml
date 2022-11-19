@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper mt-0 pt-0">
+    <div class="col-12 mt-3">
+        <div class="row">
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content">
+                        <div class="card-body bg-hexagons">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="info"> 6</h3>
+                                    <h6>Aliments</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-cup font-large-2 float-right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content">
+                        <div class="card-body bg-hexagons">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="warning">27</h3>
+                                    <h6>Séances</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-clock font-large-2 float-right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content">
+                        <div class="card-body bg-hexagons">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="success">3</h3>
+                                    <h6>Adhérents</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-user-follow font-large-2 float-right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-12">
+                <div class="card pull-up">
+                    <div class="card-content collapse show bg-gradient-directional-danger ">
+                        <div class="card-body bg-hexagons-danger">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <h3 class="white">8</h3>
+                                    <h6 class="white">Réservations</h6>
+                                </div>
+                                <div>
+                                    <i class="icon-calendar font-large-2 float-right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <hr />
+    <form action="@Url.Action("Impression")" method="post" target="_blank">
+        <input type="hidden" name="Format" id="Format" value="PDF" />
+        @Html.AntiForgeryToken()
+        <nav class="header-navbar navbar-expand-sm navbar navbar-with-menu navbar-light navbar-shadow bg-white bg-lighten-5 border-amber border-lighten-4">
+            <div class="input-group col-xl-4 col-lg-6 col-md-12" style="margin-left:10%;">
+                <label class="mb-1 text-bold-700">DU</label>&nbsp; &nbsp;&nbsp;&nbsp;
+                <input type="date" class="form-control border-success" id="DateDebut" name="DateDebut" value="@ViewData["DateDebut"]" />
+            </div>
+            <div class="input-group col-xl-4 col-lg-6 col-md-12">
+                <label class="mb-1 text-bold-700">AU</label>&nbsp; &nbsp;&nbsp;&nbsp;
+                <input type="date" class="form-control border-success" id="DateFin" name="DateFin" value="@ViewData["DateFin"]" />
+            </div>
+
+        </nav>
+        <br />
+        <div class="card">
+            <div class="card-content">
+                <div class="card-body">
+
+                    <div class="form-horizontal col-md-12">
+                        <div class="row">
+                            <div class="form-group row">
+                                <div class="col-sm-2">
+                                    <div class="checkbox">
+                                        <input name="PrintSelect" value="RepasPreparer" type="radio" checked />
+                                    </div>
+                                </div>
+                                <label class="col-sm-10  pt-0 col-form-label"> Etat des repas à préparer</label>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <input name="PrintSelect" value="RepasLivrer" type="radio" />
+                                    </div>
+                                </div>
+                                <label class="col-md-10"> Etat des repas à livrer</label>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <input name="PrintSelect" value="SeancesMachine" type="radio" />
+                                    </div>
+                                </div>
+                                <label class="col-md-10"> Séance par machine</label>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <input name="PrintSelect" value="RepasKcal" type="radio" />
+                                    </div>
+                                </div>
+                                <label class="col-md-10">Etat des repas par (Kcal)</label>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <input name="PrintSelect" value="ClientRecouvrement" type="radio" />
+                                    </div>
+                                </div>
+                                <label class="col-md-10">Etat recouvrement client</label>
+                            </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2">
+                                        <div class="checkbox">
+                                            <input name="PrintSelect" value="PlanningSP" type="radio" />
+                                        </div>
+                                    </div>
+                                    <label class="col-md-10">Planning semaine prochaine</label>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2">
+                                        <div class="checkbox">
+                                            <input name="PrintSelect" value="CommandeR" type="radio" />
+                                        </div>
+                                    </div>
+                                    <label class="col-md-10">Commandes du jour</label>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2">
+                                        <div class="checkbox">
+                                            <input name="PrintSelect" value="RentabiliteS" type="radio" />
+                                        </div>
+                                    </div>
+                                    <label class="col-md-10">Etat rentabilité Salle</label>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2">
+                                        <div class="checkbox">
+                                            <input name="PrintSelect" value="RentabiliteM" type="radio" />
+                                        </div>
+                                    </div>
+                                    <label class="col-md-10">Etat rentabilité Machine</label>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2">
+                                        <div class="checkbox">
+                                            <input name="PrintSelect" value="CaisseDep" type="radio" />
+                                        </div>
+                                    </div>
+                                    <label class="col-md-10">Etat des caisses de dépense</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    <div class="form-group">
+                        <div class="btn-group float-md-right">
+                            <button type="submit" class="btn btn-dark"><i class="la la-print"></i> Imprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</div>

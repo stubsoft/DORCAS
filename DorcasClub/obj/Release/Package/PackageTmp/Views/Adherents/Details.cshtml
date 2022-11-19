@@ -1,0 +1,180 @@
+﻿@model DorcasClub.Adherent
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Consultation Adhérent (@Model.Nom  @Model.Prenom)</span>
+                </div>
+                <div class="col-md-6" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Adherents">Adhérents</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Consulter
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Données Adhérent </h4>
+                </div>
+                <div class="card-body row pt-0">
+
+                    <div class="col-md-12 row ">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group row no-gutters">
+                                        <label for="Nom" class="col-sm-4 col-form-label"> Nom </label>
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row no-gutters">
+                                        <label for="Prenom" class="col-sm-4 col-form-label"> Prénom </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Prenom, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row no-gutters">
+                                        <label for="CIN" class="col-sm-4 col-form-label"> CIN </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.CIN, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.CIN, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row no-gutters">
+                                        <label for="mobile1" class="col-sm-4 col-form-label"> Téléphone 1 </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Mobile1, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.Mobile1, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row no-gutters">
+                                        <label for="mobile2" class="col-sm-4 col-form-label"> Téléphone 2 </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Mobile2, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.Mobile2, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row no-gutters">
+                                        <label for="Email" class="col-sm-4 col-form-label"> Email </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row no-gutters">
+                                        <label for="Facebook" class="col-sm-4 col-form-label"> Facebook </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Facebook, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.Facebook, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row no-gutters">
+                                        <label for="Instagram" class="col-sm-4 col-form-label"> Instagram </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Instagram, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.Instagram, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row no-gutters">
+                                        <label for="Adresse" class="col-sm-4 col-form-label"> Adresse </label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.Adresse, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                             <img src="@Url.Content(Model.FilePath)" alt="" height=200 width=200 />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>Données Physiques</h4>
+                        <hr />
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="col-md-3">
+                            <div class="form-group row no-gutters">
+                                <label for="Poids" class="col-sm-4 col-form-label"> Poids </label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.Poids, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Poids, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group row no-gutters">
+                                <label for="Taille" class="col-sm-4 col-form-label"> Taille</label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.Taille, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Taille, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group row no-gutters">
+                                <label for="DateNaissance" class="col-sm-5 col-form-label"> Date Naissance </label>
+                                <div class="col-sm-7">
+                                    <input type="date" class="form-control" id="DateNaissance" name="DateNaissance" value="@ViewData["d1"]" readonly />
+                                    @Html.ValidationMessageFor(model => model.DateNaissance, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

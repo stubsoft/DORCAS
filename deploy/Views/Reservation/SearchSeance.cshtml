@@ -1,0 +1,206 @@
+﻿@model IEnumerable<DorcasClub.Session>
+
+@{
+    ViewBag.Title = "SearchSeance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-1 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Liste des séances</span>
+                </div>
+                <div class="col-md-3" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Reservation">Réservation</a>
+                                </li>
+
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card mb-1">
+                <form action="/Reservation/SearchSeancedate" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="header-navbar navbar-expand-sm navbar navbar-with-menu">
+                        <div class="col pb-1  no-gutters">
+                            <label class="col-sm-6">Machine</label>
+                            <div class="col-sm-12">
+                                @Html.DropDownList("Materials_idMaterials", (IEnumerable
+                                  <SelectListItem>)ViewData["ListMaterials"], "Sélectionner une Machine", new { @class = "select2 form-control", @id = "Materials_idMaterials" })
+                            </div>
+                        </div>
+                        <div class="col pb-1  no-gutters">
+                            <label class="col-sm-6">Date Arrivée</label>
+                            <div class="col-sm-12">
+                                <input type="datetime-local" class="form-control" id="d1" name="d1" value="@ViewData["d1"]" />
+                            </div>
+                        </div>
+                        <div class="col pb-1  no-gutters">
+                            <label class="col-sm-6">Date Départ</label>
+                            <div class="col-sm-12">
+                                <input type="datetime-local" class="form-control" id="d2" name="d2" value="@ViewData["d2"]" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-1 roundedBtn">
+                            <button type="submit" class="btn btn-info pull-right">Chercher</button>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content-body">
+        <div class="product-shop">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>
+                                <label class="badge badge-danger round">@ViewData["Nbre"]</label>
+
+                                Séances
+                            </h4>
+                        </div>
+                        <div class="col-md-5"></div>
+                        <div class="col-md-3">
+                            <div class="search">
+                                <input id="basic-search" type="search" placeholder="Chercher ici..." class="form-control basic-search">
+                                <i class="ficon ft-search" style="position: absolute; right: 24px; top: 8px; font-size: 20px; font-weight: 900; }"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="row" id="result-all">
+        <div class="product-cat ps" id="categories">
+           
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-xl-3 col-md-6 col-sm-12" data-catg="@item.Materials.Categorie.Libelle">
+                <div class="recom-item">
+                    <div class="recom-media">
+                        <a href="hotels-details.html">
+                            <div class="pic"><img src="/Reservation/RetrieveImage/@item.Materials_idMaterials" data-at2x="/Reservation/RetrieveImage/@item.Materials_idMaterials" alt="" height="240"></div>
+                        </a>
+                        <div class="location"><i class="flaticon-suntour-map"></i> @item.Price TND</div>
+                    </div>
+                    <!-- Recomended Content-->
+                    <div class="recom-item-body">
+                        <a href="#">
+                            <h4 class="blog-title"><b>Le @item.DateSESSION.ToString().Replace(" 00:00:00", "")</b></h4>
+                        </a>
+                        <div class="stars stars-4">Du: @item.startHeure <br />Durée: @item.Dure min</div>
+                        <div class="stars stars-4">
+                            
+
+                            @foreach (var itemCoach in ViewData["ListCoach"] as List<Coach>)
+
+                            {
+                                if (@item.Coach_idCoach == @itemCoach.idCoach)
+                                {
+                                    @("Coash:" + itemCoach.FirstName)
+                                }
+
+
+                            }
+                        </div>
+                        <a href="#" onclick="AddReservation(@item.idSession)" id="reservation" class="cws-button small alt">Réserver</a>
+                    </div>
+                    <!-- Recomended Image-->
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+    function AddReservation(ID,Machine)
+        {
+            window.location.href ="/Reservation/CreateR?SessionID=" + ID;
+        }
+    </script>
+    <script>
+
+$("#basic-search").on("keyup", function() {
+
+    var value = $(this).val().toLowerCase();
+
+    $("#result-all .col-xl-4").filter(function() {
+
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+    });
+
+});
+ $("#myRange").on("change", function() {
+
+    var value = $(this).val().toLowerCase();
+
+    $("#result-all .col-xl-4").filter(function() {
+
+        $(this).toggle($("#result-all .col-xl-4 .price").text().toLowerCase().indexOf(value) > -1)
+
+    });
+
+});
+    
+    </script>
+<script>
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
+    <script>
+     function SearchMachine(machine)
+        {
+
+        var value = machine.toLowerCase();
+    $("#result-all .col-xl-4").filter(function() {
+
+       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+    });
+
+        }
+    </script>
+}

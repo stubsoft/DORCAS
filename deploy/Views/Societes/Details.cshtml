@@ -1,0 +1,171 @@
+﻿@model DorcasClub.Societe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Societe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeForme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeForme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RaisonSociale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RaisonSociale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Responsable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Responsable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MatriculeFiscale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatriculeFiscale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistreCommerce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistreCommerce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeBanque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeBanque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RibBanquaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RibBanquaire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodePostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodePostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FAX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FAX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SiteWeb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SiteWeb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeCNAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeCNAM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CodeSociete }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

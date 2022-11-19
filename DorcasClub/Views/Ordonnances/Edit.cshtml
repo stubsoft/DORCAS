@@ -1,0 +1,125 @@
+﻿@model DorcasClub.Ordonnance
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3"><span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Modification Ordonnance (@Model.NomMedecin)</span></div>
+                <div class="col-md-6" style=" padding-top: 8px;">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/Ordonnances">Ordonnance</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Modifier
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    @using (Html.BeginForm("Edit", "Ordonnances", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Données Ordonnance </h4>
+                        <div class="heading-elements">
+                            <button type="submit" class="btn btn-success pull-right" style=" margin-top: -12px;"><i class="la la-save"></i> Enregistrer</button>
+
+                        </div>
+
+                        <hr />
+                    </div>
+                    <div class="card-body row pt-0">
+                        @Html.HiddenFor(model => model.IdOrdonance)
+                        <div class="col-md-12 row ">
+                            <div class="col-md-6">
+                                <div class="form-group row no-gutters">
+                                    <label for="IdAdherent" class="col-sm-4 col-form-label"> Adhérent </label>
+                                    <div class="col-sm-8">
+                                        @Html.DropDownListFor(model => model.IdAdherent, (IEnumerable
+                                         <SelectListItem>)ViewData["ListAdherent"], "Sélectionner un Adhérent", new { @class = "select2 form-control", @id = "IdAdherent", @onchange = "OnChangeMethode1()" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row no-gutters">
+                                    <label for="NbCalorie" class="col-sm-4 col-form-label"> Nb kcal </label>
+                                    <div class="col-sm-8">
+                                        @Html.EditorFor(model => model.NbCalorie, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.NbCalorie, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row no-gutters">
+                                    <label for="NomMedecin" class="col-sm-4 col-form-label"> Nom Médecin</label>
+                                    <div class="col-sm-8">
+                                        @Html.EditorFor(model => model.NomMedecin, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.NomMedecin, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row no-gutters">
+                                    <label for="DateOrdonnance" class="col-sm-4 col-form-label"> Date Ordonnance </label>
+                                    <div class="col-sm-8">
+                                        @Html.EditorFor(model => model.DateOrdonnance, new { htmlAttributes = new { @class = "form-control", @type = "date" }, @value = @ViewData["d1"] })
+                                        @Html.ValidationMessageFor(model => model.DateOrdonnance, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+
+    }
+
+</div>
+
+
+
+    <script>
+        $("form").submit(function (e) {
+
+            if ($("#IdAdherent").val() == "") {
+                e.preventDefault();
+                swal({
+                    title: "Veuillez Sélectionner un Adherent ",
+                    button: "Fermer",
+                    icon: "error",
+                });
+            }
+        });
+    </script>
+    <script>
+        var now = new Date();
+        now.setDate(now.getDate());
+        $('#DateOrdonnance').val(now.toISOString().split('T')[0]);
+    </script>
+    

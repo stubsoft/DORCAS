@@ -1,0 +1,262 @@
+﻿@model IEnumerable<DorcasClub.Session>
+
+@{
+    ViewBag.Title = "Liste des Séances";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="content-header-left col-md-12 col-12 mb-2 breadcrumb-new card">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <span style="padding-top: 9px; font-size: 16px; " class="content-header-title mb-0 d-inline-block">Liste des  Séances</span>
+                </div>
+                <div class="col-md-6">
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Tableau de Bord</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Séances
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group float-md-right">
+                        <a href="@Url.Action("Create","Sessions")" class="btn btn-success"><i class="la la-plus"></i>Ajouter</a>
+                        <button class="btn btn-primary pull-right" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="la la-filter"></i>   Filtrer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="basic-button-icons">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-content collapse" id="collapseFilter">
+                        <div class="card-body">
+                            <form action="/Sessions/SearchIndex" method="post">
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label><b>Entreneur</b></label>
+                                        @*@Html.DropDownListFor(model => model.IdEntreneur, (IEnumerable
+                                            <SelectListItem>)ViewData["ListCoach"], "--Selectionner un Entreneur--", new { @class = "selectpicker form-control", data_live_search = "true", })*@
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label> <b>Machine</b></label>
+                                        @*@Html.DropDownListFor(model => model.IdMaChine, (IEnumerable
+                                      <SelectListItem>)ViewData["ListMaterials"], "--Selectionner une Machine--", new { @class = "selectpicker form-control", data_live_search = "true", })*@
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-success pull-right mt-2" id="btnFilter">
+                                            <i class="la la-search"></i>  Chercher
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <div class="demo-container card">
+        <div id="seance_Grid"></div>
+    </div>
+
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Confirmation Suppression</h1>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                Modal body..
+            </div>
+            <div class="modal-footer">
+                <button type="button" name="supprimer" id="supprimer" class="btn btn-danger" style="width:100px">Supprimer</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal" style="width:100px">Fermer</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var columns = [{
+        dataField: 'IdSession',
+        caption: 'Id',
+    },
+    {
+        dataField: 'DateSession',
+        caption: 'Date Séance',
+        dataType: 'string',
+        alignment: 'left',
+        groupIndex: 0,
+        sortOrder: 'asc',
+    },
+    {
+        dataField: 'HeureDebut',
+        caption: 'Heure Début ',
+        dataType: 'string',
+        alignment: 'left',
+    },
+    {
+        dataField: 'HeureFin',
+        caption: 'Heure Fin',
+        dataType: 'string',
+        alignment: 'left',
+    },
+    {
+        dataField: 'Prix',
+        caption: 'Prix',
+        dataType: 'string',
+        alignment: 'left',
+    },
+    {
+        dataField: 'Entreneur',
+        caption: 'Entreneur',
+        dataType: 'string',
+        alignment: 'left',
+    },
+    {
+        dataField: 'Machine',
+        caption: 'Machine',
+        dataType: 'string',
+        alignment: 'left',
+    },
+    {
+        dataField: 'nbPersonne',
+        caption: 'N° Personne',
+        dataType: 'string',
+        alignment: 'left',
+    },
+
+    {
+        caption: 'Actions',
+        width: 100,
+        alignment: 'center',
+        cellTemplate: function (container, options) {
+            $('<a href="/Sessions/Edit/' + options.key + '" class="success edit la la-pencil"></a>')
+                .on('dxclick', function (e) {
+                })
+                .appendTo(container);
+
+            $('<a href="/Sessions/Details/' + options.key + '" class="warning details la la-eye"></a>')
+                .on('dxclick', function () {
+
+                })
+                .appendTo(container);
+
+            $('<button class="btn p-0"><i class="danger delete  la la-trash-o"></i></button>')
+                .on('dxclick', function () {
+                    openModaldelete('' + options.key + '', 'Séance N° ')
+                })
+                .appendTo(container);
+
+        }
+    },
+
+    ];
+
+</script>
+
+
+<script>
+    $(() => {
+        $('#seance_Grid').dxDataGrid({
+
+            dataSource: {
+                store: {
+                    type: 'odata',
+                    url: '/Sessions/listeseances',
+                    key: 'IdSession',
+                    beforeSend(request) {
+                        request.params.startDate = '2020-05-10';
+                        request.params.endDate = '2020-05-15';
+                    },
+                },
+            },
+            selection: {
+                mode: 'multiple',
+            },
+            stateStoring: {
+                enabled: true,
+                type: 'localStorage',
+                storageKey: 'seance_Grid',
+            },
+            sorting: {
+                mode: 'multiple',
+            },
+            focusedRowEnabled: true,
+            hoverStateEnabled: true,
+
+            columnChooser: { enabled: true },
+            scrolling: {
+                mode: 'virtual',
+            },
+            allowColumnResizing: true,
+            showBorders: true,
+            columnResizingMode: 'nextColumn',
+            columnMinWidth: 50,
+            columnAutoWidth: true,
+            headerFilter: {
+                visible: true,
+            },
+            filterPanel: {
+                visible: true,
+            },
+            filterRow: { visible: true, applyFilter: "onClick" },
+            paging: {
+                pageSize: 10,
+            },
+            pager: {
+                showPageSizeSelector: true,
+                allowedPageSizes: [10, 25, 50, 100],
+            },
+            remoteOperations: { groupPaging: true },
+            searchPanel: {
+                visible: true,
+                highlightCaseSensitive: true,
+            },
+            groupPanel: { visible: true },
+            grouping: {
+                autoExpandAll: true,
+            },
+            allowColumnReordering: true,
+            rowAlternationEnabled: true,
+            showBorders: true,
+            columns: columns,
+            onContentReady(e) {
+
+            },
+        });
+    });
+
+
+
+</script>
+
+<script>
+    function openModaldelete(ID, name) {
+        $(".modal-body").html("Voulez vous Supprimez " + name + ID);
+        $("#myModal").modal('show');
+        $("#supprimer").click(function () {
+            window.location.href = "/Sessions/DeleteConfirmed?id=" + ID
+        });
+    }
+</script>
